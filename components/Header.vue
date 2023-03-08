@@ -4,34 +4,26 @@
             <div class="brand">
                 <img :src="apiBase+data?.header.logo_light.data.attributes.url" :alt="data?.Site_name">
             </div>
-            <nav class="flex gap-8">
+            <nav class="flex items-center gap-8">
                 <div class="menu_1">
-                    <ul class=" flex flex-col md:flex-row gap-4">
+                    <ul class=" flex flex-col items-center md:flex-row gap-4">
                         <li v-for="item in data?.header.menu_links" :key="item.key" >
                             <template v-if="item.active" >
-                                <NuxtLink v-if="item.internal" :to="item.url">
-                                {{ item.label }}
+                                <NuxtLink  :to="item.url"  :target="` ${item.internal ? '_self': '_blank'}`" >
+                                    <Button :type="item.type" :size="item.size" :style="item.style" >{{ item.label }} </Button>
                                 </NuxtLink>
-                                <a v-else :href="item.url" target="_blank">
-                                    {{ item.label }}
-                                </a>
                             </template>
-
                         </li>
                     </ul>
                 </div>
                 <div class="menu_2">
-                    <ul class="flex flex-col md:flex-row">
+                    <ul class=" flex flex-col items-center md:flex-row gap-4">
                         <li v-for="item in data?.header.menu_links_2" :key="item.key" >
                             <template v-if="item.active" >
-                                <NuxtLink v-if="item.internal" :to="item.url">
-                                {{ item.label }}
+                                <NuxtLink  :to="item.url"  :target="` ${item.internal ? '_self': '_blank'}`" >
+                                    <Button :type="item.type" :size="item.size" :variant="item.style" >{{ item.label }} </Button>
                                 </NuxtLink>
-                                <a v-else :href="item.url" target="_blank">
-                                    {{ item.label }}
-                                </a>
                             </template>
-
                         </li>
                     </ul>
                 </div>
