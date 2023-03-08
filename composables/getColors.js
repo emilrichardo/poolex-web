@@ -54,11 +54,11 @@ export const useGetColors=()=>{
 
             if(color.name !== "id" && color.name !== "style_colors" && color.hex !== null){
                 const colorRGB = color.hex.replace('#','').convertToRGB()
-                return ` --${color.name}${tone !== 0 ? '-lighten-' + tone : ''}: ${shadeRGBColor("rgb("+ colorRGB + ")" , (tone /1000) )}; --${color.name}${tone !== 0 ? '-darken-' + tone : ''}: ${shadeRGBColor("rgb("+ colorRGB + ")" , -(tone /1000) )}; --accesible-${color.name}:var('${getAccessibleColor(color.hex)}');`
+                return ` --${color.name}${tone !== 0 ? '-lighten-' + tone : ''}: ${shadeRGBColor("rgb("+ colorRGB + ")" , (tone /1000) )}; --${color.name}${tone !== 0 ? '-darken-' + tone : ''}: ${shadeRGBColor("rgb("+ colorRGB + ")" , -(tone /1000) )}; --accesible-${color.name}:var(${getAccessibleColor(color.hex)});`
 
             }
         }).join('')
-    })
+    }).join('')
 
     return `:root{${Styles}}  `
 
