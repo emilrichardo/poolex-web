@@ -31,7 +31,7 @@ module.exports = {
 
 
           primary:{
-            DEFAULT: withOpacity("#9a00ff"),
+            DEFAULT: withOpacity("--primary"),
             100:  withOpacity("--primary-lighten-300"),
             200:  withOpacity("--primary-lighten-200"),
             300:  withOpacity("--primary-lighten-100"),

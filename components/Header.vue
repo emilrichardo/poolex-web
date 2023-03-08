@@ -52,5 +52,4 @@ const data = computed(()=>{
     }
 })
 
-console.log(data.value);
 </script>
