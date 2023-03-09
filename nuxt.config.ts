@@ -26,11 +26,7 @@ export default defineNuxtConfig({
           ]
         }
        },
-    routeRules: {
-        '/': {
-          ssr:false
-        }
-     },
+
     css: [
         '@/assets/css/main.css',
       ],

@@ -71,13 +71,7 @@ module.exports = {
             700:  withOpacity("--light-darken-300"),
           },
         },
-        borderRadius: {
-          'none': 'var(--rounded-none)',
-          'sm': 'var(--rounded-sm)',
-          DEFAULT: 'var(--rounded)',
-          'md': 'var(--rounded-md)',
-          'lg': 'var(--rounded-lg)',
-        },
+
       },
     },
     plugins: [],

@@ -1,11 +1,11 @@
 <template>
-    <div>
+
         <Header/>
-        <main>
+        <main class="container mx-auto">
             <slot/>
         </main>
 
-    </div>
+
 </template>
 <script setup>
 import qs from 'qs'
@@ -45,5 +45,6 @@ useHead({
     style: [{children:  themeStylesTag }]
 })
 
-
+/* const d = useFetch('https://strapi-114755-0.cloudclusters.net/api/option')
+console.log(d.data.value.data.attributes); */
 </script>
