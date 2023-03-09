@@ -1,5 +1,5 @@
 <template>
-    <button :class="buttonFormat">
+    <button :class="`${buttonFormat} transition-all duration-300 ease-out`">
         <slot/>
     </button>
 </template>
@@ -17,15 +17,15 @@ const sizes = {
 const variants = {
     default: 'bg-white dark:bg-black',
     default_outline: ' border-black text-black dark:text-white dark:border-white',
-    primary: 'bg-primary text-accesible-primary',
-    primary_outline: ' border-primary text-black dark:text-white dark:border-white',
+    primary: 'bg-primary hover:bg-primary-200 text-accesible-primary',
+    primary_outline: ' border-primary text-dark dark:text-white dark:border-white hover:bg-primary hover:text-accesible-primary',
     secondary: 'bg-secondary text-accesible-secondary',
     secondary_outline: 'border-secondary text-black dark:text-white dark:border-white',
 }
 
 const types = {
     button : 'border rounded-lg',
-    link : 'text-primary',
+    link : 'hover:text-primary',
 }
 
 const buttonFormat = computed(()=>{
