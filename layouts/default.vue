@@ -45,6 +45,4 @@ useHead({
     style: [{children:  themeStylesTag }]
 })
 
-/* const d = useFetch('https://strapi-114755-0.cloudclusters.net/api/option')
-console.log(d.data.value.data.attributes); */
 </script>

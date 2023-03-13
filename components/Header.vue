@@ -12,7 +12,7 @@
                         <li v-for="item in data?.header.menu_links" :key="item.key" >
                             <template v-if="item.active" >
                                 <NuxtLink  :to="item.url"   >
-                                    <Button :type="item.type" :size="item.size" :style="item.style" >{{ item.label }} </Button>
+                                    <Button :type="item.type" :size="item.size" :variant="item.style" >{{ item.label }} </Button>
                                 </NuxtLink>
                             </template>
                         </li>
