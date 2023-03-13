@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    srcDir: "src",
     modules: ['@nuxtjs/tailwindcss','@nuxtjs/color-mode', '@pinia/nuxt','@nuxt/image-edge'],
 
     components: {
@@ -27,7 +28,7 @@ export default defineNuxtConfig({
         }
        },
 
-    css: [
+      css: [
         '@/assets/css/main.css',
       ],
 
