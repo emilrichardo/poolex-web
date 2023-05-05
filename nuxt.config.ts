@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     srcDir: "src",
-    modules: ['@nuxtjs/tailwindcss','@nuxtjs/color-mode', '@pinia/nuxt','@nuxt/image-edge'],
+    modules: ['@nuxtjs/color-mode','@nuxtjs/tailwindcss', '@pinia/nuxt','@nuxt/image-edge'],
 
     components: {
         global: true,
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 
           ],
           link:[
-            {rel: 'icon', type: 'image/x-icon', href: 'images/iso.svg'},
+            {rel: 'icon', type: 'image/x-icon', href: './public/images/iso.svg'},
           ]
         }
        },
