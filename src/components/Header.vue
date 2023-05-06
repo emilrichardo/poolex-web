@@ -1,19 +1,17 @@
 <template>
-  <header class="bg-light-100 dark:bg-dark-600 py-4">
-    <div
-      class="flex justify-between items-center mx-auto container"
-      v-if="useOptions.options.data"
-    >
-      <div class="brand">
-        <NuxtLink to="/">
-          <NuxtImg
-            class="w-40"
-            :src="data.header.logo_light.data.attributes.url"
-            :alt="data?.Site_name"
-          />
-        </NuxtLink>
-      </div>
-      <nav class="flex items-center gap-8">
+  <pre></pre>
+  <header class="bg-light-100 bg-opacity-25 py-4">
+    <div class="mx-auto px-2 lg:px-8" v-if="useOptions.options.data">
+      <nav class="flex items-center justify-between gap-8">
+        <div class="brand">
+          <NuxtLink to="/">
+            <NuxtImg
+              class="w-40"
+              :src="data.header.logo_light.data.attributes.url"
+              :alt="data?.Site_name"
+            />
+          </NuxtLink>
+        </div>
         <div class="menu_1">
           <ul class="flex flex-col items-center md:flex-row gap-4">
             <li v-for="item in data?.header.menu_links" :key="item.key">

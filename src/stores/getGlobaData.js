@@ -3,7 +3,7 @@ export const useGlobalData = defineStore('data',{
 
     state:()=>({
         team: null,
-
+        products: null
     }),
     actions:{
         async setTeam(data){
@@ -13,9 +13,16 @@ export const useGlobalData = defineStore('data',{
             } catch (error) {
                 console.log(error);
             }
+        },
+        async setProducts(data){
+            try {
+                const d= await data
+                this.products = d
+            } catch (error) {
+                console.log(error);
+            }
 
         },
-
 
     }
 
