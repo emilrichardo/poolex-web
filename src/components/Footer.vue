@@ -1,7 +1,8 @@
 <template>
   <footer class="bg-light-100">
+    <!--  {{ useData.products }} -->
+
     <div class="container mx-auto">
-      >
       <div class="social-links flex gap-4 justify-center py-24">
         <a
           v-for="link in socialLinks"
@@ -14,23 +15,19 @@
       </div>
       <hr class="border-t border-light-500" />
       <div
-        class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16"
+        class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-5 py-16"
       >
         <div class="footermenu">
           <h4 class="text-2xl font-bold mb-6">Products</h4>
 
           <ul v-if="useData.products" class="flex flex-col gap-3">
             <li
-              class="text-dark-100 hover:text-primary hover:underline"
+              class="text-dark-100 bg-primary p-4 text-light hover:underline"
               v-for="product in useData.products"
               :key="product.id"
             >
               <nuxt-link :to="localePath('/' + product.attributes.slug)">
-                <pre>
-                    {{ product.attributes.name }}
-
-                   {{ product.attributes.localizations.data }}
-                </pre>
+                <pre> {{useGetLocale(locale, product, "name", )}}  <!-- {{ localText(product, "name") }} --></pre>
               </nuxt-link>
             </li>
           </ul>
@@ -52,21 +49,18 @@
         </div>
       </div>
       <div class="flex gap-4">
-        {{ locales }}
         <NuxtLink v-for="lang in locales" :to="switchLocalePath(lang)">{{
           lang
         }}</NuxtLink>
       </div>
     </div>
-    {{ array.includes(color == "red") }}
   </footer>
   {{ localePath("/home") }}
 </template>
 <script setup>
-import { Icon } from "#components";
-
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
 import { useGlobalData } from "@/stores/getGlobaData";
+import { useGetLocale } from "@/composables/getLocale";
 
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
@@ -76,9 +70,4 @@ const useOptions = useGlobalOptions();
 const useData = useGlobalData();
 
 const socialLinks = useOptions.options.data.data.attributes.Social_networks;
-
-const array = [
-  { id: "1", color: "red" },
-  { id: "2", color: "blue" },
-];
 </script>
