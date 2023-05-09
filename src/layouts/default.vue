@@ -1,7 +1,5 @@
 <template>
   <Header />
-  <h2>{{ locale }}</h2>
-  {{ i18 }}
 
   <main class="container mx-auto in-h-full">
     <slot />
@@ -17,7 +15,6 @@ import { useGlobalData } from "@/stores/getGlobaData";
 import { useGetColors } from "@/composables/getColors";
 
 const { locales, locale } = useI18n();
-const i18 = useI18n();
 
 const useOptions = useGlobalOptions();
 
@@ -33,10 +30,16 @@ const query = qs.stringify({
       populate: "*",
     },
     localizations: {
-      populate: "*",
+      populate: {
+        header: {
+          populate: "*",
+        },
+      },
     },
   },
 });
+
+console.log(query);
 
 const optionsFromApi = await useFetch(`/api/option?${query}`);
 

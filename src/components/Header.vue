@@ -51,9 +51,21 @@
     </div>
     <Alert type="danger" v-else>{{ useOptions.options.error }}</Alert>
   </header>
+  <div class="bg-light-500 text-xs">
+    <pre
+      >{{
+        useGetLocale(locale, useOptions.options.data.data).Site_description
+      }} </pre
+    >
+  </div>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
+import { useGetLocale } from "@/composables/getLocale";
+
+const localePath = useLocalePath();
+
+const { locales, locale } = useI18n();
 
 const useOptions = useGlobalOptions();
 

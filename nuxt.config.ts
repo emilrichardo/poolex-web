@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     srcDir: "src",
     modules: ['@nuxtjs/color-mode','@nuxtjs/tailwindcss', '@pinia/nuxt','@nuxt/image-edge','nuxt-icon','@nuxtjs/i18n'],
     i18n: {
-       locales: ['en', 'es', 'fr'],  // used in URL path prefix
+       locales: ['en', 'es'],  // used in URL path prefix
         defaultLocale: 'en',    // default locale of your project for Nuxt pages and routings
      },
     components: {
@@ -24,9 +24,6 @@ export default defineNuxtConfig({
           meta:[
             {name: 'description', content:process.env.PROJECT_DESC },
 
-          ],
-          link:[
-            {rel: 'icon', type: 'image/x-icon', href: './public/images/iso.svg'},
           ]
         }
        },
