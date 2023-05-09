@@ -1,5 +1,4 @@
 <template>
-  <pre></pre>
   <header class="bg-light-100 bg-opacity-25 py-4">
     <div class="mx-auto px-2 lg:px-8" v-if="useOptions.options.data">
       <nav class="flex items-center justify-between gap-8">
@@ -14,7 +13,11 @@
         </div>
         <div class="menu_1">
           <ul class="flex flex-col items-center md:flex-row gap-4">
-            <li v-for="item in data?.header.menu_links" :key="item.key">
+            <li
+              v-for="item in useGetLocale(locale, useOptions.options.data.data)
+                .header.menu_links"
+              :key="item.key"
+            >
               <template v-if="item.active">
                 <NuxtLink :to="item.url">
                   <Button
@@ -30,11 +33,15 @@
         </div>
         <div class="menu_2">
           <ul class="flex flex-col items-center md:flex-row gap-4">
-            <li v-for="item in data?.header.menu_links_2" :key="item.key">
+            <li
+              v-for="item in useGetLocale(locale, useOptions.options.data.data)
+                .header.menu_links_2"
+              :key="item.key"
+            >
               <template v-if="item.active">
                 <NuxtLink
-                  :to="item.url"
-                  :target="` ${item.internal ? '_self' : '_blank'}`"
+                  :to="localePath(item.url)"
+                  :target="` ${!item.internal ? '_self' : '_blank'}`"
                 >
                   <Button
                     :type="item.type"
@@ -51,13 +58,6 @@
     </div>
     <Alert type="danger" v-else>{{ useOptions.options.error }}</Alert>
   </header>
-  <div class="bg-light-500 text-xs">
-    <pre
-      >{{
-        useGetLocale(locale, useOptions.options.data.data).Site_description
-      }} </pre
-    >
-  </div>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
@@ -65,7 +65,7 @@ import { useGetLocale } from "@/composables/getLocale";
 
 const localePath = useLocalePath();
 
-const { locales, locale } = useI18n();
+const { locale } = useI18n();
 
 const useOptions = useGlobalOptions();
 
