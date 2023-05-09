@@ -1,7 +1,7 @@
 <template>
   <Header />
 
-  <main class="container mx-auto in-h-full">
+  <main class="in-h-full">
     <slot />
   </main>
   <Footer />
@@ -39,14 +39,16 @@ const query = qs.stringify({
   },
 });
 
-console.log(query);
-
 const optionsFromApi = await useFetch(`/api/option?${query}`);
 
 useOptions.setOptions(optionsFromApi);
 
+const queryProducts = qs.stringify({
+  populate: "*",
+});
+
 const useData = useGlobalData();
-const productsFromApi = await useFetch(`/api/products?populate=*`);
+const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 useData.setProducts(productsFromApi.data.value.data);
 
 const { themeColors, themeStylesTag } = useGetColors();

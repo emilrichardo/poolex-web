@@ -1,5 +1,7 @@
 <template>
-  <header class="bg-light-100 bg-opacity-25 py-4">
+  <header
+    class="absolute z-50 w-full backdrop-blur-sm bg-light-100 bg-opacity-50 py-4"
+  >
     <div class="mx-auto px-2 lg:px-8" v-if="useOptions.options.data">
       <nav class="flex items-center justify-between gap-8">
         <div class="brand">
