@@ -14,7 +14,7 @@ body{
 
 /* slider */
 .carousel__pagination{
-   @apply justify-start gap-6
+   @apply !justify-start !gap-6
 }
 .carousel__pagination-button{
     @apply !w-3 !h-3 !bg-primary !bg-opacity-25 !rounded-full after:!hidden

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center"
+    class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center transition-all cursor-pointer hover:scale-105"
   >
     <svg
       class="absolute left-0 top-0 w-full"

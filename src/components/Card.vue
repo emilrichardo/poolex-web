@@ -1,5 +1,5 @@
 <template>
-  <div class="card bg-white rounded-lg overflow-hidden shadow-lg">
+  <div class="card bg-white rounded-lg overflow-hidden shadow-lg h-full">
     <div
       :class="` card-header py-3 px-4 text-light flex gap-3 items-center  ${
         isDraggable && 'cursor-move'
