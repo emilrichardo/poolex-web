@@ -31,12 +31,13 @@
       </div>
     </template>
   </Carousel>
+  <WidgetsHome />
 </template>
 
 <script setup>
 import axios from "axios";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
-
+import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
 import { useGetLocale } from "@/composables/getLocale";
 const { locale } = useI18n();
