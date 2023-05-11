@@ -15,7 +15,9 @@ export default defineNuxtConfig({
           projectName:process.env.PROJECT_NAME,
           projectDesc: process.env.PROJECT_DESC,
           apiBase: process.env.API_BASE_URL,
+          apiSession: process.env.API_SESSION_URL,
         }
+
       },
       app:{
         head: {

@@ -35,13 +35,14 @@ const variants = {
 
 const types = {
   button: "rounded-xl",
+  submit: "rounded-xl",
   link: "hover:text-primary",
 };
 
 const buttonFormat = computed(() => {
   if (type === "link") {
     return `${types.link} `;
-  } else if (type === "button") {
+  } else if (type === "button" || type === "submit") {
     return `${types.button} ${variants[variant] || variants.default} ${
       sizes[size] || sizes.md
     }  `;
