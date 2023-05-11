@@ -3,7 +3,7 @@ export const useGlobalOptions = defineStore('options',{
 
     state:()=>({
         options: null,
-        lang: "en",
+        userData: null,
 
 
     }),
@@ -17,10 +17,10 @@ export const useGlobalOptions = defineStore('options',{
             }
 
         },
-        async setLang(data){
+        async setUserData(data){
             try {
-                const op= await data
-                this.lang = op
+                const user= await data
+                this.userData = user
             } catch (error) {
                 console.log(error);
             }
