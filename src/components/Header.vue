@@ -1,7 +1,7 @@
 <template>
   <header
     :class="` ${
-      haveHero && '----absolute'
+      haveHero && '---------absolute'
     } z-50 w-full backdrop-blur-sm bg-light-100 bg-opacity-50 py-4 `"
   >
     <div class="mx-auto px-2 lg:px-8" v-if="globalOptions.options.data">
@@ -52,17 +52,25 @@
                 </Button>
               </li>
               <li class="relative">
-                <Button type="button" variant="primary" size="sm"
+                <Button
+                  @click="openBo = !openBo"
+                  type="button"
+                  variant="primary"
+                  size="sm"
                   >Backoffices
                   <Icon class="ml-2" name="heroicons:chevron-down-solid"
                 /></Button>
                 <div
+                  v-if="openBo"
                   class="submenu border border-light-400 rounded absolute top-12 right-0 bg-white flex flex-col items-center w-60"
                 >
-                  <ul class="">
-                    <li>Poolex</li>
-                    <li>Poolex</li>
-                    <li>Poolex</li>
+                  <ul>
+                    <li
+                      v-for="item in globalOptions.userData.data_array"
+                      class="py-2 px-4"
+                    >
+                      {{ item.bo }}
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -84,11 +92,19 @@
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
   </header>
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
-  {{ globalOptions.userData?.data_array }}
+
+  <pre class="text-sm hidden bg-red-200">{{ globalData.products }}</pre>
+  <pre class="bg-blue-300 p-4 text-sm">
+    {{ globalData.myBackoffices }}
+  </pre>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
+import { useGlobalData } from "@/stores/getGlobaData";
 import { useGetLocale } from "@/composables/getLocale";
+
+const globalData = useGlobalData();
+
 const runtimeConfig = useRuntimeConfig();
 
 const route = useRoute();
@@ -128,6 +144,46 @@ const getLogOut = async () => {
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const openBo = ref(false);
+
+const myBackOffices = computed(() => {
+  if (globalOptions.userData) {
+    const data = ref([]);
+    globalOptions.userData.data_array.map((item) => {
+      data.value.push({
+        name: item.bo,
+        user: item.username,
+        cookie: item.cookie,
+      });
+    });
+    return data;
+  }
+});
+
+//globalOptions.setMyBO(data);
+
+/// data by cookie
+
+const getDataBo = async (endpoint, Secret) => {
+  try {
+    const response = await fetch(
+      `${runtimeConfig.public.apiSession}/api/v1/${endpoint}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Secret,
+        },
+      }
+    );
+    const json = await response.json();
+
+    console.log(json);
   } catch (error) {
     console.log(error);
   }

@@ -17,6 +17,9 @@
               <template #card-body>
                 <template v-if="card.type == 'backoffices'">
                   <div class="grid grid-cols-3 gap-4">
+                    <div v-for="product in globalData.products">
+                      {{ product }}
+                    </div>
                     <CardProduct
                       v-for="product in globalData.products"
                       :title="product.attributes.name"
