@@ -16,12 +16,12 @@
             >
               <template #card-body>
                 <template v-if="card.type == 'backoffices'">
+                  <div v-for="product in globalData.myBackoffices">
+                    <pre class="text-[8px]">{{ product }}</pre>
+                  </div>
                   <div class="grid grid-cols-3 gap-4">
-                    <div v-for="product in globalData.products">
-                      {{ product }}
-                    </div>
                     <CardProduct
-                      v-for="product in globalData.products"
+                      v-for="product in globalData.myBackoffices"
                       :title="product.attributes.name"
                       :color="product.attributes.color"
                       :icon="product.attributes.icon"

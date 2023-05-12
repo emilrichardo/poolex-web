@@ -50,6 +50,7 @@ const queryProducts = qs.stringify({
 const useData = useGlobalData();
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 useData.setProducts(productsFromApi.data.value.data);
+useData.setMyBO(productsFromApi.data.value.data);
 
 const { themeColors, themeStylesTag } = useGetColors();
 

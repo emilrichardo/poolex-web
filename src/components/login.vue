@@ -76,7 +76,11 @@ const login = async () => {
 const mergeArrays = (array1, array2) => {
   const result = [];
   for (const item1 of array1) {
+    let matched = false;
     for (const item2 of array2) {
+      if (!item2.bo || !item1.attributes.name) {
+        continue;
+      }
       const nameMatch = item1.attributes.name
         .trim()
         .toLowerCase()
@@ -87,11 +91,14 @@ const mergeArrays = (array1, array2) => {
         .includes(item1.attributes.name.trim().toLowerCase());
       if (nameMatch || boMatch) {
         result.push({ ...item1, ...item2 });
+        matched = true;
         break;
       }
     }
+    if (!matched) {
+      result.push(item1);
+    }
   }
-  console.log(result);
   return result;
 };
 

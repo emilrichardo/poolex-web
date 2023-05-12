@@ -94,7 +94,7 @@
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
 
   <pre class="text-sm hidden bg-red-200">{{ globalData.products }}</pre>
-  <pre class="bg-blue-300 p-4 text-sm">
+  <pre class="hidden bg-blue-300 p-4 text-sm">
     {{ globalData.myBackoffices }}
   </pre>
 </template>
