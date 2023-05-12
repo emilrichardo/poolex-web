@@ -1,7 +1,14 @@
 <template>
   <div
+    @click="openPanel = !openPanel"
     class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center transition-all cursor-pointer hover:scale-105"
   >
+    <span
+      class="w-4 h-4 bg-primary text-light flex items-center justify-center border-2 border-light border-opacity-20 rounded-full absolute right-3 top-3"
+      v-if="isRegister"
+    >
+      <Icon name="mdi:check" />
+    </span>
     <svg
       class="absolute left-0 top-0 w-full"
       viewBox="0 0 266 96"
@@ -35,9 +42,64 @@
       <h3 class="font-semibold text-lg">{{ title }}</h3>
     </div>
   </div>
+  <div
+    v-if="openPanel"
+    class="panel w-full h-full py-6 px-10 bg-white absolute z-20 top-0 left-0 bg-opacity-90 backdrop-blur"
+  >
+    <div class="panel-header flex justify-between">
+      <h3 class="text-lg font-medium">{{ title }}</h3>
+      <Button
+        @click="openPanel = !openPanel"
+        type="button"
+        class="pr-8"
+        variant="default_outline"
+        size="sm"
+        ><Icon class="ml-2" name="heroicons:chevron-left-solid" />Back</Button
+      >
+    </div>
+    <div class="panel-body text-sm pt-4">
+      <div v-if="!isRegister" class="grid grid-cols-3 gap-5">
+        <img
+          v-if="attributes?.Featured_image.data"
+          class="rounded-lg"
+          :src="
+            attributes.Featured_image?.data.attributes?.formats?.medium?.url
+          "
+          alt=""
+        />
+        <div class="caption col-span-2 text-lg">
+          <p>{{ attributes.description }}</p>
+          <div class="flex gap-4 mt-4">
+            <NuxtLink
+              v-if="attributes.register_link"
+              :to="attributes.register_link"
+              ><Button type="button" size="sm" variant="primary_shadow">{{
+                locale === "es" ? "¡Consiguelo ahora!" : "Get it now!"
+              }}</Button></NuxtLink
+            >
+            <nuxt-link :to="localePath('/' + attributes.slug)">
+              <Button type="button" variant="default" size="sm">{{
+                locale === "es" ? "Ver más" : "View more"
+              }}</Button>
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
-const { title, color, icon } = defineProps(["title", "color", "icon", "icon"]);
+const localePath = useLocalePath();
+const { title, color, icon, isRegister, attributes } = defineProps([
+  "title",
+  "color",
+  "icon",
+  "icon",
+  "isRegister",
+  "attributes",
+]);
+
+const openPanel = ref(false);
 </script>
 <style>
 .card {

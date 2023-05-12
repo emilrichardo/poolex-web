@@ -8,26 +8,30 @@
         class="card-group grid grid-cols-3 gap-8"
       >
         <template #item="{ element: card }">
-          <div :class="card.cols == 2 && 'col-span-2'">
+          <div :class="card.cols == 2 && ' col-span-3 lg:col-span-2'">
             <Card
               :title="card.title"
               :color="card.color"
               :isDraggable="card.isDraggable"
             >
               <template #card-body>
-                <template v-if="card.type == 'backoffices'">
-                  <div v-for="product in globalData.myBackoffices">
+                <div class="relative py-8 px-6">
+                  <template v-if="card.type == 'backoffices'">
+                    <!--   <div v-for="product in globalData.myBackoffices">
                     <pre class="text-[8px]">{{ product }}</pre>
-                  </div>
-                  <div class="grid grid-cols-3 gap-4">
-                    <CardProduct
-                      v-for="product in globalData.myBackoffices"
-                      :title="product.attributes.name"
-                      :color="product.attributes.color"
-                      :icon="product.attributes.icon"
-                    />
-                  </div>
-                </template>
+                  </div> -->
+                    <div class="grid grid-cols-3 gap-4">
+                      <CardProduct
+                        v-for="product in globalData.myBackoffices"
+                        :title="product.attributes.name"
+                        :color="product.attributes.color"
+                        :icon="product.attributes.icon"
+                        :isRegister="product.success"
+                        :attributes="product.attributes"
+                      />
+                    </div>
+                  </template>
+                </div>
               </template>
             </Card>
           </div>

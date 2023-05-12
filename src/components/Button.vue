@@ -21,7 +21,8 @@ const sizes = {
 
 const variants = {
   default: "bg-secondary border-secondary dark:bg-black",
-  default_outline: " border-black text-black dark:text-white dark:border-white",
+  default_outline:
+    "border border-light-500 hover:bg-secondary text-black dark:text-white dark:border-white",
   primary:
     "bg-primary   border-primary hover:bg-primary-200 text-accesible-primary",
   primary_outline:

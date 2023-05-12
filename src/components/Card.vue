@@ -17,7 +17,7 @@
         name="radix-icons:dots-horizontal"
       ></Icon>
     </div>
-    <div class="card-body py-8 px-6">
+    <div class="card-body">
       <slot name="card-body" />
     </div>
   </div>
