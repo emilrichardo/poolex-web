@@ -1,21 +1,36 @@
 <template>
-  <div class="pt-24 bg-product">
-    {{ productColor }}
-    {{ currentProduct }}
-  </div>
+  <Hero
+    :title="useGetLocale(locale, product).name"
+    :caption="useGetLocale(locale, product).description"
+    :background="product.attributes.Featured_image.data?.attributes.url"
+    bgStyle="half"
+  >
+    <template #cta>
+      <div class="flex gap-4">
+        <NuxtLink
+          v-if="product.attributes.register_link"
+          :to="product.attributes.register_link"
+          ><Button type="button" variant="primary_shadow">{{
+            locale === "es" ? "Registrate" : "Register"
+          }}</Button></NuxtLink
+        >
+      </div>
+    </template>
+  </Hero>
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
+const { locales, locale } = useI18n();
 const globalData = useGlobalData();
 const route = useRoute();
 
 //filter product
 
-const currentProduct = ref(null);
+const product = ref(null);
 
 const productColor = computed(() => {
-  if (currentProduct.value.attributes.color) {
-    return ":root{--product: " + currentProduct.value.attributes.color + "};";
+  if (product.value.attributes.color) {
+    return ":root{--product: " + product.value.attributes.color + "};";
   }
 });
 
@@ -31,19 +46,19 @@ const filterProduct = computed(() => {
   return null;
 });
 
-// Actualizar el valor de currentProduct cuando cambia la búsqueda
-currentProduct.value = filterProduct.value;
+// Actualizar el valor de product cuando cambia la búsqueda
+product.value = filterProduct.value;
 
 useHead({
-  title: currentProduct.value.attributes.name,
+  title: product.value.attributes.name,
   meta: [
     {
       name: "description",
-      content: currentProduct.value.attributes.description,
+      content: product.value.attributes.description,
     },
   ],
   bodyAttrs: {
-    class: "theme-" + currentProduct.value.attributes.slug,
+    class: "theme-" + product.value.attributes.slug,
   },
   style: [{ children: productColor.value }],
 });

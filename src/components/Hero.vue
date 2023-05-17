@@ -1,11 +1,16 @@
 <template>
-  <section class="h-[80vh] w-full relative bg-primary-100 bg-opacity-20">
+  <section class="h-[80vh] w-full relative bg-opacity-20">
     <img
-      class="h-full w-full object-cover absolute z-0"
+      :class="` ${
+        bgStyle === 'half'
+          ? 'w-1/2 right-0 border-b-[24px] border-product'
+          : 'w-full'
+      } h-full  object-cover absolute z-0`"
       :src="background"
       alt=""
     />
     <div
+      v-if="bgStyle !== 'half'"
       class="overlay z-0 bg-gradient-to-r from-white via-white h-full absolute w-2/3"
     ></div>
     <div class="container mx-auto h-full flex items-center">
@@ -20,9 +25,10 @@
   </section>
 </template>
 <script setup>
-const { title, caption, background } = defineProps([
+const { title, caption, background, bgStyle } = defineProps([
   "title",
   "caption",
   "background",
+  "bgStyle",
 ]);
 </script>

@@ -1,7 +1,7 @@
 <template>
   <header
     :class="` ${
-      haveHero && 'absolute'
+      haveHero ? 'absolute' : ''
     } z-50 w-full backdrop-blur-sm bg-light-100 bg-opacity-50 py-4 `"
   >
     <div class="mx-auto px-2 lg:px-8" v-if="globalOptions.options.data">
@@ -127,7 +127,7 @@ const haveHero = computed(() => {
   return (
     route.path === "/" ||
     route.path === "/es" ||
-    route.params.hasOwnProperty("product")
+    route.path.includes("/product")
   );
 });
 
