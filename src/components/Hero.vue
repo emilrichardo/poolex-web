@@ -1,5 +1,5 @@
 <template>
-  <section class="h-[80vh] w-full relative bg-opacity-20">
+  <section class="h-[80vh] bg-white w-full relative bg-opacity-20">
     <img
       :class="` ${
         bgStyle === 'half'

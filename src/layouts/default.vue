@@ -43,14 +43,40 @@ const optionsFromApi = await useFetch(`/api/option?${query}`);
 
 useOptions.setOptions(optionsFromApi);
 
-const queryProducts = qs.stringify({
-  populate: "*",
-});
+const queryProducts = qs.stringify(
+  {
+    populate: {
+      localizations: {
+        populate: "*",
+      },
+      Featured_image: {
+        populate: "*",
+      },
+      sections: {
+        populate: {
+          headings: {
+            populate: "*",
+          },
+          image: {
+            populate: "*",
+          },
+          features: {
+            populate: "*",
+          },
+        },
+      },
+    },
+  },
+  {
+    encodeValuesOnly: true, // prettify URL
+  }
+);
 
 const useData = useGlobalData();
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
+
 useData.setProducts(productsFromApi.data.value.data);
-useData.setMyBO(productsFromApi.data.value.data);
+/* useData.setMyBO(productsFromApi.data.value.data); */
 
 const { themeColors, themeStylesTag } = useGetColors();
 

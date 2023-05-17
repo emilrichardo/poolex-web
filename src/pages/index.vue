@@ -1,5 +1,10 @@
 <template>
-  <Carousel :wrap-around="true" :autoplay="4000">
+  <!-- <div class="pt-24 flex flex-col gap-6">
+    <div class="" v-for="item in globalData.products">
+      {{ item }}
+    </div>
+  </div> -->
+  <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="4000">
     <template v-for="product in globalData.products" :key="product">
       <Slide v-if="product.attributes.active">
         <Hero
@@ -63,4 +68,5 @@ async function getUser() {
   }
 }
 getUser();
+console.log(globalData.products.data);
 </script>

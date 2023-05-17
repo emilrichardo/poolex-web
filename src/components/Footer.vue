@@ -22,7 +22,7 @@
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
-          <ul v-if="useData.products" class="flex flex-col gap-3">
+          <!-- <ul v-if="useData.products" class="flex flex-col gap-3">
             <li
               class="text-dark-100 hover:underline"
               v-for="product in useData.products"
@@ -32,7 +32,7 @@
                 {{ useGetLocale(locale, product).name }}
               </nuxt-link>
             </li>
-          </ul>
+          </ul> -->
         </div>
         <div class="footermenu">
           <h4 class="text-2xl font-bold mb-6">

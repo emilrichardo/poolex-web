@@ -17,6 +17,19 @@
       </div>
     </template>
   </Hero>
+  <template v-for="section in product.attributes.sections">
+    <component
+      v-for="section in product.attributes.sections"
+      :key="section.id"
+      :is="formatName(section.__component)"
+      :content="section"
+    ></component>
+  </template>
+  <!--  <component
+    v-for="section in product.attributes.sections"
+    :key="section.id"
+    :is="formatName(component.__component)"
+  ></component> -->
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
@@ -48,6 +61,18 @@ const filterProduct = computed(() => {
 
 // Actualizar el valor de product cuando cambia la búsqueda
 product.value = filterProduct.value;
+
+const formatName = (name) => {
+  const newName = name
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toUpperCase() : word.toUpperCase();
+    })
+    .replace(/\s+/g, "")
+    .replace(".", "")
+    .replace("-", "")
+    .replace(" ", "");
+  return newName;
+};
 
 useHead({
   title: product.value.attributes.name,
