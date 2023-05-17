@@ -81,6 +81,7 @@ module.exports = {
             600:  withOpacity("--light-darken-200"),
             700:  withOpacity("--light-darken-300"),
           },
+          product: "var(--product)",
         },
 
       },
