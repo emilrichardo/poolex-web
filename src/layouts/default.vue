@@ -75,6 +75,9 @@ const queryProducts = qs.stringify(
           internal_margin: {
             populate: "*",
           },
+          icons: {
+            populate: "*",
+          },
         },
       },
     },
