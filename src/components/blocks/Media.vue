@@ -45,6 +45,19 @@
             :src="content.image?.image.data.attributes.url"
             :alt="content.image?.image_title"
           />
+
+          <div
+            v-if="content.video"
+            class="video-overlay absolute left-0 h-full w-full grid justify-center items-center top-0"
+          >
+            <button
+              @click="openVideo(content.video)"
+              class="button-video w-24 h-24 rounded-full bg-product bg-opacity-20 text-white text-5xl"
+            >
+              <Icon name="heroicons:play-20-solid"></Icon>
+            </button>
+          </div>
+
           <div
             v-if="content.image?.image_caption"
             class="image-caption max-w-[519px] absolute -bottom-12 bg-product right-0 px-12 py-10"
@@ -58,4 +71,12 @@
 </template>
 <script setup>
 const { content } = defineProps(["content"]);
+
+const openVideo = (data) => {
+  if (data.video_url.includes("vimeo")) {
+  } else if (data.video_url.includes("youtube")) {
+  } else {
+    console.log("URL no válida");
+  }
+};
 </script>

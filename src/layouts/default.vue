@@ -66,6 +66,9 @@ const queryProducts = qs.stringify(
           background: {
             populate: "*",
           },
+          video: {
+            populate: "*",
+          },
         },
       },
     },
