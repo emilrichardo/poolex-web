@@ -63,6 +63,9 @@ const queryProducts = qs.stringify(
           features: {
             populate: "*",
           },
+          background: {
+            populate: "*",
+          },
         },
       },
     },

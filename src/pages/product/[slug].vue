@@ -17,19 +17,13 @@
       </div>
     </template>
   </Hero>
-  <template v-for="section in product.attributes.sections">
-    <component
-      v-for="section in product.attributes.sections"
-      :key="section.id"
-      :is="formatName(section.__component)"
-      :content="section"
-    ></component>
-  </template>
-  <!--  <component
+
+  <component
     v-for="section in product.attributes.sections"
     :key="section.id"
-    :is="formatName(component.__component)"
-  ></component> -->
+    :is="formatName(section.__component)"
+    :content="section"
+  ></component>
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
