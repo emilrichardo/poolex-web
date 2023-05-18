@@ -1,7 +1,7 @@
 <template>
   <section
     :id="content.id"
-    :class="`${padding[content.internal_margin] || padding.md}`"
+    :class="`${padding[content.internal_margin]}`"
     :style="`${
       content.background?.Background_color &&
       'background-color:' + content.background?.Background_color
@@ -9,9 +9,21 @@
   >
     <div :class="` container relative `">
       <div
-        v-if="content.style === 'box-right' || content.style === 'box-left'"
-        :class="` bg-product h-full w-screen absolute top-0 z-0 ${
-          content.style === 'box-right' ? 'left-0' : 'right-0'
+        v-if="
+          content.style === 'box-right' ||
+          content.style === 'box-left' ||
+          content.style === 'box-left-caption' ||
+          content.style === 'box-right-caption'
+        "
+        :class="` bg-product  w-screen absolute bottom-0 z-0 ${
+          content.style === 'box-right-caption' ||
+          content.style === 'box-left-caption'
+            ? ' h-[80%]'
+            : 'h-full'
+        } ${
+          content.style === 'box-right' || content.style === 'box-right-caption'
+            ? 'left-0'
+            : 'right-0'
         }`"
       ></div>
 
@@ -25,10 +37,12 @@
       >
         <div
           :class="`caption max-w-[851px] relative ${
-            content.image && 'md:w-1/2 px-8 md:px-24'
-          } ${content.image_side === 'left' && 'order-2'} ${
-            content.headings?.align === 'center' && 'text-center'
-          }`"
+            (content.style === 'box-right-caption' ||
+              content.style === 'box-left-caption') &&
+            'bg-white py-16 -bottom-28'
+          } ${content.image && 'md:w-1/2 px-8 md:px-24'} ${
+            content.image_side === 'left' && 'order-2'
+          } ${content.headings?.align === 'center' && 'text-center'}`"
         >
           <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
             {{ content.headings?.sub_headline }}
@@ -67,12 +81,12 @@
           </div>
         </div>
         <div
-          :class="` block-image relative bg-black rounded-lg   ${
-            content.image && 'md:w-1/2'
+          :class="` block-image relative rounded-lg   ${
+            content.image && 'md:w-1/2 flex justify-center'
           } ${content.image_side === 'left' && 'order-1'}`"
         >
           <img
-            :class="` h-[258px] lg:h-[458px] object-cover rounded-lg  ${
+            :class="` min-h-[258px] lg:min-h-[458px] object-cover rounded-lg  ${
               videoOpen && 'opacity-0'
             }`"
             v-if="content.image?.image.data.attributes.url"

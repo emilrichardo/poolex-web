@@ -5,7 +5,7 @@
 
 
 body{
-    @apply bg-light font-body dark:bg-dark text-dark dark:text-light
+    @apply bg-white font-body dark:bg-dark text-dark dark:text-light
 }
 
 :root{
