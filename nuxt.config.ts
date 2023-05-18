@@ -10,6 +10,9 @@ export default defineNuxtConfig({
         global: true,
         dirs: ['~/components']
     },
+    build: {
+      transpile: ['@vimeo/player'],
+    },
     runtimeConfig: {
         public:{
           projectName:process.env.PROJECT_NAME,

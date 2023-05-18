@@ -35,12 +35,14 @@
           </p>
         </div>
         <div
-          :class="` block-image relative  ${content.image && 'w-1/2'} ${
-            content.image_side === 'left' && 'order-1'
-          }`"
+          :class="` block-image relative bg-black rounded-lg   ${
+            content.image && 'w-1/2'
+          } ${content.image_side === 'left' && 'order-1'}`"
         >
           <img
-            class="rounded h-[458px] object-cover"
+            :class="` h-[458px] object-cover rounded-lg  ${
+              videoOpen && 'opacity-0'
+            }`"
             v-if="content.image?.image.data.attributes.url"
             :src="content.image?.image.data.attributes.url"
             :alt="content.image?.image_title"
@@ -48,14 +50,19 @@
 
           <div
             v-if="content.video"
-            class="video-overlay absolute left-0 h-full w-full grid justify-center items-center top-0"
+            class="video-overlay rounded-lg absolute top-0 left-0 h-full w-full grid justify-center items-center"
           >
             <button
+              v-if="!videoOpen"
               @click="openVideo(content.video)"
               class="button-video w-24 h-24 rounded-full bg-product bg-opacity-20 text-white text-5xl"
             >
               <Icon name="heroicons:play-20-solid"></Icon>
             </button>
+            <div
+              class="video-vimeo absolute left-0 top-0"
+              ref="vimeoPlayer"
+            ></div>
           </div>
 
           <div
@@ -70,13 +77,54 @@
   </section>
 </template>
 <script setup>
+import Vimeo from "@vimeo/player";
+
 const { content } = defineProps(["content"]);
 
+const vimeoPlayer = ref(null);
+const videoOpen = ref(false);
+
 const openVideo = (data) => {
-  if (data.video_url.includes("vimeo")) {
-  } else if (data.video_url.includes("youtube")) {
-  } else {
-    console.log("URL no válida");
+  const url = obtenerIDVideo(data.video_url);
+  console.log(obtenerIDVideo(data.video_url));
+
+  if (url.plataforma === "Vimeo") {
+    videoOpen.value = true;
+    const options = {
+      id: url.id, // ID del video de Vimeo
+      width: 840,
+    };
+
+    const player = new Vimeo(vimeoPlayer.value, options);
+    player.play();
+  } else if (url.plataforma === "YouTube") {
+    console.log("you");
   }
 };
+
+function obtenerIDVideo(url) {
+  const vimeoRegex = /vimeo\.com\/(\d+)/;
+  const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)(\w+)/;
+
+  if (vimeoRegex.test(url)) {
+    const match = url.match(vimeoRegex);
+    return {
+      plataforma: "Vimeo",
+      id: match[1],
+    };
+  } else if (youtubeRegex.test(url)) {
+    const match = url.match(youtubeRegex);
+    return {
+      plataforma: "YouTube",
+      id: match[1],
+    };
+  } else {
+    return null;
+  }
+}
 </script>
+<style>
+.video-vimeo iframe {
+  max-width: 100%;
+}
+</style>
