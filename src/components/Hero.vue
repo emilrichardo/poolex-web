@@ -3,7 +3,7 @@
     <img
       :class="` ${
         bgStyle === 'half'
-          ? 'w-1/2 right-0 border-b-[24px] border-product'
+          ? 'md:w-1/2 right-0 border-b-[24px] border-product'
           : 'w-full'
       } h-full  object-cover absolute z-0`"
       :src="background"

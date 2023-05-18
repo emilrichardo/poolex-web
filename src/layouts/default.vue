@@ -69,6 +69,12 @@ const queryProducts = qs.stringify(
           video: {
             populate: "*",
           },
+          style: {
+            populate: "*",
+          },
+          internal_margin: {
+            populate: "*",
+          },
         },
       },
     },
