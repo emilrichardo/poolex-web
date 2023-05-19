@@ -47,7 +47,7 @@
           <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
             {{ content.headings?.sub_headline }}
           </h4>
-          <h2 class="text-4xl font-semibold mb-8" v-if="content.headings">
+          <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
             {{ content.headings?.headline }}
           </h2>
           <p class="text-xl font-light" v-if="content.headings">
@@ -81,9 +81,11 @@
           </div>
         </div>
         <div
-          :class="` block-image relative rounded-lg   ${
-            content.image && 'md:w-1/2 flex justify-center'
-          } ${content.image_side === 'left' && 'order-1'}`"
+          :class="` block-image relative rounded-lg ${
+            videoOpen && 'bg-black'
+          }  ${content.image && 'md:w-1/2 flex justify-center'} ${
+            content.image_side === 'left' && 'order-1'
+          }`"
         >
           <img
             :class="` min-h-[258px] lg:min-h-[458px] object-cover rounded-lg  ${
@@ -136,6 +138,7 @@ const openVideo = (data) => {
 
   if (url.plataforma === "Vimeo") {
     videoOpen.value = true;
+
     const options = {
       id: url.id, // ID del video de Vimeo
       width: 840,
@@ -170,8 +173,8 @@ function obtenerIDVideo(url) {
 }
 
 const padding = {
-  xs: "py-8",
-  sm: "py-12",
+  xs: "py-4",
+  sm: "py-8",
   md: "py-18",
   lg: "py-24",
   xl: "py-36",
