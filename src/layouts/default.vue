@@ -78,6 +78,15 @@ const queryProducts = qs.stringify(
           icons: {
             populate: "*",
           },
+          logo: {
+            populate: "*",
+          },
+          brands: {
+            populate: "*",
+          },
+          text: {
+            populate: "*",
+          },
         },
       },
     },
