@@ -87,6 +87,9 @@ const queryProducts = qs.stringify(
           text: {
             populate: "*",
           },
+          membership: {
+            populate: "*",
+          },
         },
       },
     },
