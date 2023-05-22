@@ -90,6 +90,9 @@ const queryProducts = qs.stringify(
           membership: {
             populate: "*",
           },
+          team: {
+            populate: "*",
+          },
         },
       },
     },
@@ -102,8 +105,21 @@ const queryProducts = qs.stringify(
 const useData = useGlobalData();
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 
-useData.setProducts(productsFromApi.data.value.data);
+useData.setProducts(productsFromApi.data?.value?.data);
 /* useData.setMyBO(productsFromApi.data.value.data); */
+
+// team
+const queryTeam = qs.stringify({
+  populate: {
+    team: {
+      populate: "*",
+    },
+  },
+});
+const teamFromApi = await useFetch(`/api/our-team?${queryTeam}`);
+useData.setTeam(teamFromApi.data?.value?.data);
+
+// styles
 
 const { themeColors, themeStylesTag } = useGetColors();
 

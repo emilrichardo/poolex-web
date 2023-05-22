@@ -6,7 +6,7 @@
   </div> -->
   <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="4000">
     <template v-for="product in globalData.products" :key="product">
-      <Slide v-if="product.attributes.active">
+      <Slide v-if="product?.attributes?.active">
         <Hero
           :title="useGetLocale(locale, product).name"
           :caption="useGetLocale(locale, product).description"

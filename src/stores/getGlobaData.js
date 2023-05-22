@@ -24,6 +24,15 @@ export const useGlobalData = defineStore('data',{
             }
 
         },
+        async setTeam(data){
+            try {
+                const d= await data
+                this.team = d
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
         async setMyBO(data){
             try {
                 const user= await data
