@@ -25,6 +25,10 @@ export default defineNuxtConfig({
       app:{
         head: {
           title: process.env.PROJECT_NAME,
+          link: [{ rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/images/iso.svg', }],
+
 
           meta:[
             {name: 'description', content:process.env.PROJECT_DESC },
