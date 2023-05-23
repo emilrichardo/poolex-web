@@ -93,6 +93,9 @@ const queryProducts = qs.stringify(
           team: {
             populate: "*",
           },
+          plan: {
+            populate: "*",
+          },
         },
       },
     },

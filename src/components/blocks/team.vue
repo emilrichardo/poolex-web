@@ -34,7 +34,7 @@
             class="image bg-product max-w-[320px] flex-none relative"
           >
             <img
-              class="left-4 top-4 opacity-20"
+              class="left-4 top-4"
               :src="item.image_profile.data.attributes.url"
               :alt="item.full_name"
             />

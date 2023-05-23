@@ -42,7 +42,11 @@
             'bg-white py-16 -bottom-28'
           } ${content.image && 'md:w-1/2 px-8 md:px-24'} ${
             content.image_side === 'left' && 'order-2'
-          } ${content.headings?.align === 'center' && 'text-center'}`"
+          } ${content.headings?.align === 'center' && 'text-center'} ${
+            content.headings?.text_color === 'light'
+              ? 'text-light'
+              : 'text-dark'
+          }`"
         >
           <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
             {{ content.headings?.sub_headline }}
@@ -61,14 +65,14 @@
                 class="flex py-6 border-b border-light-500 last:border-0"
               >
                 <div
+                  v-if="feature?.icon?.data?.attributes?.url"
                   class="mr-4 rounded-full bg-product w-20 h-20 flex-none inline-flex justify-center items-center"
                 >
                   <img
                     class=""
                     type="image"
-                    v-if="feature.icon"
-                    :src="feature.icon.data.attributes.url"
-                    :alt="feature.title"
+                    :src="feature?.icon?.data?.attributes?.url"
+                    :alt="feature?.title"
                   />
                 </div>
 
@@ -91,8 +95,8 @@
             :class="` min-h-[258px] lg:min-h-[458px] object-cover rounded-lg  ${
               videoOpen && 'opacity-0'
             }`"
-            v-if="content.image?.image.data.attributes.url"
-            :src="content.image?.image.data.attributes.url"
+            v-if="content.image?.image?.data?.attributes?.url"
+            :src="content.image?.image?.data?.attributes?.url"
             :alt="content.image?.image_title"
           />
 

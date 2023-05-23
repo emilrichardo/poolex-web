@@ -1,10 +1,12 @@
 <template>
   <section
-    :class="`block_text py-24 ${
+    :class="`block_text  ${
       (content.headings.align === 'center' && 'text-center') ||
       (content.headings.align === 'left' && '') ||
       (content.headings.align === 'right' && 'text-right')
-    } ${backgrounds[content.background.colors]}`"
+    } ${backgrounds[content.background?.colors]} ${
+      padding[content.internal_margin]
+    }`"
   >
     <div class="container max-w-[730px]">
       <h4 class="text-2xl font-light mb-8" v-if="content.headings">
@@ -26,5 +28,12 @@ const backgrounds = {
   primary: "bg-primary",
   default: "bg-default",
   product: "bg-product",
+};
+const padding = {
+  xs: "py-4",
+  sm: "py-8",
+  md: "py-18",
+  lg: "py-24",
+  xl: "py-36",
 };
 </script>
