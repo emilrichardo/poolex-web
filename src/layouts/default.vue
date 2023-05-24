@@ -52,6 +52,9 @@ const queryProducts = qs.stringify(
       Featured_image: {
         populate: "*",
       },
+      icon: {
+        populate: "*",
+      },
       sections: {
         populate: {
           headings: {
@@ -109,7 +112,7 @@ const useData = useGlobalData();
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 
 useData.setProducts(productsFromApi.data?.value?.data);
-/* useData.setMyBO(productsFromApi.data.value.data); */
+useData.setMyBO(productsFromApi.data.value.data);
 
 // team
 const queryTeam = qs.stringify({

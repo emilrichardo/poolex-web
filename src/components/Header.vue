@@ -90,13 +90,9 @@
       </nav>
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
+    {{ globalOptions.userData }}
   </header>
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
-
-  <pre class="text-sm hidden bg-red-200">{{ globalData.products }}</pre>
-  <pre class="hidden bg-blue-300 p-4 text-sm">
-    {{ globalData.myBackoffices }}
-  </pre>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";

@@ -1,14 +1,13 @@
 <template>
-  {{ allCards.filter((d) => d.type == "backoffices")[0].content }}
   <section id="widgets" class="py-14">
     <div class="container mx-auto">
       <draggable
         v-model="allCards"
         tag="div"
-        class="card-group grid grid-cols-3 gap-8"
+        class="card-group grid grid-cols-1 lg:grid-cols-3 gap-8"
       >
         <template #item="{ element: card }">
-          <div :class="card.cols == 2 && ' col-span-3 lg:col-span-2'">
+          <div :class="card.cols == 2 && '   lg:col-span-2'">
             <Card
               :title="card.title"
               :color="card.color"
@@ -17,10 +16,7 @@
               <template #card-body>
                 <div class="relative py-8 px-6">
                   <template v-if="card.type == 'backoffices'">
-                    <!--   <div v-for="product in globalData.myBackoffices">
-                    <pre class="text-[8px]">{{ product }}</pre>
-                  </div> -->
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid lg:grid-cols-3 gap-4">
                       <CardProduct
                         v-for="product in globalData.myBackoffices"
                         :title="product.attributes.name"
@@ -39,7 +35,6 @@
       </draggable>
     </div>
   </section>
-  <MyVueElement />
 </template>
 
 <script setup>

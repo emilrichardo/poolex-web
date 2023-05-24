@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="openPanel = !openPanel"
+    @click="tooggleProduct(attributes?.slug)"
     class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center transition-all cursor-pointer hover:scale-105"
   >
     <span
@@ -85,21 +85,34 @@
           </div>
         </div>
       </div>
+      <div class="" v-else>
+        {{ panelData }}
+      </div>
     </div>
   </div>
 </template>
 <script setup>
+/* const counter = useCookie("counter", { domain: "staging.poolex.io" });
+
+counter.value = "valor"; */
+
+document.cookie = "pool=123; domain=poolex.io; path=/";
 const localePath = useLocalePath();
 const { title, color, icon, isRegister, attributes } = defineProps([
   "title",
   "color",
-  "icon",
   "icon",
   "isRegister",
   "attributes",
 ]);
 
 const openPanel = ref(false);
+const panelData = ref(null);
+
+const tooggleProduct = (slug) => {
+  openPanel.value = !openPanel.value;
+  panelData.value = slug;
+};
 </script>
 <style>
 .card {

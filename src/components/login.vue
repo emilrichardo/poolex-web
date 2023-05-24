@@ -71,6 +71,24 @@ const login = async () => {
   }
 };
 
+const getWhoami = async () => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  try {
+    const response = await fetch(
+      runtimeConfig.public.apiSession + "/api/v1/whoami",
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // merge products
 
 const mergeArrays = (array1, array2) => {
