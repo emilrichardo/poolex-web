@@ -35,7 +35,7 @@
     </template>
 
     <template #addons>
-      <div class="absolute bottom-20 w-full">
+      <div class="absolute bottom-10 lg:bottom-20 w-full">
         <div class="container mx-auto"><Pagination /></div>
       </div>
     </template>
