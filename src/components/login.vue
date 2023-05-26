@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#3e3747] bg-opacity-70 w-screen h-screen fixed z-50 left-0 top-0 grid place-content-center overflow-hidden"
+    class="bg-[#3e3747] bg-opacity-70 w-screen h-screen fixed z-50 left-0 top-0 grid gap-4 p-4 place-content-center overflow-hidden"
     @click="closeModal()"
   >
     <div
@@ -29,9 +29,10 @@
             required
           />
         </div>
-        <Button type="submit" variant="primary" class="w-full mt-4"
-          >Iniciar sesión</Button
-        >
+        <Button type="submit" variant="primary" class="w-full mt-4">
+          Iniciar sesión
+          <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon
+        ></Button>
       </form>
     </div>
   </div>

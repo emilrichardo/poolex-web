@@ -16,7 +16,13 @@
           </NuxtLink>
         </div>
         <div class="menu_1">
-          <ul class="flex flex-col items-center md:flex-row gap-4">
+          <ul
+            :class="`${
+              menuIsOpen
+                ? 'block absolute bg-light top-0 pt-24 w-full left-0 -z-20 px-10 pb-10 !gap-12'
+                : 'hidden'
+            } lg:flex flex-col items-center md:flex-row gap-4`"
+          >
             <li
               v-for="item in useGetLocale(
                 locale,
@@ -38,7 +44,7 @@
           </ul>
         </div>
         <div class="menu_2">
-          <ul class="flex flex-col items-center md:flex-row gap-4">
+          <ul class="flex items-center md:flex-row gap-4">
             <template v-if="globalOptions.userData">
               <li>
                 <Button
@@ -82,15 +88,25 @@
                 type="button"
                 variant="primary"
                 size="sm"
+                class="flex"
                 >Login</Button
               >
+            </li>
+            <li class="lg:hidden">
+              <Button
+                @click="toggleMenu()"
+                type="button"
+                :variant="menuIsOpen ? 'primary' : 'default'"
+                size="sm"
+              >
+                <Icon name="heroicons:bars-2-20-solid" size="24"></Icon>
+              </Button>
             </li>
           </ul>
         </div>
       </nav>
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
-    {{ globalOptions.userData }}
   </header>
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
 </template>
@@ -110,6 +126,12 @@ const localePath = useLocalePath();
 const { locale } = useI18n();
 
 const globalOptions = useGlobalOptions();
+
+const menuIsOpen = ref(false);
+
+const toggleMenu = () => {
+  menuIsOpen.value = !menuIsOpen.value;
+};
 
 const data = computed(() => {
   if (globalOptions.options.data) {

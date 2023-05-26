@@ -27,6 +27,9 @@
                       />
                     </div>
                   </template>
+                  <template v-if="card.type == 'weather'">
+                    <WidgetWeather></WidgetWeather>
+                  </template>
                 </div>
               </template>
             </Card>
