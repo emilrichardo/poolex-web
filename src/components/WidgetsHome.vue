@@ -14,9 +14,9 @@
               :isDraggable="card.isDraggable"
             >
               <template #card-body>
-                <div class="relative py-8 px-6">
+                <div class="relative">
                   <template v-if="card.type == 'backoffices'">
-                    <div class="grid lg:grid-cols-3 gap-4">
+                    <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
                       <CardProduct
                         v-for="product in globalData.myBackoffices"
                         :title="product.attributes.name"
@@ -29,6 +29,11 @@
                   </template>
                   <template v-if="card.type == 'weather'">
                     <WidgetWeather></WidgetWeather>
+                  </template>
+                  <template
+                    v-if="card.type == 'stocks' || card.type == 'cryptos'"
+                  >
+                    <WidgetPrices :type="card.type"></WidgetPrices>
                   </template>
                 </div>
               </template>
