@@ -7,13 +7,26 @@
   >
     <template #cta>
       <div class="flex gap-4">
-        <NuxtLink
-          v-if="product.attributes.register_link"
-          :to="product.attributes.register_link"
-          ><Button type="button" variant="primary_shadow">{{
-            locale === "es" ? "Registrate" : "Register"
-          }}</Button></NuxtLink
-        >
+        <template v-if="!globalOptions.userData?.success">
+          <NuxtLink
+            v-if="product.attributes.register_link"
+            :to="product.attributes.register_link"
+            ><Button type="button" variant="primary_shadow">{{
+              locale === "es" ? "Registrate" : "Register"
+            }}</Button></NuxtLink
+          >
+        </template>
+        <template v-else>
+          <NuxtLink
+            v-if="product.attributes.register_link"
+            :to="product.attributes.register_link"
+            ><Button type="button" variant="primary_shadow">{{
+              locale === "es"
+                ? "Ingresar al Backoffice"
+                : "Enter the back office"
+            }}</Button></NuxtLink
+          >
+        </template>
       </div>
     </template>
   </Hero>
@@ -27,8 +40,10 @@
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
+import { useGlobalOptions } from "@/stores/getGlobaOptions";
 const { locales, locale } = useI18n();
 const globalData = useGlobalData();
+const globalOptions = useGlobalOptions();
 const route = useRoute();
 
 //filter product
