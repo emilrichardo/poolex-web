@@ -17,7 +17,7 @@
         name="radix-icons:dots-horizontal"
       ></Icon>
     </div>
-    <div class="card-body">
+    <div class="card-body h-full">
       <slot name="card-body" />
     </div>
   </div>

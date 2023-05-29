@@ -14,7 +14,7 @@
               :isDraggable="card.isDraggable"
             >
               <template #card-body>
-                <div class="relative">
+                <div class="relative h-full">
                   <template v-if="card.type == 'backoffices'">
                     <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
                       <CardProduct
@@ -34,6 +34,9 @@
                     v-if="card.type == 'stocks' || card.type == 'cryptos'"
                   >
                     <WidgetPrices :type="card.type"></WidgetPrices>
+                  </template>
+                  <template v-if="card.type == 'news'">
+                    <WidgetNews></WidgetNews>
                   </template>
                 </div>
               </template>
