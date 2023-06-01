@@ -48,21 +48,23 @@
               : 'text-dark'
           }`"
         >
-          <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
-            {{ content.headings?.sub_headline }}
-          </h4>
-          <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
-            {{ content.headings?.headline }}
-          </h2>
-          <p class="text-xl font-light" v-if="content.headings">
-            {{ content.headings?.caption }}
-          </p>
+          <div v-if="content.features.length < 4" class="caption-container">
+            <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
+              {{ content.headings?.sub_headline }}
+            </h4>
+            <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
+              {{ content.headings?.headline }}
+            </h2>
+            <p class="text-xl font-light" v-if="content.headings">
+              {{ content.headings?.caption }}
+            </p>
+          </div>
 
           <div v-if="content.features" class="features">
             <ul v-if="content.features">
               <li
                 v-for="feature in content.features"
-                class="flex py-6 border-b border-light-500 last:border-0"
+                class="flex items-center py-6 border-b border-light-500 last:border-0"
               >
                 <div
                   v-if="feature?.icon?.data?.attributes?.url"
@@ -76,21 +78,47 @@
                   />
                 </div>
 
-                <div class="caption">
-                  <h3 class="text-2xl font-medium mb-4">{{ feature.title }}</h3>
-                  <p class="text-dark-200 font-light">{{ feature.caption }}</p>
+                <div class="caption flex flex-col gap-y-4">
+                  <h3
+                    v-if="feature.title"
+                    :class="` font-medium ${
+                      content.features.length < 3 ? ' text-2xl ' : 'text-md'
+                    }`"
+                  >
+                    {{ feature.title }}
+                  </h3>
+                  <p v-if="feature.caption" class="text-dark-200 font-light">
+                    {{ feature.caption }}
+                  </p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
+
         <div
           :class="` block-image relative rounded-lg ${
             videoOpen && 'bg-black'
-          }  ${content.image && 'md:w-1/2 flex justify-center'} ${
-            content.image_side === 'left' && 'order-1'
-          }`"
+          }  ${
+            content.image &&
+            'md:w-1/2 flex flex-col items-center justify-center'
+          } ${content.image_side === 'left' && 'order-1'}`"
         >
+          <div
+            v-if="content.features.length > 4"
+            class="caption-container mb-8"
+          >
+            <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
+              {{ content.headings?.sub_headline }}
+            </h4>
+            <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
+              {{ content.headings?.headline }}
+            </h2>
+            <p class="text-xl font-light" v-if="content.headings">
+              {{ content.headings?.caption }}
+            </p>
+          </div>
+
           <img
             :class="` min-h-[258px] lg:min-h-[458px] object-cover rounded-lg  ${
               videoOpen && 'opacity-0'

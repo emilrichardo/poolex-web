@@ -21,7 +21,6 @@ export const useGlobalOptions = defineStore('options',{
             try {
                 const user= await data
                 this.userData = user
-                 localStorage.setItem('userData', JSON.stringify(user));
             } catch (error) {
                 console.log(error);
             }

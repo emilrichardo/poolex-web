@@ -18,7 +18,7 @@
         class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16"
       >
         <div class="footermenu">
-          <h4 class="text-2xl font-bold mb-6">
+          <h4 class="text-2xl font-medium mb-6">
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
@@ -35,9 +35,39 @@
           </ul>
         </div>
         <div class="footermenu">
-          <h4 class="text-2xl font-bold mb-6">
+          <h4 class="text-2xl font-medium mb-6 max-w-[200px]">
+            {{
+              locale === "en"
+                ? "Allied Brokers Regulations"
+                : "Reglamento de Brokers aliados"
+            }}
+          </h4>
+
+          <ul class="flex flex-col gap-3">
+            <li><a href="">ATFX</a></li>
+            <li><a href="">Philip Capital</a></li>
+            <li><a href="">Roboforex</a></li>
+          </ul>
+        </div>
+        <div class="footer_about">
+          <h4 class="text-2xl font-medium mb-6">
+            {{ locale === "en" ? "About us" : "Sobre nosotros" }}
+          </h4>
+          <Button
+            type="button"
+            size="md"
+            variant="default_outline"
+            class="flex gap-4 items-center"
+          >
+            {{ locale === "en" ? "Presentation" : "Presentación" }}
+            <Icon name="heroicons:arrow-down-tray-20-solid"></Icon>
+          </Button>
+        </div>
+        <div class="footermenu">
+          <h4 class="text-2xl font-medium mb-6">
             {{ locale === "en" ? "Language" : "Idioma" }}
           </h4>
+
           <div class="flex gap-4">
             <NuxtLink v-for="lang in locales" :to="switchLocalePath(lang)">{{
               lang

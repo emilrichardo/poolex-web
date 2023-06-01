@@ -99,6 +99,12 @@ const queryProducts = qs.stringify(
           plan: {
             populate: "*",
           },
+          testimonial: {
+            populate: "*",
+          },
+          item: {
+            populate: "*",
+          },
         },
       },
     },

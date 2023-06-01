@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="tooggleProduct(attributes?.slug)"
+    @click="tooggleProduct()"
     class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center transition-all cursor-pointer hover:scale-105"
   >
     <span
@@ -48,14 +48,21 @@
   >
     <div class="panel-header flex justify-between">
       <h3 class="text-lg font-medium">{{ title }}</h3>
-      <Button
-        @click="openPanel = !openPanel"
-        type="button"
-        class="pr-8"
-        variant="default_outline"
-        size="sm"
-        ><Icon class="ml-2" name="heroicons:chevron-left-solid" />Back</Button
-      >
+      <div class="flex gap-4">
+        <nuxt-link :to="localePath('/product/' + attributes.slug)">
+          <Button v-if="isRegister" type="button" variant="default" size="sm">{{
+            locale === "es" ? "Ver más" : "View more"
+          }}</Button>
+        </nuxt-link>
+        <Button
+          @click="openPanel = !openPanel"
+          type="button"
+          class="pr-8"
+          variant="default_outline"
+          size="sm"
+          ><Icon class="ml-2" name="heroicons:chevron-left-solid" />Back</Button
+        >
+      </div>
     </div>
     <div class="panel-body text-sm pt-4">
       <div v-if="!isRegister" class="grid grid-cols-3 gap-5">
@@ -86,17 +93,27 @@
         </div>
       </div>
       <div class="" v-else>
-        {{ panelData }}
+        <h4 v-if="currentData.title" class="text-xl mb-4">
+          {{ currentData.title }}
+        </h4>
+        <div class="grid grid-cols-2 gap-5">
+          <div v-for="data in currentData.data">
+            <h5 v-if="data.title">{{ data.title }}</h5>
+            <h5 class="text-lg" v-if="data.amount">$ {{ data.amount }}</h5>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
+import { useGlobalOptions } from "@/stores/getGlobaOptions";
+const runtimeConfig = useRuntimeConfig();
+const globalOptions = useGlobalOptions();
 /* const counter = useCookie("counter", { domain: "staging.poolex.io" });
 
 counter.value = "valor"; */
 
-document.cookie = "pool=123; domain=poolex.io; path=/";
 const localePath = useLocalePath();
 const { title, color, icon, isRegister, attributes } = defineProps([
   "title",
@@ -106,12 +123,62 @@ const { title, color, icon, isRegister, attributes } = defineProps([
   "attributes",
 ]);
 
+const staticAssets = ref([
+  {
+    product: "investment",
+    title: "",
+    data: [
+      { title: "Invested Capital", amount: 78459 },
+      { title: "Month’s Profit", amount: 2358491 },
+      { title: "Accumulated Profit", amount: 689543 },
+      { title: "Accumulated Commissions", amount: 957346 },
+    ],
+  },
+  {
+    product: "academy",
+    title: "Diamond",
+    data: [
+      { title: "Month’s Commissions", amount: 12577 },
+      { title: "Accumulated Commissions", amount: 4198625 },
+      { title: "Accumulated Profit", amount: 73892 },
+      { title: "Accumulated Commissions", amount: 623871 },
+    ],
+  },
+]);
+
+const currentData = ref(null);
+
+const filterData = (slug) => {
+  const res = staticAssets.value.filter((obj) => obj.product == slug)[0];
+  currentData.value = res;
+};
+filterData(attributes.slug);
+
 const openPanel = ref(false);
 const panelData = ref(null);
 
-const tooggleProduct = (slug) => {
+const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  panelData.value = slug;
+  getContent();
+};
+
+const getContent = async () => {
+  console.log("get content");
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  try {
+    const response = await fetch(
+      runtimeConfig.public.apiSession,
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 <style>

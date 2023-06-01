@@ -17,20 +17,20 @@
           >
         </template>
         <template v-else>
-          <NuxtLink
-            v-if="product.attributes.register_link"
-            :to="product.attributes.register_link"
+          <a
+            v-if="product.attributes.backoffice_url"
+            :href="product.attributes.backoffice_url"
+            target="_blank"
             ><Button type="button" variant="primary_shadow">{{
               locale === "es"
                 ? "Ingresar al Backoffice"
                 : "Enter the back office"
-            }}</Button></NuxtLink
+            }}</Button></a
           >
         </template>
       </div>
     </template>
   </Hero>
-
   <component
     v-for="section in product.attributes.sections"
     :key="section.id"

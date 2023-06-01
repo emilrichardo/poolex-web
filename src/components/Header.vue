@@ -127,6 +127,14 @@ const { locale } = useI18n();
 
 const globalOptions = useGlobalOptions();
 
+const options = ref(globalOptions);
+
+const locaUserData = ref(JSON.parse(localStorage.getItem("userData")));
+
+watch(options.value, (newValue) => {
+  console.log("El valor en el local storage ha cambiado:", newValue.userData);
+});
+
 const menuIsOpen = ref(false);
 
 const toggleMenu = () => {
@@ -158,7 +166,6 @@ const toggleModalLogin = () => {
 };
 
 const getLogOut = async () => {
-  console.log(runtimeConfig.public);
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);

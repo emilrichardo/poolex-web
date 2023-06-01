@@ -1,6 +1,7 @@
 <template>
   <section class="h-[90vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20">
     <img
+      v-if="background"
       :class="` ${
         bgStyle === 'half'
           ? 'md:w-1/2 right-0 border-b-[24px] border-product'

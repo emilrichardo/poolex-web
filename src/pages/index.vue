@@ -1,9 +1,4 @@
 <template>
-  <!-- <div class="pt-24 flex flex-col gap-6">
-    <div class="" v-for="item in globalData.products">
-      {{ item }}
-    </div>
-  </div> -->
   <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="4000">
     <template v-for="product in globalData.products" :key="product">
       <Slide v-if="product?.attributes?.active">
@@ -48,11 +43,13 @@ import axios from "axios";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
+import { useGlobalOptions } from "@/stores/getGlobaOptions";
 import { useGetLocale } from "@/composables/getLocale";
 const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
+const globalOptions = useGlobalOptions();
 
 const dataTeam = ref(null);
 
@@ -68,5 +65,4 @@ async function getUser() {
   }
 }
 getUser();
-console.log(globalData.products.data);
 </script>
