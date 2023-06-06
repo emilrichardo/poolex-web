@@ -66,21 +66,22 @@
           class="pr-8"
           variant="default_outline"
           size="sm"
-          ><Icon class="ml-2" name="heroicons:chevron-left-solid" />Back</Button
-        >
+          ><Icon class="ml-2" name="heroicons:chevron-left-solid" />
+          <span class="hidden lg:inline-block">Back</span>
+        </Button>
       </div>
     </div>
     <div class="panel-body text-sm pt-4">
-      <div v-if="!isRegister" class="grid grid-cols-3 gap-5">
+      <div v-if="!isRegister" class="grid lg:grid-cols-3 gap-5">
         <img
           v-if="attributes?.Featured_image.data"
-          class="rounded-lg"
+          class="rounded-lg w-full"
           :src="
             attributes.Featured_image?.data.attributes?.formats?.medium?.url
           "
           alt=""
         />
-        <div class="caption col-span-2 text-lg">
+        <div class="caption lg:col-span-2 text-lg">
           <p>{{ attributes.description }}</p>
           <div class="flex gap-4 mt-4">
             <NuxtLink

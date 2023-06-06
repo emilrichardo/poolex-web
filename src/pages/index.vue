@@ -8,7 +8,7 @@
           :background="product.attributes.Featured_image.data?.attributes.url"
         >
           <template #cta>
-            <div class="flex gap-4">
+            <div class="flex gap-4 justify-center lg:justify-start">
               <NuxtLink
                 v-if="product.attributes.register_link"
                 :to="product.attributes.register_link"
@@ -30,7 +30,7 @@
     </template>
 
     <template #addons>
-      <div class="absolute bottom-10 lg:bottom-20 w-full">
+      <div class="hidden lg:block absolute bottom-10 lg:bottom-20 w-full">
         <div class="container mx-auto"><Pagination /></div>
       </div>
     </template>

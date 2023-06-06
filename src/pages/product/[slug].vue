@@ -6,14 +6,17 @@
     bgStyle="half"
   >
     <template #cta>
-      <div class="flex gap-4">
+      <div class="gap-4 px-4 lg:px-0">
         <template v-if="!globalOptions.userData?.success">
           <NuxtLink
             v-if="product.attributes.register_link"
             :to="product.attributes.register_link"
-            ><Button type="button" variant="primary_shadow">{{
-              locale === "es" ? "Registrate" : "Register"
-            }}</Button></NuxtLink
+            ><Button
+              type="button"
+              variant="primary_shadow"
+              class="w-full lg:w-auto"
+              >{{ locale === "es" ? "Registrate" : "Register" }}</Button
+            ></NuxtLink
           >
         </template>
         <template v-else>

@@ -10,7 +10,7 @@
         size="32px"
       ></Icon>
     </div>
-    <div v-else class="grid grid-cols-2">
+    <div v-else class="grid lg:grid-cols-2">
       <div class="col1">
         <h3 class="text-lg font-semibold">
           {{ weatherData.data?.location?.name }}
