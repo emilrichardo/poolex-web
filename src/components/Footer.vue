@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-light-100">
+  <footer class="">
     <!--  {{ useData.products }} -->
 
     <div class="container mx-auto">
@@ -77,6 +77,30 @@
       </div>
     </div>
   </footer>
+  <div class="copy bg-light-100 py-24 text-dark-100">
+    <div class="container">
+      <h4 class="font-bold text-xl mb-4">Legal</h4>
+      <p class="text-sm">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida
+        rutrum quisque non tellus orci. Rhoncus urna neque viverra justo nec.
+        Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Malesuada
+        nunc vel risus commodo viverra. Ornare aenean euismod elementum nisi
+        quis eleifend quam adipiscing vitae. Eget nunc lobortis mattis aliquam
+        faucibus purus. Scelerisque felis imperdiet proin fermentum leo vel orci
+        porta non. Feugiat nibh sed pulvinar proin gravida hendrerit. Elementum
+        nibh tellus molestie nunc non blandit massa enim nec. Dignissim
+        suspendisse in est ante in nibh mauris. Adipiscing vitae proin sagittis
+        nisl rhoncus mattis rhoncus urna. Et egestas quis ipsum suspendisse
+        ultrices gravida dictum fusce. Velit sed ullamcorper morbi tincidunt
+        ornare massa eget egestas. Tellus rutrum tellus pellentesque eu
+        tincidunt.
+      </p>
+      <p class="text-sm mt-24 text-center">
+        Poolex © 2023 All rights reserved.
+      </p>
+    </div>
+  </div>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";

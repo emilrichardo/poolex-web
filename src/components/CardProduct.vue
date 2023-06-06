@@ -38,7 +38,11 @@
     </svg>
 
     <div class="card-body py-3 px-6 flex items-center">
-      <img class="w-12" v-if="icon" :src="icon.data.attributes.url" />
+      <img
+        class="w-12 flex-none mr-2"
+        v-if="icon"
+        :src="icon.data.attributes.url"
+      />
       <h3 class="font-semibold text-lg">{{ title }}</h3>
     </div>
   </div>
@@ -50,9 +54,11 @@
       <h3 class="text-lg font-medium">{{ title }}</h3>
       <div class="flex gap-4">
         <nuxt-link :to="localePath('/product/' + attributes.slug)">
-          <Button v-if="isRegister" type="button" variant="default" size="sm">{{
-            locale === "es" ? "Ver más" : "View more"
-          }}</Button>
+          <template v-if="isRegister">
+            <Button type="button" variant="default" size="sm">{{
+              locale === "es" ? "Ver más" : "View more"
+            }}</Button>
+          </template>
         </nuxt-link>
         <Button
           @click="openPanel = !openPanel"

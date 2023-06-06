@@ -1,27 +1,28 @@
 <template>
   <section
-    :id="content.id"
-    :class="`${padding[content.internal_margin]}`"
+    :id="content?.id"
+    :class="`${padding[content?.internal_margin]}`"
     :style="`${
-      content.background?.Background_color &&
+      content?.background?.Background_color &&
       'background-color:' + content.background?.Background_color
     } `"
   >
     <div :class="` container relative `">
       <div
         v-if="
-          content.style === 'box-right' ||
-          content.style === 'box-left' ||
-          content.style === 'box-left-caption' ||
-          content.style === 'box-right-caption'
+          content?.style === 'box-right' ||
+          content?.style === 'box-left' ||
+          content?.style === 'box-left-caption' ||
+          content?.style === 'box-right-caption'
         "
         :class="` bg-product  w-screen absolute bottom-0 z-0 ${
-          content.style === 'box-right-caption' ||
-          content.style === 'box-left-caption'
+          content?.style === 'box-right-caption' ||
+          content?.style === 'box-left-caption'
             ? ' h-[80%]'
             : 'h-full'
         } ${
-          content.style === 'box-right' || content.style === 'box-right-caption'
+          content?.style === 'box-right' ||
+          content?.style === 'box-right-caption'
             ? 'left-0'
             : 'right-0'
         }`"
@@ -29,41 +30,41 @@
 
       <div
         :class="`md:flex justify-center items-center ${
-          content.image && 'wimagew'
+          content?.image && 'wimagew'
         }  ${
-          content.style === 'border-bottom' &&
+          content?.style === 'border-bottom' &&
           ' border-b-[14px] border-light-500 border-opacity-30'
         }`"
       >
         <div
           :class="`caption max-w-[851px] relative ${
-            (content.style === 'box-right-caption' ||
-              content.style === 'box-left-caption') &&
+            (content?.style === 'box-right-caption' ||
+              content?.style === 'box-left-caption') &&
             'bg-white py-16 -bottom-28'
-          } ${content.image && 'md:w-1/2 px-8 md:px-24'} ${
-            content.image_side === 'left' && 'order-2'
-          } ${content.headings?.align === 'center' && 'text-center'} ${
-            content.headings?.text_color === 'light'
+          } ${content?.image && 'md:w-1/2 px-8 md:px-24'} ${
+            content?.image_side === 'left' && 'order-2'
+          } ${content?.headings?.align === 'center' && 'text-center'} ${
+            content?.headings?.text_color === 'light'
               ? 'text-light'
               : 'text-dark'
           }`"
         >
-          <div v-if="content.features.length < 4" class="caption-container">
-            <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
-              {{ content.headings?.sub_headline }}
+          <div v-if="content.features?.length < 4" class="caption-container">
+            <h4 class="text-2xl font-semibold mb-8" v-if="content?.headings">
+              {{ content?.headings?.sub_headline }}
             </h4>
-            <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
-              {{ content.headings?.headline }}
+            <h2 class="text-4xl font-medium mb-8" v-if="content?.headings">
+              {{ content?.headings?.headline }}
             </h2>
-            <p class="text-xl font-light" v-if="content.headings">
-              {{ content.headings?.caption }}
+            <p class="text-xl font-light" v-if="content?.headings">
+              {{ content?.headings?.caption }}
             </p>
           </div>
 
-          <div v-if="content.features" class="features">
-            <ul v-if="content.features">
+          <div v-if="content?.features" class="features">
+            <ul v-if="content?.features">
               <li
-                v-for="feature in content.features"
+                v-for="feature in content?.features"
                 class="flex items-center py-6 border-b border-light-500 last:border-0"
               >
                 <div
@@ -82,7 +83,7 @@
                   <h3
                     v-if="feature.title"
                     :class="` font-medium ${
-                      content.features.length < 3 ? ' text-2xl ' : 'text-md'
+                      content?.features?.length < 3 ? ' text-2xl ' : 'text-md'
                     }`"
                   >
                     {{ feature.title }}
@@ -100,12 +101,12 @@
           :class="` block-image relative rounded-lg ${
             videoOpen && 'bg-black'
           }  ${
-            content.image &&
+            content?.image &&
             'md:w-1/2 flex flex-col items-center justify-center'
-          } ${content.image_side === 'left' && 'order-1'}`"
+          } ${content?.image_side === 'left' && 'order-1'}`"
         >
           <div
-            v-if="content.features.length > 4"
+            v-if="content?.features?.length > 4"
             class="caption-container mb-8"
           >
             <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
@@ -123,18 +124,18 @@
             :class="` min-h-[258px] lg:min-h-[458px] object-cover rounded-lg  ${
               videoOpen && 'opacity-0'
             }`"
-            v-if="content.image?.image?.data?.attributes?.url"
-            :src="content.image?.image?.data?.attributes?.url"
-            :alt="content.image?.image_title"
+            v-if="content?.image?.image?.data?.attributes?.url"
+            :src="content?.image?.image?.data?.attributes?.url"
+            :alt="content?.image?.image_title"
           />
 
           <div
-            v-if="content.video"
+            v-if="content?.video"
             class="video-overlay rounded-lg absolute top-0 left-0 h-full w-full grid justify-center items-center"
           >
             <button
               v-if="!videoOpen"
-              @click="openVideo(content.video)"
+              @click="openVideo(content?.video)"
               class="button-video w-24 h-24 rounded-full bg-product opacity-80 hover:opacity-100 transition-all hover:scale-105 hover:shadow-2xl text-white text-5xl"
             >
               <Icon name="heroicons:play-20-solid"></Icon>
@@ -146,10 +147,10 @@
           </div>
 
           <div
-            v-if="content.image?.image_caption"
+            v-if="content?.image?.image_caption"
             class="image-caption max-w-[519px] absolute -bottom-12 bg-product right-0 px-12 py-10"
           >
-            {{ content.image?.image_caption }}
+            {{ content?.image?.image_caption }}
           </div>
         </div>
       </div>
@@ -165,8 +166,8 @@ const vimeoPlayer = ref(null);
 const videoOpen = ref(false);
 
 const openVideo = (data) => {
-  const url = obtenerIDVideo(data.video_url);
-  console.log(obtenerIDVideo(data.video_url));
+  const url = obtenerIDVideo(data?.video_url);
+  console.log(obtenerIDVideo(data?.video_url));
 
   if (url.plataforma === "Vimeo") {
     videoOpen.value = true;

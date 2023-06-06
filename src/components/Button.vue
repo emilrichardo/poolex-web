@@ -32,6 +32,8 @@ const variants = {
   secondary: "bg-secondary text-accesible-secondary",
   secondary_outline:
     "border-secondary text-black dark:text-white dark:border-white",
+  dark_outline:
+    "border border-dark-500 hover:bg-dark text-black hover:text-white dark:border-whit",
 };
 
 const types = {

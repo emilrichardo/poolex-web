@@ -31,7 +31,10 @@
               :key="item.key"
             >
               <template v-if="item.active">
-                <NuxtLink :to="localePath(item.url)">
+                <NuxtLink
+                  v-if="item.name !== 'products'"
+                  :to="localePath(item.url)"
+                >
                   <Button
                     :type="item.type"
                     :size="item.size"
@@ -39,6 +42,12 @@
                     >{{ item.label }}
                   </Button>
                 </NuxtLink>
+                <a
+                  class="cursor-pointer hover:text-primary"
+                  v-else
+                  @click="toggleMegaMenu()"
+                  >{{ item.label }}</a
+                >
               </template>
             </li>
           </ul>
@@ -107,7 +116,9 @@
       </nav>
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
+    <MegaMenu v-if="megaMenuOpen" @toggleMegaMenu="toggleMegaMenu"></MegaMenu>
   </header>
+
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
 </template>
 <script setup>
@@ -153,6 +164,8 @@ const haveHero = computed(() => {
   return (
     route.path === "/" ||
     route.path === "/es" ||
+    route.path === "/foundations" ||
+    route.path === "/es/foundations" ||
     route.path.includes("/product")
   );
 });
@@ -212,5 +225,12 @@ const getDataBo = async (endpoint, Secret) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+/// megamenu
+
+const megaMenuOpen = ref(false);
+const toggleMegaMenu = () => {
+  megaMenuOpen.value = !megaMenuOpen.value;
 };
 </script>
