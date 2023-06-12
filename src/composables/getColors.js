@@ -27,11 +27,14 @@ export const useGetColors=()=>{
             })
 
         }) */
-        const obj = Object.entries(colors)
-        const objToArray = obj.map(([key, val]) => ({name: key, hex:val}))
 
+        if(colors){
+            const obj = Object.entries(colors)
+            const objToArray = obj.map(([key, val]) => ({name: key, hex:val}))
+            themeStylesTag.value = creatVar(objToArray)
 
-    themeStylesTag.value = creatVar(objToArray)
+        }
+
 
 
 

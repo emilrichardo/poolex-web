@@ -29,7 +29,7 @@
       ></div>
 
       <div
-        :class="`md:flex justify-center items-center ${
+        :class="`flex flex-col gap-y-8 lg:flex-row justify-center items-center ${
           content?.image && 'wimagew'
         }  ${
           content?.style === 'border-bottom' &&
@@ -50,13 +50,19 @@
           }`"
         >
           <div v-if="content.features?.length < 4" class="caption-container">
-            <h4 class="text-2xl font-semibold mb-8" v-if="content?.headings">
+            <h4
+              class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8"
+              v-if="content?.headings"
+            >
               {{ content?.headings?.sub_headline }}
             </h4>
-            <h2 class="text-4xl font-medium mb-8" v-if="content?.headings">
+            <h2
+              class="text-2xl lg:text-4xl font-medium mb-4 lg:mb-8"
+              v-if="content?.headings"
+            >
               {{ content?.headings?.headline }}
             </h2>
-            <p class="text-xl font-light" v-if="content?.headings">
+            <p class="text-lg lg:text-xl font-light" v-if="content?.headings">
               {{ content?.headings?.caption }}
             </p>
           </div>
@@ -65,7 +71,7 @@
             <ul v-if="content?.features">
               <li
                 v-for="feature in content?.features"
-                class="flex items-center py-6 border-b border-light-500 last:border-0"
+                class="flex flex-col lg:flex-row gap-y-4 lg:items-center py-6 border-b border-light-500 last:border-0"
               >
                 <div
                   v-if="feature?.icon?.data?.attributes?.url"
@@ -109,13 +115,19 @@
             v-if="content?.features?.length > 4"
             class="caption-container mb-8"
           >
-            <h4 class="text-2xl font-semibold mb-8" v-if="content.headings">
+            <h4
+              class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8"
+              v-if="content.headings"
+            >
               {{ content.headings?.sub_headline }}
             </h4>
-            <h2 class="text-4xl font-medium mb-8" v-if="content.headings">
+            <h2
+              class="text-2xl lg:text-4xl font-medium mb-4 lg:mb-8"
+              v-if="content.headings"
+            >
               {{ content.headings?.headline }}
             </h2>
-            <p class="text-xl font-light" v-if="content.headings">
+            <p class="text-lg lg:text-xl font-light" v-if="content.headings">
               {{ content.headings?.caption }}
             </p>
           </div>

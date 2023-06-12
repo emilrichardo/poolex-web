@@ -9,10 +9,12 @@
         <div class="brand">
           <NuxtLink to="/">
             <NuxtImg
+              v-if="data.header.logo_light.data?.attributes?.url"
               class="w-40"
-              :src="data.header.logo_light.data.attributes.url"
+              :src="data.header?.logo_light?.data?.attributes?.url"
               :alt="data?.Site_name"
             />
+            <span v-else>{{ data?.Site_name }}</span>
           </NuxtLink>
         </div>
         <div class="menu_1">
@@ -27,7 +29,7 @@
               v-for="item in useGetLocale(
                 locale,
                 globalOptions.options.data.data
-              ).header.menu_links"
+              ).header?.menu_links"
               :key="item.key"
             >
               <template v-if="item.active">

@@ -9,13 +9,19 @@
     }`"
   >
     <div class="container max-w-[730px]">
-      <h4 class="text-2xl font-light mb-8" v-if="content.headings">
+      <h4
+        class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8"
+        v-if="content.headings"
+      >
         {{ content.headings?.sub_headline }}
       </h4>
-      <h2 class="text-4xl font-light mb-8" v-if="content.headings">
+      <h2
+        class="text-2xl lg:text-4xl font-medium mb-4 lg:mb-8"
+        v-if="content.headings"
+      >
         {{ content.headings?.headline }}
       </h2>
-      <p class="text-xl font-light" v-if="content.headings">
+      <p class="text-lg lg:text-xl font-light" v-if="content.headings">
         {{ content.headings?.caption }}
       </p>
     </div>
