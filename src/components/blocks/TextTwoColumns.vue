@@ -51,3 +51,8 @@ const colsCounter = computed(() => {
   }
 });
 </script>
+<style>
+.bg-product {
+  color: white;
+}
+</style>
