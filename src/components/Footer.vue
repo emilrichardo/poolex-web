@@ -44,9 +44,9 @@
           </h4>
 
           <ul class="flex flex-col gap-3">
-            <li><a href="">ATFX</a></li>
-            <li><a href="">Philip Capital</a></li>
-            <li><a href="">Roboforex</a></li>
+            <li><a href="https://www.atfx.com/es">ATFX</a></li>
+            <li><a href="https://www.phillipcapital.com">Philip Capital</a></li>
+            <li><a href="https://roboforex.com">Roboforex</a></li>
           </ul>
         </div>
         <div class="footer_about">
@@ -81,20 +81,16 @@
     <div class="container">
       <h4 class="font-bold text-xl mb-4">Legal</h4>
       <p class="text-sm">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Hendrerit gravida
-        rutrum quisque non tellus orci. Rhoncus urna neque viverra justo nec.
-        Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Malesuada
-        nunc vel risus commodo viverra. Ornare aenean euismod elementum nisi
-        quis eleifend quam adipiscing vitae. Eget nunc lobortis mattis aliquam
-        faucibus purus. Scelerisque felis imperdiet proin fermentum leo vel orci
-        porta non. Feugiat nibh sed pulvinar proin gravida hendrerit. Elementum
-        nibh tellus molestie nunc non blandit massa enim nec. Dignissim
-        suspendisse in est ante in nibh mauris. Adipiscing vitae proin sagittis
-        nisl rhoncus mattis rhoncus urna. Et egestas quis ipsum suspendisse
-        ultrices gravida dictum fusce. Velit sed ullamcorper morbi tincidunt
-        ornare massa eget egestas. Tellus rutrum tellus pellentesque eu
-        tincidunt.
+        POOLEX ACADEMY LLC was filed on 10 May 2022 as Limited Liability Company
+        type, registered at 8450 NW 102 AVE 331 DORAL, FL 33178 . It's Document
+        Number is L22000220760, . The state for this company is Florida.There
+        are 2 directors of this company. The agent name of this company is:
+        MARQUEZA INVESTMENTS LLC , and company's status is ACTIVE now. Poolex
+        Academy Llc has been operating for 1 years 1 months, and 3 days. <br />
+        Poolex Fundraising Inc filed as a Domestic Non Profit Corporation in the
+        State of Florida on Saturday, February 25, 2023 and is approximately
+        three months old, as recorded in documents filed with Florida Department
+        of State.
       </p>
       <p class="text-sm mt-24 text-center">
         Poolex © 2023 All rights reserved.

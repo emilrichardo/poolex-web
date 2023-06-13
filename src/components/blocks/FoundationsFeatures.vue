@@ -25,6 +25,19 @@
       </div>
     </div>
   </div>
+  <div class="bg-primary py-24 mt-24">
+    <div class="container text-center">
+      <h3 class="text-2xl text-light mb-8">
+        Contáctanos en nuestra dirección de email:
+      </h3>
+      <Button variant="default" type="button" size="md"
+        >vicepresidencia@poolex.io</Button
+      >
+      <h2 class="text-4xl font-light text-light mt-8">
+        ¡Tú eres parte fundamental de este sueño!
+      </h2>
+    </div>
+  </div>
 </template>
 <script setup>
 const { content } = defineProps(["content"]);
