@@ -160,7 +160,9 @@
 
           <div
             v-if="content?.image?.image_caption"
-            class="image-caption max-w-[519px] absolute -bottom-12 bg-product right-0 px-12 py-10"
+            :class="`image-caption max-w-[519px] absolute -bottom-12 bg-product  px-12 py-10 ${
+              content?.image_side === 'left' ? 'right-0' : 'left-0'
+            }`"
           >
             {{ content?.image?.image_caption }}
           </div>
@@ -220,7 +222,7 @@ function obtenerIDVideo(url) {
 const padding = {
   xs: "py-4",
   sm: "py-8",
-  md: "py-18",
+  md: "py-16",
   lg: "py-24",
   xl: "py-36",
 };

@@ -79,11 +79,11 @@ const menuData = [
         url: "/product/space",
         icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/space_7c6832b698.svg?updated_at=2023-06-02T17:15:00.270Z",
       },
-      {
+      /* {
         label: "Poolex Signals",
         url: "/",
         icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/signals_4803e7c718.svg?updated_at=2023-06-02T17:15:00.338Z",
-      },
+      }, */
     ],
   },
   {

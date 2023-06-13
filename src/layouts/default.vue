@@ -128,8 +128,8 @@ const queryTeam = qs.stringify({
     },
   },
 });
-const teamFromApi = await useFetch(`/api/our-team?${queryTeam}`);
-useData.setTeam(teamFromApi.data?.value?.data);
+/* const teamFromApi = await useFetch(`/api/our-team?${queryTeam}`);
+useData.setTeam(teamFromApi.data?.value?.data); */
 
 // styles
 

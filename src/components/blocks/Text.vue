@@ -34,6 +34,7 @@ const backgrounds = {
   primary: "bg-primary",
   default: "bg-default",
   product: "bg-product",
+  light: "bg-light",
 };
 const padding = {
   xs: "py-4",
