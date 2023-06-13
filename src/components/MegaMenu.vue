@@ -4,10 +4,10 @@
     @click="closeMegaMenu"
   >
     <div
-      class="h-[380px] bg-black absolute top-[72px] right-0 w-[85vw]"
+      class="h-screen lg:h-[380px] bg-black absolute top-[72px] right-0 w-screen lg:w-[85vw]"
       @click.stop
     >
-      <div :class="`h-full grid ${gridMenu}`">
+      <div :class="`h-full grid  ${gridMenu}`">
         <template v-for="item in menuData">
           <NuxtLink :to="item.url" @click="closeMegaMenu">
             <div
@@ -102,9 +102,12 @@ const menuData = [
 
 const gridMenu = computed(
   () =>
-    (menuData.length === 1 && " grid-cols-1") ||
-    (menuData.length === 2 && " grid-cols-2") ||
-    (menuData.length === 3 && " grid-cols-3") ||
-    (menuData.length === 4 && " grid-cols-4")
+    (menuData.length === 1 && " grid-cols-1 lg:grid-row-1") ||
+    (menuData.length === 2 &&
+      "grid-cols-1  lg:grid-cols-2 grid-row-2 lg:grid-row-1") ||
+    (menuData.length === 3 &&
+      "grid-cols-1 lg:grid-cols-3 grid-row-2 lg:grid-row-1") ||
+    (menuData.length === 4 &&
+      " grid-cols-1 lg:grid-cols-4 grid-row-4 lg:grid-row-1")
 );
 </script>

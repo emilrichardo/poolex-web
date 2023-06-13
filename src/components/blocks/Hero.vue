@@ -19,7 +19,7 @@
     ></div>
     <div class="container h-full flex items-center">
       <div
-        class="flex flex-col z-10 absolute px-4 lg:px-0 lg:relative max-w-[566px] lg:text-left bottom-10 left-0 lg:bottom-auto text-center"
+        class="flex flex-col justify-center z-10 absolute h-1/2 px-4 lg:px-0 lg:relative max-w-[566px] lg:text-left bottom-10 left-0 lg:bottom-auto text-center"
       >
         <h2 class="text-3xl lg:text-5xl mb-6">
           {{ content.headings.headline }}

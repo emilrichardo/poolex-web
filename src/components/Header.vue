@@ -36,6 +36,7 @@
                 <NuxtLink
                   v-if="item.name !== 'products'"
                   :to="localePath(item.url)"
+                  @click="menuIsOpen = false"
                 >
                   <Button
                     :type="item.type"
@@ -119,6 +120,14 @@
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
     <MegaMenu v-if="megaMenuOpen" @toggleMegaMenu="toggleMegaMenu"></MegaMenu>
+
+    <div
+      @click="menuIsOpen = false"
+      class="ovelay bg-primary opacity-0 -z-30 fixed w-screen h-screen"
+      v-if="menuIsOpen"
+    >
+      overlay primary
+    </div>
   </header>
 
   <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />

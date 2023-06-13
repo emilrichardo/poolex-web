@@ -160,7 +160,7 @@
 
           <div
             v-if="content?.image?.image_caption"
-            :class="`image-caption max-w-[519px] absolute -bottom-12 bg-product  px-12 py-10 ${
+            :class="`image-caption max-w-[519px] absolute -bottom-12 bg-product px-4 py-4 lg:px-12 lg:py-10 ${
               content?.image_side === 'left' ? 'right-0' : 'left-0'
             }`"
           >
