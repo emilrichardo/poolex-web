@@ -124,7 +124,7 @@ const formatName = (name) => {
 };
 </script>
 
-<style>
+<style scoped>
 :root {
   --product: #9747ff;
 }

@@ -119,7 +119,11 @@
       </nav>
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
-    <MegaMenu v-if="megaMenuOpen" @toggleMegaMenu="toggleMegaMenu"></MegaMenu>
+    <MegaMenu
+      v-if="megaMenuOpen"
+      @toggleMegaMenu="toggleMegaMenu"
+      @toggleMenu="toggleMenu"
+    ></MegaMenu>
 
     <div
       @click="menuIsOpen = false"

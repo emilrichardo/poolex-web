@@ -58,8 +58,10 @@
 </template>
 <script setup>
 const emit = defineEmits(["inFocus", "submit"]);
+
 const closeMegaMenu = () => {
   emit("toggleMegaMenu");
+  emit("toggleMenu");
 };
 
 const menuData = [
