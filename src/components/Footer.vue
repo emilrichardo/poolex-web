@@ -28,7 +28,9 @@
               v-for="product in useData.products"
               :key="product.id"
             >
-              <nuxt-link :to="localePath('/' + product.attributes.slug)">
+              <nuxt-link
+                :to="localePath('/product/' + product.attributes.slug)"
+              >
                 {{ useGetLocale(locale, product).name }}
               </nuxt-link>
             </li>
