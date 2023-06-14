@@ -7,14 +7,7 @@ export const useGlobalData = defineStore('data',{
         myBackoffices: []
     }),
     actions:{
-        async setTeam(data){
-            try {
-                const d= await data
-                this.team = d
-            } catch (error) {
-                console.log(error);
-            }
-        },
+
         async setProducts(data){
             try {
                 const d= await data

@@ -30,7 +30,7 @@
           :alt="icon.title"
         />
 
-        <h3 class="text-2xl mt-9 font-light">{{ icon.title }}</h3>
+        <h3 class="text-md lg:text-2xl mt-9 font-light">{{ icon.title }}</h3>
       </div>
     </div>
     <div class="container mt-16" v-if="content.footer">

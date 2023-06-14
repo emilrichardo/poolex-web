@@ -120,17 +120,6 @@ const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 useData.setProducts(productsFromApi.data?.value?.data);
 useData.setMyBO(productsFromApi.data.value.data);
 
-// team
-const queryTeam = qs.stringify({
-  populate: {
-    team: {
-      populate: "*",
-    },
-  },
-});
-/* const teamFromApi = await useFetch(`/api/our-team?${queryTeam}`);
-useData.setTeam(teamFromApi.data?.value?.data); */
-
 // styles
 
 const { themeColors, themeStylesTag } = useGetColors();
