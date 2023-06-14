@@ -122,7 +122,7 @@
     <MegaMenu
       v-if="megaMenuOpen"
       @toggleMegaMenu="toggleMegaMenu"
-      @toggleMenu="toggleMenu"
+      @closeMenu="closeMenu"
     ></MegaMenu>
 
     <div
@@ -165,6 +165,10 @@ const menuIsOpen = ref(false);
 
 const toggleMenu = () => {
   menuIsOpen.value = !menuIsOpen.value;
+};
+
+const closeMenu = () => {
+  menuIsOpen.value = false;
 };
 
 const data = computed(() => {

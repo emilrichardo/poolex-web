@@ -51,6 +51,7 @@
               </div>
             </div>
           </NuxtLink>
+          {{ menuIsOpen }}
         </template>
       </div>
     </div>
@@ -61,7 +62,7 @@ const emit = defineEmits(["inFocus", "submit"]);
 
 const closeMegaMenu = () => {
   emit("toggleMegaMenu");
-  emit("toggleMenu");
+  emit("closeMenu");
 };
 
 const menuData = [
