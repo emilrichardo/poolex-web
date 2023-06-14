@@ -73,6 +73,9 @@ const query = qs.stringify({
         item: {
           populate: "*",
         },
+        contact_item: {
+          populate: "*",
+        },
       },
     },
   },

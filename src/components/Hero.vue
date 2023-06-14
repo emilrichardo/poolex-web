@@ -5,7 +5,7 @@
       v-if="background"
       :class="` ${
         bgStyle === 'half'
-          ? 'md:w-1/2 right-0 border-b-[24px] border-product'
+          ? 'w-screen lg:w-1/2 right-0 border-b-[24px] border-product'
           : 'w-full'
       } h-1/2 lg:h-full  object-cover absolute z-0`"
       :src="background"
@@ -17,7 +17,7 @@
     ></div>
     <div class="container h-full flex items-center">
       <div
-        class="flex flex-col z-10 absolute px-4 lg:px-0 lg:relative max-w-[566px] lg:text-left bottom-10 left-0 lg:bottom-auto text-center"
+        class="flex flex-col justify-center z-10 absolute min-h-[50vh] w-full lg:min-h-min px-4 lg:px-0 lg:relative lg:max-w-[566px] lg:text-left bottom-10 left-0 lg:bottom-auto text-center"
       >
         <h2 class="text-3xl lg:text-5xl mb-6">{{ title }}</h2>
         <h4 class="text-lg lg:text-xl mb-12" v-if="caption">

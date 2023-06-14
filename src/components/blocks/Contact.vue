@@ -1,0 +1,68 @@
+<template>
+  <div>
+    <Hero
+      :title="content.title"
+      :background="content.image?.image?.data?.attributes?.url"
+      bgStyle="half"
+      ><template #cta>
+        <div class="grid grid-cols-2 gap-8 text-left text-sm lg:text-xl">
+          <div class="corporate">
+            <h3 class="font-semibold">Corporate</h3>
+            <ul class="divide-y divide-slate-200">
+              <li
+                class="font-light py-4"
+                v-for="contact in filteredContacts('corporate')"
+              >
+                <h5>{{ contact.email }}</h5>
+                <h4>{{ contact.phone }}</h4>
+              </li>
+            </ul>
+          </div>
+          <div class="commercial">
+            <h3 class="font-semibold">Commercial</h3>
+            <ul class="divide-y divide-slate-200">
+              <li
+                class="font-light py-4"
+                v-for="contact in filteredContacts('commercial')"
+              >
+                <h5>{{ contact.email }}</h5>
+                <h4>{{ contact.phone }}</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </template></Hero
+    >
+  </div>
+</template>
+<script setup>
+const { content } = defineProps(["content"]);
+
+const contactData = [
+  {
+    email: "presidencia@poolex.io",
+    phone: "+57 312 7441958",
+    group: "corporate",
+  },
+  {
+    email: "vicepresidencia@poolex.io",
+    phone: "+57 316 8892869",
+    group: "corporate",
+  },
+  { email: "academia@poolex.io", phone: "+57 312 8231885", group: "corporate" },
+  {
+    email: "comercial@poolex.io",
+    phone: "+57 316 8892869",
+    group: "commercial",
+  },
+  {
+    email: "crowdfunding@poolex.io",
+    phone: "+57 318 2102219",
+    group: "commercial",
+  },
+];
+
+const filteredContacts = (group) => {
+  return contactData.filter((contact) => contact.group === group);
+};
+</script>
