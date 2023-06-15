@@ -87,6 +87,9 @@ const queryProducts = qs.stringify(
           brands: {
             populate: "*",
           },
+          calculator: {
+            populate: "*",
+          },
           text: {
             populate: "*",
           },
