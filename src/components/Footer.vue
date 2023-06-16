@@ -8,6 +8,7 @@
           v-for="link in socialLinks"
           class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl"
           :href="link.url"
+          taget="_blank"
         >
           <Icon :name="`${link.icon_tag}`" />
           <span class="hidden">{{ link.name }}</span>
@@ -22,7 +23,10 @@
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
-          <ul v-if="useData.products" class="flex flex-col gap-3 items-center md:items-start">
+          <ul
+            v-if="useData.products"
+            class="flex flex-col gap-3 items-center md:items-start"
+          >
             <li
               class="text-dark-100 hover:underline"
               v-for="product in useData.products"
@@ -37,7 +41,9 @@
           </ul>
         </div>
         <div class="footermenu">
-          <h4 class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left">
+          <h4
+            class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left"
+          >
             {{
               locale === "en"
                 ? "Allied Brokers Regulations"

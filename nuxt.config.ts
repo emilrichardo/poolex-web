@@ -21,7 +21,8 @@ export default defineNuxtConfig({
           apiBase: process.env.API_BASE_URL,
           apiSession: process.env.API_SESSION_URL,
           apiWeather: process.env.API_WEATHER,
-          apiWeatherKey: process.env.API_WEATHER_KEY
+          apiWeatherKey: process.env.API_WEATHER_KEY,
+          apiCryptoUrl: process.env.API_CRYPTO_URL,
         }
 
       },

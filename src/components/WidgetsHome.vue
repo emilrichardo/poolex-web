@@ -30,10 +30,11 @@
                   <template v-if="card.type == 'weather'">
                     <WidgetWeather></WidgetWeather>
                   </template>
-                  <template
-                    v-if="card.type == 'stocks' || card.type == 'cryptos'"
-                  >
+                  <template v-if="card.type == 'stocks'">
                     <WidgetPrices :type="card.type"></WidgetPrices>
+                  </template>
+                  <template v-if="card.type == 'cryptos'">
+                    <WidgetPricesCrypto></WidgetPricesCrypto>
                   </template>
                   <template v-if="card.type == 'news'">
                     <WidgetNews></WidgetNews>
@@ -96,7 +97,7 @@ const allCards = ref([
   },
   {
     id: "5",
-    title: "World News",
+    title: "Poolex News",
     color: "#87CB7C",
     cols: "1",
     isDraggable: true,
