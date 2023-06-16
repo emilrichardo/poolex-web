@@ -18,7 +18,7 @@
       </p>
     </div>
     <div
-      class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-9 mx-auto mt-24 max-w-[870px]"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-9 mx-auto mt-24 max-w-[870px]"
     >
       <div
         v-for="item in content.membership"
@@ -28,7 +28,7 @@
           v-if="item.icon"
           :src="item.icon?.data?.attributes?.url"
           :alt="item.title"
-          class="w-28"
+          class="w-28 mb-4"
         />
         <h3
           class="text-md lg:text-xl font-semibold text-dark-100"

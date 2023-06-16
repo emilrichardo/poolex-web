@@ -14,14 +14,14 @@
     </div>
 
     <div
-      :class="`container flex flex-wrap gap-y-16 justify-center items-center ${
+      :class="`container flex flex-wrap gap-y-10 md:gap-y-16 justify-center items-center ${
         content.icons.length > 6 ? ' ' : ' max-w-[933px]'
       }`"
     >
       <div
         v-for="icon in content.icons"
         :class="`item-icon flex items-center flex-col  ${
-          content.icons.length > 6 ? ' md:basis-1/4' : 'md:basis-1/3 '
+          content.icons.length > 6 ? 'w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4' : 'w-full sm:basis-1/2 md:basis-1/3 '
         }`"
       >
         <img
@@ -30,7 +30,7 @@
           :alt="icon.title"
         />
 
-        <h3 class="text-md lg:text-2xl mt-9 font-light">{{ icon.title }}</h3>
+        <h3 class="text-md lg:text-2xl mt-9 font-light text-center">{{ icon.title }}</h3>
       </div>
     </div>
     <div class="container mt-16" v-if="content.footer">

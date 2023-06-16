@@ -5,7 +5,7 @@
       :background="content.image?.image?.data?.attributes?.url"
       bgStyle="half"
       ><template #cta>
-        <div class="grid grid-cols-2 gap-8 text-left text-sm lg:text-xl">
+        <div class=" grid grid-cols-1 md:grid-cols-2 gap-8 text-left lg:text-xl max-w-screen-md lg:max-w-none mx-auto">
           <div class="corporate">
             <h3 class="font-semibold">Corporate</h3>
             <ul class="divide-y divide-slate-200">
@@ -13,8 +13,8 @@
                 class="font-light py-4"
                 v-for="contact in filteredContacts('corporate')"
               >
-                <h5>{{ contact.email }}</h5>
-                <h4>{{ contact.phone }}</h4>
+                <h5 class="lg:text-base xl:text-lg">{{ contact.email }}</h5>
+                <h4 class="lg:text-base xl:text-lg">{{ contact.phone }}</h4>
               </li>
             </ul>
           </div>
@@ -25,8 +25,8 @@
                 class="font-light py-4"
                 v-for="contact in filteredContacts('commercial')"
               >
-                <h5>{{ contact.email }}</h5>
-                <h4>{{ contact.phone }}</h4>
+                <h5 class="lg:text-base xl:text-lg">{{ contact.email }}</h5>
+                <h4 class="lg:text-base xl:text-lg">{{ contact.phone }}</h4>
               </li>
             </ul>
           </div>

@@ -5,7 +5,7 @@
       <Carousel v-bind="settings" :breakpoints="breakpoints">
         <Slide v-for="plan in content.plan" :key="plan.id" class="plan">
           <div
-            class="rounded overflow-hidden bg-white mx-6 flex flex-col h-full"
+            class="rounded overflow-hidden bg-white mx-4 xl:mx-6 flex flex-col h-full"
           >
             <div
               v-if="plan.name"
@@ -50,16 +50,18 @@ const { content } = defineProps(["content"]);
 const settings = {
   wrapAround: true,
   autoplay: "4000",
+  itemsToShow: 1,
+  snapAlign: "center"
 };
 
 const breakpoints = {
   // 700px and up
-  700: {
-    itemsToShow: 1,
-    snapAlign: "center",
+  728: {
+    itemsToShow: "2.5",
+    snapAlign: "start",
   },
   // 1024 and up
-  1024: {
+  1080: {
     itemsToShow: "3.5",
     snapAlign: "start",
   },

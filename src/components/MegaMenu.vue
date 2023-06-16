@@ -1,10 +1,10 @@
 <template>
   <div
-    class="absolute z-50 top-0 left-0 h-screen w-screen"
+    class="absolute z-50 top-0 left-0 h-screen w-full"
     @click="closeMegaMenu"
   >
     <div
-      class="h-screen lg:h-[380px] bg-black absolute top-[72px] right-0 w-screen lg:w-[85vw]"
+      class="h-screen lg:h-[380px] bg-black absolute top-[72px] w-full left-0 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-[calc(theme(screens.lg)-theme(spacing.14))] xl:max-w-[calc(theme(screens.xl)-theme(spacing.14))]"
       @click.stop
     >
       <div :class="`h-full grid  ${gridMenu}`">
@@ -15,7 +15,7 @@
               :style="`background-color:${item.color}`"
             >
               <div
-                class="cont w-full px-20 flex flex-col items-center gap-2 justify-center"
+                class="cont px-20 lg:px-14 xl:px-20 flex flex-col items-center gap-2 justify-center"
               >
                 <img
                   class="flex-none w-16"

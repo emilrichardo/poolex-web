@@ -9,14 +9,14 @@
     }`"
   >
     <div class="container">
-      <div :class="`grid gap-5 lg:gap-12 items-stretch  ${colsCounter}`">
-        <div class="item h-full" v-for="heading in content.headings">
+      <div :class="`grid gap-7 lg:gap-12 items-stretch  ${colsCounter}`">
+        <div class="item flex flex-col" v-for="heading in content.headings">
           <h3 v-if="heading.headline" class="text-center text-2xl text-white">
             {{ heading.headline }}
           </h3>
           <div
             v-if="heading.caption"
-            class="caption min-h-[190px] bg-white px-14 py-8 mt-8"
+            class="caption lg:h-full mina-h-[190px] bg-white px-14 py-8 xl:py-10 mt-5 lg:mt-8"
           >
             {{ heading.caption }}
           </div>

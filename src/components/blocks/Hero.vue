@@ -1,5 +1,5 @@
 <template>
-  <section class="h-[100vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20">
+  <section class="min-h-[100vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20">
     <img
       v-if="content.image.image.data.attributes.url"
       :class="` ${

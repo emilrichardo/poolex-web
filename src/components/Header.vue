@@ -1,16 +1,16 @@
 <template>
   <header
     :class="` ${
-      haveHero ? 'absolute' : 'relative'
-    } z-50 w-full backdrop-blur-sm bg-light-100 bg-opacity-50 py-4 `"
+      haveHero ? 'fixed' : 'fixed'
+    } z-50 w-full backdrop-blur-sm bg-light-100 bg-opacity-70 py-4 `"
   >
     <div class="mx-auto px-2 lg:px-8" v-if="globalOptions.options.data">
-      <nav class="flex items-center justify-between gap-8">
-        <div class="brand">
+      <nav class="flex items-center justify-between gap-1 lg:gap-8">
+        <div class="brand shrink-0">
           <NuxtLink to="/">
             <NuxtImg
               v-if="data.header.logo_light.data?.attributes?.url"
-              class="w-40"
+              class="w-32 sm:w-40"
               :src="data.header?.logo_light?.data?.attributes?.url"
               :alt="data?.Site_name"
             />
@@ -18,13 +18,7 @@
           </NuxtLink>
         </div>
         <div class="menu_1">
-          <ul
-            :class="`${
-              menuIsOpen
-                ? 'block absolute bg-light top-0 pt-24 w-full left-0 -z-20 px-10 pb-10 !gap-12'
-                : 'hidden'
-            } lg:flex flex-col items-center md:flex-row gap-4`"
-          >
+          <ul class='hidden lg:flex flex-row items-center gap-4'>
             <li
               v-for="item in useGetLocale(
                 locale,
@@ -58,7 +52,7 @@
         <div class="menu_2">
           <ul class="flex items-center md:flex-row gap-4">
             <template v-if="globalOptions.userData">
-              <li>
+              <li class="hidden lg:block">
                 <Button
                   type="button"
                   variant="default"
@@ -69,7 +63,7 @@
                   <Icon class="ml-2" name="heroicons-outline:logout" />
                 </Button>
               </li>
-              <li class="relative">
+              <li class="relative hidden lg:block">
                 <Button
                   @click="openBo = !openBo"
                   type="button"
@@ -94,7 +88,7 @@
               </li>
             </template>
 
-            <li v-else>
+            <li v-else class="hidden lg:block">
               <Button
                 @click="toggleModalLogin()"
                 type="button"
@@ -113,6 +107,93 @@
               >
                 <Icon name="heroicons:bars-2-20-solid" size="24"></Icon>
               </Button>
+            </li>
+          </ul>
+        </div>
+        <div :class="`menu_mobile lg:hidden ${menuIsOpen?
+          'block absolute bg-light top-0 pt-24 w-full h-screen overflow-y-auto left-0 -z-20 px-10 pb-10':
+          'hidden'
+        }`">
+          <ul class='flex flex-col items-center mb-3'>
+            <li
+              v-for="item in useGetLocale(
+                locale,
+                globalOptions.options.data.data
+              ).header?.menu_links"
+              :key="item.key"
+            >
+              <template v-if="item.active">
+                <NuxtLink
+                  v-if="item.name !== 'products'"
+                  :to="localePath(item.url)"
+                  @click="menuIsOpen = false"
+                >
+                  <Button
+                    :type="item.type"
+                    :size="item.size"
+                    :variant="item.style"
+                    class='text-lg py-3 px-7 block'
+                    >{{ item.label }}
+                  </Button>
+                </NuxtLink>
+                <a
+                  class="cursor-pointer hover:text-primary text-lg py-3 px-7 block"
+                  v-else
+                  @click="toggleMegaMenu()"
+                  >{{ item.label }}</a
+                >
+              </template>
+            </li>
+          </ul>
+          <ul class="flex flex-col items-center gap-4">
+            <template v-if="globalOptions.userData">
+              <li>
+                <Button
+                  type="button"
+                  variant="default"
+                  size="sm"
+                  class="w-60"
+                  @click="getLogOut()"
+                >
+                  <span>Logout</span>
+                  <Icon class="ml-2" name="heroicons-outline:logout" />
+                </Button>
+              </li>
+              <li class="relative -order-1">
+                <Button
+                  @click="openBo = !openBo"
+                  type="button"
+                  variant="primary"
+                  size="sm"
+                  class="w-60"
+                  >Backoffices
+                  <Icon class="ml-2" name="heroicons:chevron-down-solid"
+                /></Button>
+                <div
+                  v-if="openBo"
+                  class="submenu border border-light-400 bg-white flex flex-col items-center w-60 mt-0.5 rounded-lg"
+                >
+                  <ul>
+                    <li
+                      v-for="item in globalOptions.userData.data_array"
+                      class="py-2 px-4"
+                    >
+                      {{ item.bo }}
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </template>
+
+            <li v-else>
+              <Button
+                @click="toggleModalLogin()"
+                type="button"
+                variant="primary"
+                size="sm"
+                class="flex"
+                >Login</Button
+              >
             </li>
           </ul>
         </div>

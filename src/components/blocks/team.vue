@@ -26,11 +26,11 @@
         <div
           v-for="item in teamData.team"
           :key="item.id"
-          class="item-team bg-white rounded shadow-sm flex flex-col lg:flex-row items-center gap-8 py-20"
+          class="item-team bg-white rounded shadow-sm flex flex-col lg:flex-row items-center gap-8 pt-0 pb-10 lg:py-20"
         >
           <div
             v-if="item.image_profile.data"
-            class="image bg-product max-w-[320px] flex-none relative"
+            class="image bg-product max-w-[180px] sm:max-w-[320px] flex-none relative"
           >
             <img
               class="left-4 top-4"
