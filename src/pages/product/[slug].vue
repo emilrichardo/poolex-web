@@ -34,6 +34,9 @@
       </div>
     </template>
   </Hero>
+
+  <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
+
   <component
     v-for="section in useGetLocaleSections(locale, product).sections"
     :key="section.id"

@@ -2,11 +2,11 @@
   <!--   <section class="pt-40" v-for="section in page.attributes.sections">
     <pre>{{ formatName(section.__component) }}</pre>
   </section> -->
-  <pre class="pt-40">{{ useGetLocaleSections(locale, page) }}</pre>
+  <!-- <pre class="pt-40">{{ page }}</pre> -->
 
   <component
     class="page-components"
-    v-for="section in page.attributes.sections"
+    v-for="section in page.sections"
     :key="section.id"
     :is="formatName(section.__component)"
     :content="section"
@@ -168,15 +168,15 @@ if (productsFromApi.error !== null) {
     }
   });
 
-  page.value = res.value;
+  page.value = res.value?.attributes;
 }
 
 useHead({
-  title: page.value.attributes.Title + " - Poolex",
+  title: page.value?.Title + " - Poolex",
   meta: [
     {
       name: "description",
-      content: page.value.attributes.description,
+      content: page.value?.description,
     },
   ],
 });

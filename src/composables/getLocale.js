@@ -11,9 +11,10 @@
     export const useGetLocaleSections = (lang, data) => {
       if (data) {
        const filterData = data.attributes?.localizations?.data.filter(l=> l.attributes.locale === lang);
-       if(filterData){
-        return filterData[0].attributes
-       } else{ return data.attributes}
-
+          if(filterData){
+            return filterData[0].attributes
+          } else{
+            return data.attributes
+          }
         }
     };
