@@ -15,8 +15,18 @@ import { useGlobalData } from "@/stores/getGlobaData";
 import { useGetColors } from "@/composables/getColors";
 
 const { locales, locale } = useI18n();
-
+const useData = useGlobalData();
 const useOptions = useGlobalOptions();
+
+/* if (localStorage.getItem("userData")) {
+  const storageUserData = JSON.parse(localStorage.getItem("userData"));
+  useOptions.setUserData(storageUserData);
+}
+
+if (localStorage.getItem("myBackoffices")) {
+  const storageBo = JSON.parse(localStorage.getItem("myBackoffices"));
+  useData.setMyBO(storageBo);
+} */
 
 const query = qs.stringify({
   populate: {
@@ -47,7 +57,63 @@ const queryProducts = qs.stringify(
   {
     populate: {
       localizations: {
-        populate: "*",
+        populate: {
+          sections: {
+            populate: {
+              headings: {
+                populate: "*",
+              },
+              image: {
+                populate: "*",
+              },
+              features: {
+                populate: "*",
+              },
+              background: {
+                populate: "*",
+              },
+              video: {
+                populate: "*",
+              },
+              style: {
+                populate: "*",
+              },
+              internal_margin: {
+                populate: "*",
+              },
+              icons: {
+                populate: "*",
+              },
+              logo: {
+                populate: "*",
+              },
+              brands: {
+                populate: "*",
+              },
+              calculator: {
+                populate: "*",
+              },
+              text: {
+                populate: "*",
+              },
+              membership: {
+                populate: "*",
+              },
+              team: {
+                populate: "*",
+              },
+              plan: {
+                populate: "*",
+              },
+              testimonial: {
+                populate: "*",
+              },
+              item: {
+                populate: "*",
+              },
+            },
+          },
+        },
       },
       Featured_image: {
         populate: "*",
@@ -87,6 +153,9 @@ const queryProducts = qs.stringify(
           brands: {
             populate: "*",
           },
+          calculator: {
+            populate: "*",
+          },
           text: {
             populate: "*",
           },
@@ -114,7 +183,6 @@ const queryProducts = qs.stringify(
   }
 );
 
-const useData = useGlobalData();
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 
 useData.setProducts(productsFromApi.data?.value?.data);

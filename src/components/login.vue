@@ -19,17 +19,31 @@
             required
           />
         </div>
-        <div>
+        <div class="relative">
           <label :class="labelClass" for="password">Contraseña:</label>
           <input
             :class="inputClass"
-            type="password"
+            :type="passwordIsVisible ? 'text' : 'password'"
             id="password"
             v-model="password"
             required
           />
+          <Icon
+            class="absolute bottom-4 cursor-pointer right-4"
+            :name="
+              !passwordIsVisible
+                ? 'heroicons:eye-solid'
+                : 'heroicons:eye-slash-solid'
+            "
+            @click="showPasswors()"
+          ></Icon>
         </div>
-        <Button type="submit" variant="primary" class="w-full mt-4">
+        <Button
+          :disabled="!validateForm"
+          type="submit"
+          variant="primary"
+          class="w-full mt-4"
+        >
           Iniciar sesión
           <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon
         ></Button>
@@ -49,6 +63,10 @@ const runtimeConfig = useRuntimeConfig();
 const email = ref("test8@email.com");
 const password = ref("abcd1234");
 
+const validateForm = computed(() => {
+  return validateEmail(email.value) && password.value.length > 3;
+});
+
 const login = async () => {
   const requestOptions = {
     method: "POST",
@@ -62,8 +80,14 @@ const login = async () => {
     );
     const data = await response.json();
     globalOptions.setUserData(data);
+    localStorage.setItem("userData", JSON.stringify(data));
+
     if (data.data_array) {
       globalData.setMyBO(mergeArrays(globalData.products, data.data_array));
+      localStorage.setItem(
+        "myBackoffices",
+        JSON.stringify(mergeArrays(globalData.products, data.data_array))
+      );
     }
 
     closeModal();
@@ -84,7 +108,6 @@ const getWhoami = async () => {
       requestOptions
     );
     const data = await response.json();
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
@@ -131,4 +154,32 @@ const closeModal = () => {
 const labelClass = "text-sm";
 const inputClass =
   "border border-light-400 focus:outline-primary block w-full py-2 px-3";
+
+//show password
+const passwordIsVisible = ref(false);
+const showPasswors = () => {
+  passwordIsVisible.value = !passwordIsVisible.value;
+};
+
+//validate email
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 </script>

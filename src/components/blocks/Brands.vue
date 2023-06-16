@@ -3,7 +3,7 @@
     <Carousel v-if="content.carousel_active" :breakpoints="breakpoints">
       <Slide v-for="logo in content.logo" :key="logo.id">
         <div class="carousel__item">
-          <div class="bg-light rounded-lg px-12 mx-4 py-8">
+          <div class="bg-light rounded-lg px-8 mx-4 py-8">
             <img
               v-if="logo.icon.data.attributes.url"
               :src="logo.icon.data.attributes.url"
@@ -31,10 +31,10 @@ import "vue3-carousel/dist/carousel.css";
 const { content } = defineProps(["content"]);
 
 const showSlides = computed(() => {
-  if (content.logo.length < 10) {
+  if (content.logo.length < 7.5) {
     return content.logo.length;
   } else {
-    return 10;
+    return 7.5;
   }
 });
 

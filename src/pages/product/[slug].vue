@@ -34,8 +34,11 @@
       </div>
     </template>
   </Hero>
+
+  <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
+
   <component
-    v-for="section in product.attributes.sections"
+    v-for="section in useGetLocaleSections(locale, product).sections"
     :key="section.id"
     :is="formatName(section.__component)"
     :content="section"
@@ -44,6 +47,7 @@
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
+import { useGetLocale, useGetLocaleSections } from "@/composables/getLocale";
 const { locales, locale } = useI18n();
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();

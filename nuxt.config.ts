@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     modules: ['@nuxtjs/color-mode','@nuxtjs/tailwindcss', '@pinia/nuxt','@nuxt/image-edge','nuxt-icon','@nuxtjs/i18n'],
     i18n: {
        locales: ['en', 'es'],  // used in URL path prefix
-        defaultLocale: 'en',    // default locale of your project for Nuxt pages and routings
+        defaultLocale: 'es',    // default locale of your project for Nuxt pages and routings
      },
     components: {
         global: true,
@@ -21,7 +21,8 @@ export default defineNuxtConfig({
           apiBase: process.env.API_BASE_URL,
           apiSession: process.env.API_SESSION_URL,
           apiWeather: process.env.API_WEATHER,
-          apiWeatherKey: process.env.API_WEATHER_KEY
+          apiWeatherKey: process.env.API_WEATHER_KEY,
+          apiCryptoUrl: process.env.API_CRYPTO_URL,
         }
 
       },

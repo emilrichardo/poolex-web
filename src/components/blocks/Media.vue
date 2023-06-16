@@ -258,6 +258,7 @@
 </template>
 <script setup>
 import Vimeo from "@vimeo/player";
+import YouTube from "vue3-youtube";
 
 const { content } = defineProps(["content"]);
 
@@ -266,7 +267,6 @@ const videoOpen = ref(false);
 
 const openVideo = (data) => {
   const url = obtenerIDVideo(data?.video_url);
-  console.log(obtenerIDVideo(data?.video_url));
 
   if (url.plataforma === "Vimeo") {
     videoOpen.value = true;
@@ -279,7 +279,7 @@ const openVideo = (data) => {
     const player = new Vimeo(vimeoPlayer.value, options);
     player.play();
   } else if (url.plataforma === "YouTube") {
-    console.log("you");
+    videoOpen.value = true;
   }
 };
 

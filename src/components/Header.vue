@@ -7,7 +7,7 @@
     <div class="mx-auto px-2 lg:px-8" v-if="globalOptions.options.data">
       <nav class="flex items-center justify-between gap-1 lg:gap-8">
         <div class="brand shrink-0">
-          <NuxtLink to="/">
+          <NuxtLink :to="localePath('/')">
             <NuxtImg
               v-if="data.header.logo_light.data?.attributes?.url"
               class="w-32 sm:w-40"
@@ -18,7 +18,7 @@
           </NuxtLink>
         </div>
         <div class="menu_1">
-          <ul class='hidden lg:flex flex-row items-center gap-4'>
+          <ul class="hidden lg:flex flex-row items-center gap-4">
             <li
               v-for="item in useGetLocale(
                 locale,
@@ -74,17 +74,29 @@
                 /></Button>
                 <div
                   v-if="openBo"
-                  class="submenu border border-light-400 rounded absolute top-12 right-0 bg-white flex flex-col items-center w-60"
+                  class="submenu border border-light-400 rounded absolute z-20 top-12 right-0 bg-white flex flex-col items-center w-60"
                 >
-                  <ul>
-                    <li
-                      v-for="item in globalOptions.userData.data_array"
-                      class="py-2 px-4"
-                    >
-                      {{ item.bo }}
-                    </li>
-                  </ul>
+                  <div class="divide-y divide-gray-400">
+                    <template v-for="itemBo in globalData.myBackoffices">
+                      <NuxtLink
+                        :to="itemBo.attributes?.backoffice_url"
+                        target="_blank"
+                      >
+                        <button
+                          v-if="itemBo.success"
+                          class="bg-white w-full rounded hover:bg-primary hover:text-light py-2"
+                        >
+                          {{ itemBo.attributes?.name }}
+                        </button>
+                      </NuxtLink>
+                    </template>
+                  </div>
                 </div>
+                <div
+                  class="openbo-overlay h-screen w-screen fixed top-0 left-0 z-0"
+                  v-if="openBo"
+                  @click="openBo = !openBo"
+                ></div>
               </li>
             </template>
 
@@ -110,11 +122,14 @@
             </li>
           </ul>
         </div>
-        <div :class="`menu_mobile lg:hidden ${menuIsOpen?
-          'block absolute bg-light top-0 pt-24 w-full h-screen overflow-y-auto left-0 -z-20 px-10 pb-10':
-          'hidden'
-        }`">
-          <ul class='flex flex-col items-center mb-3'>
+        <div
+          :class="`menu_mobile lg:hidden ${
+            menuIsOpen
+              ? 'block absolute bg-light top-0 pt-24 w-full h-screen overflow-y-auto left-0 -z-20 px-10 pb-10'
+              : 'hidden'
+          }`"
+        >
+          <ul class="flex flex-col items-center mb-3">
             <li
               v-for="item in useGetLocale(
                 locale,
@@ -132,7 +147,7 @@
                     :type="item.type"
                     :size="item.size"
                     :variant="item.style"
-                    class='text-lg py-3 px-7 block'
+                    class="text-lg py-3 px-7 block"
                     >{{ item.label }}
                   </Button>
                 </NuxtLink>
@@ -198,6 +213,8 @@
           </ul>
         </div>
       </nav>
+
+      <!--  {{ globalData.myBackoffices }} -->
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
     <MegaMenu
@@ -282,6 +299,7 @@ const getLogOut = async () => {
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);
+    localStorage.setItem("userData", JSON.stringify(null));
   } catch (error) {
     console.log(error);
   }

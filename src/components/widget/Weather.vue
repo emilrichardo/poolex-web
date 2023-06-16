@@ -21,35 +21,35 @@
             class="flex justify-between px-4 lg:px-8 py-3 text-dark-200 text-sm"
           >
             <span>Precipitaciones</span>
-            <span>{{ weatherData.data.current.precip_in }}</span>
+            <span>{{ weatherData.data?.current?.precip_in }}</span>
           </li>
           <li
             class="flex justify-between px-4 lg:px-8 py-3 text-dark-200 text-sm"
           >
             <span>Humedad</span>
-            <span>{{ weatherData.data.current.humidity }}</span>
+            <span>{{ weatherData.data?.current?.humidity }}</span>
           </li>
           <li
             class="flex justify-between px-4 lg:px-8 py-3 text-dark-200 text-sm"
           >
             <span>Viento</span>
-            <span>{{ weatherData.data.current.wind_kph }} km/h</span>
+            <span>{{ weatherData.data?.current?.wind_kph }} km/h</span>
           </li>
         </ul>
       </div>
       <div class="col2 text-center">
         <img
           class="mx-auto w-full max-w-[69px] mb-8"
-          v-if="weatherData.data.current.condition.icon"
-          :src="weatherData.data.current.condition.icon"
-          :alt="weatherData.data.current.condition.text"
+          v-if="weatherData.data?.current?.condition.icon"
+          :src="weatherData.data?.current?.condition.icon"
+          :alt="weatherData.data?.current?.condition.text"
         />
-        <h5>{{ weatherData.data.current.condition.text }}</h5>
+        <h5>{{ weatherData.data?.current?.condition.text }}</h5>
         <h4
           class="text-4xl lg:text-6xl mt-4"
-          v-if="weatherData.data.current.temp_c"
+          v-if="weatherData.data?.current?.temp_c"
         >
-          {{ weatherData.data.current.temp_c }}
+          {{ weatherData.data?.current?.temp_c }}
         </h4>
       </div>
     </div>
