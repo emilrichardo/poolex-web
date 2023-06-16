@@ -18,11 +18,11 @@
         class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16"
       >
         <div class="footermenu">
-          <h4 class="text-2xl font-medium mb-6">
+          <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
-          <ul v-if="useData.products" class="flex flex-col gap-3">
+          <ul v-if="useData.products" class="flex flex-col gap-3 items-center md:items-start">
             <li
               class="text-dark-100 hover:underline"
               v-for="product in useData.products"
@@ -37,7 +37,7 @@
           </ul>
         </div>
         <div class="footermenu">
-          <h4 class="text-2xl font-medium mb-6 max-w-[200px]">
+          <h4 class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left">
             {{
               locale === "en"
                 ? "Allied Brokers Regulations"
@@ -45,32 +45,32 @@
             }}
           </h4>
 
-          <ul class="flex flex-col gap-3">
+          <ul class="flex flex-col gap-3 items-center md:items-start">
             <li><a href="https://www.atfx.com/es">ATFX</a></li>
             <li><a href="https://www.phillipcapital.com">Philip Capital</a></li>
             <li><a href="https://roboforex.com">Roboforex</a></li>
           </ul>
         </div>
         <div class="footer_about">
-          <h4 class="text-2xl font-medium mb-6">
+          <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "About us" : "Sobre nosotros" }}
           </h4>
           <Button
             type="button"
             size="md"
             variant="default_outline"
-            class="flex gap-4 items-center"
+            class="flex gap-4 items-center mx-auto md:mx-0"
           >
             {{ locale === "en" ? "Presentation" : "Presentación" }}
             <Icon name="heroicons:arrow-down-tray-20-solid"></Icon>
           </Button>
         </div>
         <div class="footermenu">
-          <h4 class="text-2xl font-medium mb-6">
+          <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "Language" : "Idioma" }}
           </h4>
 
-          <div class="flex gap-4">
+          <div class="flex gap-4 justify-center md:justify-start">
             <NuxtLink v-for="lang in locales" :to="switchLocalePath(lang)">{{
               lang
             }}</NuxtLink>

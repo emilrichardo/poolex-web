@@ -19,13 +19,11 @@ module.exports = {
     theme: {
       container: {
         center: true,
-        padding: '1rem',
+        padding: '1.75rem',
         screens: {
-          sm: '600px',
           md: '728px',
-          lg: '984px',
-          xl: '1380px',
-
+          lg: '1080px',
+          xl: '1440px',
         },
 
       },
@@ -34,6 +32,11 @@ module.exports = {
           'body': "var(--font-base)",
           'heading': "var(--font-heading)",
           'fantasy':"var(--font-fantasy)"
+        },
+        screens: {
+          'lg': '1080px',
+          'xl': '1440px',
+          '2xl': '1600px'
         },
         colors:{
           accesible:{
