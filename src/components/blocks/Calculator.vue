@@ -2,7 +2,9 @@
   <div>
     <section class="bg-light border-t py-16">
       <div class="container max-w-[1024px]">
-        <h2 class="text-2xl text-center mb-4">Calculator</h2>
+        <h2 class="text-2xl text-center mb-4">
+          {{ locale == "es" ? "Calculadora" : "Calculator" }}
+        </h2>
         <div class="form grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="input-group flex flex-col gap-1">
             <label class="text-sm" for="select_plan">Plan</label>
@@ -17,7 +19,9 @@
             </select>
           </div>
           <div class="input-group flex flex-col gap-1">
-            <label class="text-sm" for="amount">Investment amount</label>
+            <label class="text-sm" for="amount"
+              >{{ locale == "es" ? "Monto" : "Investment amount" }}
+            </label>
             <input
               class="py-2 px-2 focus:outline-primary"
               v-model="amount"
@@ -28,7 +32,7 @@
         </div>
 
         <div class="total text-center mt-24" v-if="totalProfit">
-          <h5>Total profits</h5>
+          <h5>{{ locale == "es" ? "Beneficios totales" : "Total profits" }}</h5>
           <h4 class="text-primary text-2xl md:text-4xl font-light">
             {{ totalProfit.toFixed(2) }}
           </h4>
@@ -47,13 +51,18 @@
         {{ selectedPlan.name }}
       </div>
       <div class="months" v-if="selectedPlan.months">
-        {{ selectedPlan.months }} months
+        {{ selectedPlan.months }} {{ locale == "es" ? "Meses" : " Months" }}
       </div>
       <div class="roy" v-if="selectedPlan.roi">
         ROI {{ selectedPlan.roi }} %
       </div>
       <div class="roy" v-if="selectedPlan.withdraw">
-        Withdrawal of interest after first month: {{ selectedPlan.withdraw }} %
+        {{
+          locale == "es"
+            ? "Retiro de intereses después del primer mes:"
+            : "Withdrawal of interest after first month:"
+        }}
+        {{ selectedPlan.withdraw }} %
       </div>
     </div>
 
@@ -64,7 +73,7 @@
             <th
               class="px-6 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Month
+              {{ locale == "es" ? "Mes" : " Month" }}
             </th>
             <th
               class="px-6 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -98,6 +107,7 @@
   </div>
 </template>
 <script setup>
+const { locale } = useI18n();
 const plans = ref([
   { id: 1, name: "Bassic", roi: 4, months: 12, withdraw: 1 },
   { id: 2, name: "Business", roi: 4.5, months: 24, withdraw: 13 },

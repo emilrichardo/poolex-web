@@ -9,7 +9,7 @@
     >
       <div :class="`h-full grid  ${gridMenu}`">
         <template v-for="item in menuData">
-          <NuxtLink :to="item.url" @click="closeMegaMenu">
+          <NuxtLink :to="localePath(item.url)" @click="closeMegaMenu">
             <div
               class="h-full flex flex-col items-center justify-center"
               :style="`background-color:${item.color}`"
@@ -29,7 +29,7 @@
                 <NuxtLink
                   v-if="item.subitems"
                   v-for="subitem in item.subitems"
-                  :to="subitem.url"
+                  :to="localePath(subitem.url)"
                   class="w-full"
                 >
                   <Button
@@ -58,6 +58,7 @@
   </div>
 </template>
 <script setup>
+const localePath = useLocalePath();
 const emit = defineEmits(["inFocus", "submit"]);
 
 const closeMegaMenu = () => {
