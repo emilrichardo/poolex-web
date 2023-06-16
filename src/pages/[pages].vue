@@ -2,8 +2,10 @@
   <!--   <section class="pt-40" v-for="section in page.attributes.sections">
     <pre>{{ formatName(section.__component) }}</pre>
   </section> -->
+  <pre class="pt-40">{{ useGetLocaleSections(locale, page) }}</pre>
 
   <component
+    class="page-components"
     v-for="section in page.attributes.sections"
     :key="section.id"
     :is="formatName(section.__component)"
@@ -13,73 +15,141 @@
 
 <script setup>
 import qs from "qs";
-
+import { useGetLocale, useGetLocaleSections } from "@/composables/getLocale";
+const { locales, locale } = useI18n();
 const route = useRoute();
 
 const page = ref(null);
 
-const query = qs.stringify({
-  populate: {
-    sections: {
-      populate: {
-        headings: {
-          populate: "*",
+const query = qs.stringify(
+  {
+    populate: {
+      localizations: {
+        populate: {
+          sections: {
+            populate: {
+              headings: {
+                populate: "*",
+              },
+              image: {
+                populate: "*",
+              },
+              features: {
+                populate: "*",
+              },
+              background: {
+                populate: "*",
+              },
+              video: {
+                populate: "*",
+              },
+              style: {
+                populate: "*",
+              },
+              internal_margin: {
+                populate: "*",
+              },
+              icons: {
+                populate: "*",
+              },
+              logo: {
+                populate: "*",
+              },
+              brands: {
+                populate: "*",
+              },
+              calculator: {
+                populate: "*",
+              },
+              text: {
+                populate: "*",
+              },
+              membership: {
+                populate: "*",
+              },
+              team: {
+                populate: "*",
+              },
+              plan: {
+                populate: "*",
+              },
+              testimonial: {
+                populate: "*",
+              },
+              item: {
+                populate: "*",
+              },
+            },
+          },
         },
-        hero: {
-          populate: "*",
-        },
-        image: {
-          populate: "*",
-        },
-        features: {
-          populate: "*",
-        },
-        background: {
-          populate: "*",
-        },
-        video: {
-          populate: "*",
-        },
-        style: {
-          populate: "*",
-        },
-        internal_margin: {
-          populate: "*",
-        },
-        icons: {
-          populate: "*",
-        },
-        logo: {
-          populate: "*",
-        },
-        brands: {
-          populate: "*",
-        },
-        text: {
-          populate: "*",
-        },
-        membership: {
-          populate: "*",
-        },
-        team: {
-          populate: "*",
-        },
-        plan: {
-          populate: "*",
-        },
-        testimonial: {
-          populate: "*",
-        },
-        item: {
-          populate: "*",
-        },
-        contact_item: {
-          populate: "*",
+      },
+      Featured_image: {
+        populate: "*",
+      },
+      icon: {
+        populate: "*",
+      },
+      sections: {
+        populate: {
+          headings: {
+            populate: "*",
+          },
+          image: {
+            populate: "*",
+          },
+          features: {
+            populate: "*",
+          },
+          background: {
+            populate: "*",
+          },
+          video: {
+            populate: "*",
+          },
+          style: {
+            populate: "*",
+          },
+          internal_margin: {
+            populate: "*",
+          },
+          icons: {
+            populate: "*",
+          },
+          logo: {
+            populate: "*",
+          },
+          brands: {
+            populate: "*",
+          },
+          calculator: {
+            populate: "*",
+          },
+          text: {
+            populate: "*",
+          },
+          membership: {
+            populate: "*",
+          },
+          team: {
+            populate: "*",
+          },
+          plan: {
+            populate: "*",
+          },
+          testimonial: {
+            populate: "*",
+          },
+          item: {
+            populate: "*",
+          },
         },
       },
     },
   },
-});
+  {
+    encodeValuesOnly: true, // prettify URL
+  }
+);
 
 const productsFromApi = await useFetch(`/api/pages?${query}`);
 
@@ -125,7 +195,7 @@ const formatName = (name) => {
 </script>
 
 <style scoped>
-:root {
+.page-components {
   --product: #9747ff;
 }
 .image-caption {

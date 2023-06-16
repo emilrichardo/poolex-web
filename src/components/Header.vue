@@ -80,17 +80,29 @@
                 /></Button>
                 <div
                   v-if="openBo"
-                  class="submenu border border-light-400 rounded absolute top-12 right-0 bg-white flex flex-col items-center w-60"
+                  class="submenu border border-light-400 rounded absolute z-20 top-12 right-0 bg-white flex flex-col items-center w-60"
                 >
-                  <ul>
-                    <li
-                      v-for="item in globalOptions.userData.data_array"
-                      class="py-2 px-4"
-                    >
-                      {{ item.bo }}
-                    </li>
-                  </ul>
+                  <div class="divide-y divide-gray-400">
+                    <template v-for="itemBo in globalData.myBackoffices">
+                      <NuxtLink
+                        :to="itemBo.attributes?.backoffice_url"
+                        target="_blank"
+                      >
+                        <button
+                          v-if="itemBo.success"
+                          class="bg-white w-full rounded hover:bg-primary hover:text-light py-2"
+                        >
+                          {{ itemBo.attributes?.name }}
+                        </button>
+                      </NuxtLink>
+                    </template>
+                  </div>
                 </div>
+                <div
+                  class="openbo-overlay h-screen w-screen fixed top-0 left-0 z-0"
+                  v-if="openBo"
+                  @click="openBo = !openBo"
+                ></div>
               </li>
             </template>
 
@@ -117,6 +129,8 @@
           </ul>
         </div>
       </nav>
+
+      <!--  {{ globalData.myBackoffices }} -->
     </div>
     <Alert type="danger" v-else>{{ globalOptions.options.error }}</Alert>
     <MegaMenu
@@ -201,6 +215,7 @@ const getLogOut = async () => {
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);
+    localStorage.setItem("userData", JSON.stringify(null));
   } catch (error) {
     console.log(error);
   }

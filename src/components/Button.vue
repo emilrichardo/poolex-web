@@ -1,5 +1,7 @@
 <template>
-  <button :class="`${buttonFormat} transition-all duration-300 ease-out`">
+  <button
+    :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`"
+  >
     <slot />
   </button>
 </template>
