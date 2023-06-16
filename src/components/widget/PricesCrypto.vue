@@ -5,7 +5,7 @@
       <div class="basis-1/2">Price</div>
     </div>
     <ul class="max-h-[270px] overflow-y-auto py-4 px-6">
-      <li class="grid grid-cols-2 gap-4" v-for="item in cryptoData.data.value">
+      <li class="grid grid-cols-2 gap-4" v-for="item in cryptoData.data?.value">
         <div class="flex items-center gap-2">
           <div
             v-if="item.image"
@@ -23,8 +23,8 @@
               : 'bg-red-300 border border-red-300 text-red-900 bg-opacity-30'
           } `"
         >
-          <h5>$ {{ item.current_price.toFixed(2) }}</h5>
-          <p>{{ item.price_change_percentage_24h.toFixed(2) }}</p>
+          <h5>$ {{ item.current_price?.toFixed(2) }}</h5>
+          <p>{{ item.price_change_percentage_24h?.toFixed(2) }}</p>
         </div>
       </li>
     </ul>
