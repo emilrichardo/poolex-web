@@ -297,7 +297,7 @@ const getLogOut = async () => {
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);
-    localStorage.setItem("userData", JSON.stringify(null));
+    localStorage.setItem("userData", null);
   } catch (error) {
     console.log(error);
   }
