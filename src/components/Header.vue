@@ -232,7 +232,9 @@
     </div>
   </header>
 
-  <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
+  <ClientOnly>
+    <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
+  </ClientOnly>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
