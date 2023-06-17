@@ -62,8 +62,9 @@ const query = qs.stringify({
 });
 
 const optionsFromApi = await useFetch(`/api/option?${query}`);
-
-useOptions.setOptions(optionsFromApi);
+onMounted(() => {
+  useOptions.setOptions(optionsFromApi);
+});
 
 const queryProducts = qs.stringify(
   {
@@ -196,15 +197,16 @@ const queryProducts = qs.stringify(
 );
 
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
-
-useData.setProducts(productsFromApi.data?.value?.data);
-useData.setMyBO(productsFromApi.data.value.data);
-
+onMounted(() => {
+  useData.setProducts(productsFromApi.data?.value?.data);
+  useData.setMyBO(productsFromApi.data.value.data);
+});
 // styles
 
 const { themeColors, themeStylesTag } = useGetColors();
-
-themeColors(optionsFromApi.data.value.data.attributes.colors);
+onMounted(() => {
+  themeColors(optionsFromApi.data.value.data.attributes.colors);
+});
 
 // meta datos
 useHead({
