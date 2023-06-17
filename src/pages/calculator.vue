@@ -1,3 +1,0 @@
-<template>
-  <BlocksCalculator />
-</template>
