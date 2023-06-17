@@ -3,9 +3,6 @@ export default defineNuxtConfig({
 
     srcDir: "src",
     ssr: false,
-    routeRules:{
-      '/product/*': {static: true},
-    },
 
     modules: ['@nuxtjs/color-mode','@nuxtjs/tailwindcss', '@pinia/nuxt','@nuxt/image-edge','nuxt-icon','@nuxtjs/i18n'],
     i18n: {
