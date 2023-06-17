@@ -1,4 +1,6 @@
 <template>
+  <LoadingPage v-if="isLoading" />
+
   <Header />
 
   <main class="in-h-full">
@@ -13,10 +15,20 @@ import { useGlobalOptions } from "@/stores/getGlobaOptions";
 import { useGlobalData } from "@/stores/getGlobaData";
 
 import { useGetColors } from "@/composables/getColors";
+import { on } from "events";
 
 const { locales, locale } = useI18n();
 const useData = useGlobalData();
 const useOptions = useGlobalOptions();
+
+const isLoading = ref(true);
+onBeforeMount(() => {
+  isLoading.value = true;
+});
+
+onMounted(() => {
+  isLoading.value = false;
+});
 
 /* if (localStorage.getItem("userData")) {
   const storageUserData = JSON.parse(localStorage.getItem("userData"));

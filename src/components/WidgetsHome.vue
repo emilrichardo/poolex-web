@@ -8,40 +8,42 @@
       >
         <template #item="{ element: card }">
           <div :class="card.cols == 2 && '   lg:col-span-2'">
-            <Card
-              :title="card.title"
-              :color="card.color"
-              :isDraggable="card.isDraggable"
-            >
-              <template #card-body>
-                <div class="relative h-full">
-                  <template v-if="card.type == 'backoffices'">
-                    <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
-                      <CardProduct
-                        v-for="product in globalData.myBackoffices"
-                        :title="product.attributes.name"
-                        :color="product.attributes.color"
-                        :icon="product.attributes.icon"
-                        :isRegister="product.success"
-                        :attributes="product.attributes"
-                      />
-                    </div>
-                  </template>
-                  <template v-if="card.type == 'weather'">
-                    <WidgetWeather></WidgetWeather>
-                  </template>
-                  <template v-if="card.type == 'stocks'">
-                    <WidgetPrices :type="card.type"></WidgetPrices>
-                  </template>
-                  <template v-if="card.type == 'cryptos'">
-                    <WidgetPricesCrypto></WidgetPricesCrypto>
-                  </template>
-                  <template v-if="card.type == 'news'">
-                    <WidgetNews></WidgetNews>
-                  </template>
-                </div>
-              </template>
-            </Card>
+            <ClientOnly>
+              <Card
+                :title="card.title"
+                :color="card.color"
+                :isDraggable="card.isDraggable"
+              >
+                <template #card-body>
+                  <div class="relative h-full">
+                    <template v-if="card.type == 'backoffices'">
+                      <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
+                        <CardProduct
+                          v-for="product in globalData.myBackoffices"
+                          :title="product.attributes.name"
+                          :color="product.attributes.color"
+                          :icon="product.attributes.icon"
+                          :isRegister="product.success"
+                          :attributes="product.attributes"
+                        />
+                      </div>
+                    </template>
+                    <template v-if="card.type == 'weather'">
+                      <WidgetWeather></WidgetWeather>
+                    </template>
+                    <template v-if="card.type == 'stocks'">
+                      <WidgetPrices :type="card.type"></WidgetPrices>
+                    </template>
+                    <template v-if="card.type == 'cryptos'">
+                      <WidgetPricesCrypto></WidgetPricesCrypto>
+                    </template>
+                    <template v-if="card.type == 'news'">
+                      <WidgetNews></WidgetNews>
+                    </template>
+                  </div>
+                </template>
+              </Card>
+            </ClientOnly>
           </div>
         </template>
       </draggable>

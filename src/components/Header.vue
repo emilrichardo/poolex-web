@@ -253,8 +253,6 @@ const globalOptions = useGlobalOptions();
 
 const options = ref(globalOptions);
 
-const locaUserData = ref(JSON.parse(localStorage.getItem("userData")));
-
 watch(options.value, (newValue) => {
   console.log("El valor en el local storage ha cambiado:", newValue.userData);
 });
