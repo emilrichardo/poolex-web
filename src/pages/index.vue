@@ -39,30 +39,13 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
-import { useGlobalOptions } from "@/stores/getGlobaOptions";
+
 import { useGetLocale } from "@/composables/getLocale";
 const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
-const globalOptions = useGlobalOptions();
-
-const dataTeam = ref(null);
-
-async function getUser() {
-  try {
-    const response = await axios.get(
-      "http://localhost:1337/api/our-team?populate=*"
-    );
-    dataTeam.value = response;
-    globalData.setTeam(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
-getUser();
 </script>

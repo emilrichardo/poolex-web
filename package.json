@@ -21,7 +21,6 @@
   "dependencies": {
     "@vimeo/player": "^2.19.0",
     "@vueuse/core": "^3.0.2",
-    "axios": "^1.3.4",
     "ipx": "^1.0.0-2",
     "pinia": "^2.1.4",
     "qs": "^6.11.0",
