@@ -71,7 +71,7 @@ const login = async () => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: email.value, password: password.value }),
+    /* body: JSON.stringify({ email: email.value, password: password.value }), */
   };
   try {
     const response = await fetch(
@@ -83,14 +83,9 @@ const login = async () => {
     email.value = "";
     password.value = "";
     globalOptions.setUserData(data);
-    localStorage.setItem("userData", JSON.stringify(data));
 
     if (data.data_array) {
       globalData.setMyBO(mergeArrays(globalData.products, data.data_array));
-      localStorage.setItem(
-        "myBackoffices",
-        JSON.stringify(mergeArrays(globalData.products, data.data_array))
-      );
     }
 
     closeModal();

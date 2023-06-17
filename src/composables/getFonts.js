@@ -35,7 +35,7 @@ function toImports(themes){
         return `${set} `
     }).join('')
 
-    return  JSON.stringify(res).slice(1,-1)
+    return   res
 }
 
 /// function convert style
@@ -56,5 +56,5 @@ function toImports(themes){
         return `.${t.theme}{${set}} `
     }).join('')
 
-    return  JSON.stringify(res).slice(1,-1)
+    return  res
 }
