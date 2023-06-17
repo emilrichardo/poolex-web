@@ -48,7 +48,7 @@ export default defineNuxtConfig({
       ],
 
 
-    /*   experimental: {
+      experimental: {
         renderJsonPayloads: false
-      } */
+      }
 })
