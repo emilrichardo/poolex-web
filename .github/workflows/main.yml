@@ -1,0 +1,39 @@
+name: GitHub Pages
+"on":
+  push:
+    branches:
+      - staging
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14.x'
+        cache: 'npm'
+    - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
+# Get repo name
+    - name: Get repo name
+      shell: bash
+      run: echo "REPO_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
+      
+# Executing ssh commands on the app server      
+    - name: Execute remote ssh commands
+      uses: appleboy/ssh-action@master
+# Get the secrets for deployments	  
+      with:
+         host: ${{ secrets.ACTION_HOST_CREATIVE_ST }}
+         username: ${{ secrets.ACTION_HOST_CREATIVE_USER }}
+         key: ${{ secrets.ACTION_KEY_CREATIVE_ST }}
+         port: ${{ secrets.ACTION_HOST_CREATIVE_PORT}}
+         script: |	 
+          cd /var/www/${{ env.REPO_NAME }}
+          sudo git checkout -f
+          sudo git pull origin
+          npm install
+          npm run build
+          sudo pm2 restart 8
