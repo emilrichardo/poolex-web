@@ -60,8 +60,8 @@ const globalOptions = useGlobalOptions();
 
 const runtimeConfig = useRuntimeConfig();
 
-const email = ref("test8@email.com");
-const password = ref("abcd1234");
+const email = ref("");
+const password = ref("");
 
 const validateForm = computed(() => {
   return validateEmail(email.value) && password.value.length > 3;
@@ -79,6 +79,9 @@ const login = async () => {
       requestOptions
     );
     const data = await response.json();
+
+    email.value = "";
+    password.value = "";
     globalOptions.setUserData(data);
     localStorage.setItem("userData", JSON.stringify(data));
 
