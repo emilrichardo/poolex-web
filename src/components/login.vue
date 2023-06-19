@@ -63,6 +63,11 @@ const runtimeConfig = useRuntimeConfig();
 const email = ref("");
 const password = ref("");
 
+if (runtimeConfig.public.apiBase.includes("landingst")) {
+  email.value = "test8@email.com";
+  password.value = "abcd1234";
+}
+
 const validateForm = computed(() => {
   return validateEmail(email.value) && password.value.length > 3;
 });
@@ -87,6 +92,9 @@ const login = async () => {
 
     if (data.data_array) {
       globalData.setMyBO(mergeArrays(globalData.products, data.data_array));
+
+      document.cookie = data.data_array;
+
       /* localStorage.setItem(
         "myBackoffices",
         JSON.stringify(mergeArrays(globalData.products, data.data_array))
