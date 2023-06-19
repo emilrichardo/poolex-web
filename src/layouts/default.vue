@@ -1,6 +1,4 @@
 <template>
-  <LoadingPage v-if="isLoading" />
-
   <Header />
 
   <main class="in-h-full">
