@@ -1,5 +1,6 @@
 <template>
   <button
+    title="button-link"
     :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`"
   >
     <slot />
