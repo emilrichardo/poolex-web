@@ -29,6 +29,10 @@ export const useGlobalOptions = defineStore('options',{
         },
 
 
-    }
+    },
+    persist: {
+        storage: persistedState.localStorage,
+      },
+
 
 })

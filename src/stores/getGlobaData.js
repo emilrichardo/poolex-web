@@ -36,6 +36,9 @@ export const useGlobalData = defineStore('data',{
 
         },
 
-    }
+    },
+    persist: {
+        storage: persistedState.localStorage,
+      },
 
 })
