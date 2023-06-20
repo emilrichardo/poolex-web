@@ -77,7 +77,7 @@
                   class="submenu border border-light-400 rounded absolute z-20 top-12 right-0 bg-white flex flex-col items-center w-60"
                 >
                   <div class="divide-y divide-gray-400">
-                    <template v-for="itemBo in globalData.myBackoffices">
+                    <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink
                         :to="itemBo.attributes?.backoffice_url"
                         target="_blank"
@@ -188,14 +188,21 @@
                   v-if="openBo"
                   class="submenu border border-light-400 bg-white flex flex-col items-center w-60 mt-0.5 rounded-lg"
                 >
-                  <ul>
-                    <li
-                      v-for="item in globalOptions.userData.data_array"
-                      class="py-2 px-4"
-                    >
-                      {{ item.bo }}
-                    </li>
-                  </ul>
+                  <div class="divide-y divide-gray-400">
+                    <template v-for="itemBo in globalData.myProducts">
+                      <NuxtLink
+                        :to="itemBo.attributes?.backoffice_url"
+                        target="_blank"
+                      >
+                        <button
+                          v-if="itemBo.success"
+                          class="bg-white w-full rounded hover:bg-primary hover:text-light py-2"
+                        >
+                          {{ itemBo.attributes?.name }}
+                        </button>
+                      </NuxtLink>
+                    </template>
+                  </div>
                 </div>
               </li>
             </template>
@@ -300,6 +307,10 @@ const getLogOut = async () => {
   try {
     await fetch(`${runtimeConfig.public.apiSession}/api/v1/logout`);
     globalOptions.setUserData(null);
+    globalData.setMyProducts(null);
+
+    const cookies = document.cookie.split("; ");
+
     // localStorage.setItem("userData", null);
   } catch (error) {
     console.log(error);

@@ -4,7 +4,8 @@ export const useGlobalData = defineStore('data',{
     state:()=>({
         team: null,
         products: null,
-        myBackoffices: []
+        myBackoffices: null,
+        myProducts: null,
     }),
     actions:{
 
@@ -30,6 +31,16 @@ export const useGlobalData = defineStore('data',{
             try {
                 const user= await data
                 this.myBackoffices = user
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
+
+        async setMyProducts(data){
+            try {
+                const user= await data
+                this.myProducts = user
             } catch (error) {
                 console.log(error);
             }

@@ -90,18 +90,19 @@ const login = async () => {
     globalOptions.setUserData(data);
 
     if (data.data_array) {
-      globalData.setMyBO(
-        mergeArrays(globalData.myBackoffices, data.data_array)
+      globalData.setMyProducts(
+        mergeArrays(data.data_array, globalData.myBackoffices)
       );
 
       data.data_array.forEach((bo) => {
         const expirationDate = new Date(); // Obtén la fecha actual
-        expirationDate.setDate(expirationDate.getDate() + 7); // Añade 7 días a la fecha actual
+        expirationDate.setDate(expirationDate.getDate() + 1); // Añade 7 días a la fecha actual
 
-        const cookieString = `${bo.cookie}; domain=.poolex.io; path=/`;
+        const cookieString = `${
+          bo.cookie
+        }; domain=.poolex.io; path=/; expires=${expirationDate.toUTCString()}`;
 
         document.cookie = cookieString;
-        console.log(cookieString);
       });
     }
 
@@ -129,36 +130,31 @@ const getWhoami = async () => {
 };
 
 // merge products
-
 const mergeArrays = (array1, array2) => {
-  const result = [];
-  for (const item1 of array1) {
-    let matched = false;
-    for (const item2 of array2) {
-      if (!item2.bo || !item1.attributes.name) {
-        continue;
-      }
-      const nameMatch = item1.attributes.name
-        .trim()
-        .toLowerCase()
-        .includes(item2.bo.trim().toLowerCase());
-      const boMatch = item2.bo
-        .trim()
-        .toLowerCase()
-        .includes(item1.attributes.name.trim().toLowerCase());
-      if (nameMatch || boMatch) {
-        result.push({ ...item1, ...item2 });
-        matched = true;
+  const result = [...array1]; // Copia los elementos del primer array en el resultado inicialmente
+  const matchedIndexes = new Set(); // Almacena los índices de los elementos que coinciden
+
+  for (let i = 0; i < array1.length; i++) {
+    for (let j = 0; j < array2.length; j++) {
+      if (
+        array1[i].bo.trim().toLowerCase() ===
+        array2[j].attributes.slug.trim().toLowerCase()
+      ) {
+        result[i] = { ...array1[i], ...array2[j] };
+        matchedIndexes.add(j);
         break;
       }
     }
-    if (!matched) {
-      result.push(item1);
+  }
+
+  for (let k = 0; k < array2.length; k++) {
+    if (!matchedIndexes.has(k)) {
+      result.push({ bo: array2[k].attributes.slug, ...array2[k] });
     }
   }
+
   return result;
 };
-
 //emit close tag
 
 const emit = defineEmits(["inFocus", "submit"]);

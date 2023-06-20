@@ -20,6 +20,16 @@
                     <template v-if="card.type == 'backoffices'">
                       <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
                         <CardProduct
+                          v-if="globalData.myProducts"
+                          v-for="product in globalData.myProducts"
+                          :title="product.attributes.name"
+                          :color="product.attributes.color"
+                          :icon="product.attributes.icon"
+                          :isRegister="product.success"
+                          :attributes="product.attributes"
+                        />
+                        <CardProduct
+                          v-else
                           v-for="product in globalData.myBackoffices"
                           :title="product.attributes.name"
                           :color="product.attributes.color"

@@ -35,6 +35,7 @@
       </div>
     </template>
   </Carousel>
+
   <WidgetsHome />
 </template>
 
