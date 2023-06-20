@@ -76,10 +76,8 @@
         <img
           v-if="attributes?.Featured_image.data"
           class="rounded-lg w-full"
-          :src="
-            attributes.Featured_image?.data.attributes?.formats?.medium?.url
-          "
-          alt=""
+          :src="attributes.Featured_image?.data?.attributes?.url"
+          alt="product image"
         />
         <div class="caption lg:col-span-2 text-lg">
           <p>{{ attributes.description }}</p>
