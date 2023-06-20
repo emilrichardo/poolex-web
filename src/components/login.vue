@@ -98,9 +98,7 @@ const login = async () => {
         const expirationDate = new Date(); // Obtén la fecha actual
         expirationDate.setDate(expirationDate.getDate() + 7); // Añade 7 días a la fecha actual
 
-        const cookieString = `${
-          bo.cookie
-        }; domain=localhost; expires=${expirationDate.toUTCString()}`;
+        const cookieString = `${bo.cookie}`;
 
         document.cookie = cookieString;
         console.log(cookieString);
