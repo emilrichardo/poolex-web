@@ -36,4 +36,4 @@ jobs:
           sudo git pull origin
           npm install
           npm run build
-          sudo pm2 restart 8
+          sudo pm2 restart "Poolex_CMS front"
