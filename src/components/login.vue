@@ -85,15 +85,13 @@ const login = async () => {
     );
     const data = await response.json();
 
-    /* email.value = "";
-    password.value = ""; */
+    getWhoami();
     globalOptions.setUserData(data);
 
     if (data.data_array) {
       globalData.setMyProducts(
         mergeArrays(data.data_array, globalData.myBackoffices)
       );
-      getWhoami();
 
       data.data_array.forEach((bo) => {
         const expirationDate = new Date(); // Obtén la fecha actual
@@ -116,7 +114,10 @@ const login = async () => {
 const getWhoami = async () => {
   const requestOptions = {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Secret: getCookie("session_io"),
+    },
   };
 
   try {
