@@ -168,8 +168,22 @@ const tooggleProduct = () => {
 };
 
 const getContent = async () => {
-  console.log("get content");
   const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Secret:
+        "diefer-7f0bfd673629e063b5391e62b7a5f015ed8015a1d74d34d1118c700ca470579e",
+    },
+  };
+
+  const investmentApi = await useFetch(
+    runtimeConfig.public.apiSession + "/api/v1/invest_plans",
+    requestOptions
+  );
+
+  console.log(investmentApi);
+  /*  const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
@@ -183,7 +197,7 @@ const getContent = async () => {
     console.log(data);
   } catch (error) {
     console.log(error);
-  }
+  } */
 };
 </script>
 <style>
