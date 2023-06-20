@@ -3,6 +3,7 @@
     <div class="container mx-auto">
       <draggable
         v-model="allCards"
+        :item-key="(item) => item.id"
         tag="div"
         class="card-group grid grid-cols-1 lg:grid-cols-3 gap-8"
       >

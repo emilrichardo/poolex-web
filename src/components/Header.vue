@@ -256,7 +256,8 @@ const globalOptions = useGlobalOptions();
 const options = ref(globalOptions);
 
 watch(options.value, (newValue) => {
-  console.log("El valor en el local storage ha cambiado:", newValue.userData);
+  /*   console.log("El valor en el local storage ha cambiado:", newValue.userData);
+   */
 });
 
 const menuIsOpen = ref(false);

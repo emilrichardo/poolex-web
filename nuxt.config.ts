@@ -20,6 +20,7 @@ export default defineNuxtConfig({
         public:{
           projectName:process.env.PROJECT_NAME,
           projectDesc: process.env.PROJECT_DESC,
+          projectUrl:process.env.DOMAIN_URL,
           apiBase: process.env.API_BASE_URL,
           apiSession: process.env.API_SESSION_URL,
           apiWeather: process.env.API_WEATHER,

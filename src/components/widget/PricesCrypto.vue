@@ -40,5 +40,4 @@ const apiParamsCrypto =
 const cryptoData = await useFetch(
   `${runtimeConfig.public.apiCryptoUrl}/${apiParamsCrypto}`
 );
-console.log(cryptoData.data);
 </script>
