@@ -75,7 +75,7 @@
       <div v-if="!isRegister" class="grid lg:grid-cols-3 gap-5">
         <img
           v-if="attributes?.Featured_image.data"
-          class="rounded-lg w-full"
+          class="hidden md:block rounded-lg w-full"
           :src="attributes.Featured_image?.data?.attributes?.url"
           alt="product image"
         />

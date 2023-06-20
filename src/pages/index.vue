@@ -50,4 +50,5 @@ const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
+console.log(globalData.whoami);
 </script>
