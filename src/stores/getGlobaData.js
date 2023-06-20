@@ -6,6 +6,7 @@ export const useGlobalData = defineStore('data',{
         products: null,
         myBackoffices: null,
         myProducts: null,
+        whoami:null
     }),
     actions:{
 
@@ -41,6 +42,16 @@ export const useGlobalData = defineStore('data',{
             try {
                 const user= await data
                 this.myProducts = user
+            } catch (error) {
+                console.log(error);
+            }
+
+        },
+
+        async setWhoami(data){
+            try {
+                const user= await data
+                this.whoami = user
             } catch (error) {
                 console.log(error);
             }

@@ -45,6 +45,8 @@ import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
 
 import { useGetLocale } from "@/composables/getLocale";
+
+console.log(globalData.whoami);
 const { locale } = useI18n();
 const localePath = useLocalePath();
 

@@ -93,6 +93,7 @@ const login = async () => {
       globalData.setMyProducts(
         mergeArrays(data.data_array, globalData.myBackoffices)
       );
+      getWhoami();
 
       data.data_array.forEach((bo) => {
         const expirationDate = new Date(); // Obtén la fecha actual
@@ -124,6 +125,7 @@ const getWhoami = async () => {
       requestOptions
     );
     const data = await response.json();
+    globalData.setWhoami(data);
   } catch (error) {
     console.log(error);
   }
