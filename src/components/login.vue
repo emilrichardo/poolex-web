@@ -63,7 +63,7 @@ const runtimeConfig = useRuntimeConfig();
 const email = ref("");
 const password = ref("");
 
-if (runtimeConfig.public.apiBase.includes("landingst")) {
+if (runtimeConfig.public.projectUrl?.includes("localhost")) {
   email.value = "test8@email.com";
   password.value = "abcd1234";
 }
@@ -85,15 +85,30 @@ const login = async () => {
     );
     const data = await response.json();
 
-    email.value = "";
-    password.value = "";
+    /* email.value = "";
+    password.value = ""; */
     globalOptions.setUserData(data);
-    /* localStorage.setItem("userData", JSON.stringify(data)); */
 
     if (data.data_array) {
       globalData.setMyBO(mergeArrays(globalData.products, data.data_array));
 
-      document.cookie = data.data_array;
+      data.data_array.forEach((bo) => {
+        const expirationDate = new Date(); // Obtén la fecha actual
+        expirationDate.setDate(expirationDate.getDate() + 7); // Añade 7 días a la fecha actual
+
+        const cookieString = `${
+          bo.cookie
+        }; domain=https://staging.poolex.io/; expires=${expirationDate.toUTCString()}`;
+
+        document.cookie = cookieString;
+        console.log(cookieString);
+      });
+
+      /* for (var i in data.data_array) {
+        document.cookie = data.data_array[i].cookie;
+      } */
+
+      //console.log(data);
 
       /* localStorage.setItem(
         "myBackoffices",
