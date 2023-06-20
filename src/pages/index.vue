@@ -46,9 +46,9 @@ import { useGlobalData } from "@/stores/getGlobaData";
 
 import { useGetLocale } from "@/composables/getLocale";
 
-console.log(globalData.whoami);
 const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
+console.log(globalData.whoami);
 </script>
