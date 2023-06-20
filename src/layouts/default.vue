@@ -28,16 +28,6 @@ onMounted(() => {
   isLoading.value = false;
 });
 
-/* if (localStorage.getItem("userData")) {
-  const storageUserData = JSON.parse(localStorage.getItem("userData"));
-  useOptions.setUserData(storageUserData);
-}
-
-if (localStorage.getItem("myBackoffices")) {
-  const storageBo = JSON.parse(localStorage.getItem("myBackoffices"));
-  useData.setMyBO(storageBo);
-} */
-
 const query = qs.stringify({
   populate: {
     header: {
@@ -196,7 +186,42 @@ const queryProducts = qs.stringify(
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
 
 useData.setProducts(productsFromApi.data?.value?.data);
-useData.setMyBO(productsFromApi.data.value.data);
+
+// my backoffice
+
+const queryBo = qs.stringify(
+  {
+    fields: [
+      "name",
+      "description",
+      "slug",
+      "color",
+      "register_link",
+      "api_endpoint",
+      "active",
+      "backoffice_url",
+    ],
+
+    populate: {
+      icon: {
+        fields: ["url"],
+      },
+      Featured_image: {
+        fields: ["url"],
+        populate: {
+          fields: ["data"],
+        },
+      },
+    },
+  },
+  {
+    encodeValuesOnly: true, // prettify URL
+  }
+);
+
+const boFromApi = await useFetch(`/api/products?${queryBo}`);
+
+useData.setMyBO(boFromApi.data.value.data);
 
 // styles
 
