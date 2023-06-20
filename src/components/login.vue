@@ -85,7 +85,6 @@ const login = async () => {
     );
     const data = await response.json();
 
-    getWhoami();
     globalOptions.setUserData(data);
 
     if (data.data_array) {
@@ -106,27 +105,6 @@ const login = async () => {
     }
 
     closeModal();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const getWhoami = async () => {
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Secret: getCookie("session_io"),
-    },
-  };
-
-  try {
-    const response = await fetch(
-      runtimeConfig.public.apiSession + "/api/v1/whoami",
-      requestOptions
-    );
-    const data = await response.json();
-    globalData.setWhoami(data);
   } catch (error) {
     console.log(error);
   }
@@ -163,6 +141,7 @@ const mergeArrays = (array1, array2) => {
 const emit = defineEmits(["inFocus", "submit"]);
 const closeModal = () => {
   emit("toggleModalLogin");
+  emit("closeMenu");
 };
 
 const labelClass = "text-sm";
@@ -181,7 +160,7 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-function getCookie(cname) {
+const getCookie = function (cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(";");
@@ -195,5 +174,5 @@ function getCookie(cname) {
     }
   }
   return "";
-}
+};
 </script>

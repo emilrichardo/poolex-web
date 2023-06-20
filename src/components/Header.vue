@@ -240,7 +240,11 @@
   </header>
 
   <ClientOnly>
-    <Login v-if="modalState" @toggleModalLogin="toggleModalLogin" />
+    <Login
+      v-if="modalState"
+      @closeMenu="closeMenu"
+      @toggleModalLogin="toggleModalLogin"
+    />
   </ClientOnly>
 </template>
 <script setup>
@@ -309,29 +313,13 @@ const getLogOut = async () => {
     globalOptions.setUserData(null);
     globalData.setMyProducts(null);
 
-    const cookies = document.cookie.split("; ");
-
-    // localStorage.setItem("userData", null);
+    menuIsOpen.value = false;
   } catch (error) {
     console.log(error);
   }
 };
 
 const openBo = ref(false);
-
-const myBackOffices = computed(() => {
-  if (globalOptions.userData) {
-    const data = ref([]);
-    globalOptions.userData.data_array.map((item) => {
-      data.value.push({
-        name: item.bo,
-        user: item.username,
-        cookie: item.cookie,
-      });
-    });
-    return data;
-  }
-});
 
 //globalOptions.setMyBO(data);
 
