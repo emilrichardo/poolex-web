@@ -90,7 +90,9 @@ const login = async () => {
     globalOptions.setUserData(data);
 
     if (data.data_array) {
-      globalData.setMyBO(mergeArrays(globalData.products, data.data_array));
+      globalData.setMyBO(
+        mergeArrays(globalData.myBackoffices, data.data_array)
+      );
 
       data.data_array.forEach((bo) => {
         const expirationDate = new Date(); // Obtén la fecha actual
@@ -98,22 +100,11 @@ const login = async () => {
 
         const cookieString = `${
           bo.cookie
-        }; domain=https://staging.poolex.io/; expires=${expirationDate.toUTCString()}`;
+        }; domain=localhost; expires=${expirationDate.toUTCString()}`;
 
         document.cookie = cookieString;
         console.log(cookieString);
       });
-
-      /* for (var i in data.data_array) {
-        document.cookie = data.data_array[i].cookie;
-      } */
-
-      //console.log(data);
-
-      /* localStorage.setItem(
-        "myBackoffices",
-        JSON.stringify(mergeArrays(globalData.products, data.data_array))
-      ); */
     }
 
     closeModal();
