@@ -98,7 +98,7 @@ const login = async () => {
         const expirationDate = new Date(); // Obtén la fecha actual
         expirationDate.setDate(expirationDate.getDate() + 7); // Añade 7 días a la fecha actual
 
-        const cookieString = `${bo.cookie} domain=.poolex.io`;
+        const cookieString = `${bo.cookie}; domain=.poolex.io`;
 
         document.cookie = cookieString;
         console.log(cookieString);
