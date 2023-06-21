@@ -1,8 +1,4 @@
 <template>
-  <pre class="text-sm">
-   <!--  {{ globalData.myBackoffices }} -->
- <!-- {{ useGetLocaleSections(locale, globalData.myBackoffices) }} --></pre>
-
   <section id="widgets" class="py-14">
     <div class="container mx-auto">
       <draggable
@@ -72,7 +68,6 @@ import draggable from "vuedraggable";
 import { useGlobalData } from "@/stores/getGlobaData";
 const { locale } = useI18n();
 
-console.log(locale);
 const globalData = useGlobalData();
 const allCards = ref([
   {

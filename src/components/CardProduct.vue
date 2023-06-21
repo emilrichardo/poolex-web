@@ -98,15 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
-        <h4 v-if="currentData?.title" class="text-xl mb-4">
-          {{ currentData?.title }}
-        </h4>
-        <div class="grid grid-cols-2 gap-5">
-          <!-- <div v-for="data in currentData?.data">
-            <h5 v-if="data?.title">{{ data?.title }}</h5>
-            <h5 class="text-lg" v-if="data?.amount">$ {{ data?.amount }}</h5>
-          </div> -->
-        </div>
+        <pre></pre>
       </div>
     </div>
   </div>
@@ -154,23 +146,16 @@ const staticAssets = ref([
   },
 ]);
 
-const currentData = ref(null);
-
-const filterData = (slug) => {
-  const res = staticAssets.value.filter((obj) => obj.product == slug)[0];
-  currentData.value = res;
-};
-filterData(data?.attributes?.slug);
-
 const openPanel = ref(false);
 const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
+  getContent();
 };
 
 const getContent = async () => {
-  /* const requestOptions = {
+  const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -184,7 +169,9 @@ const getContent = async () => {
     requestOptions
   );
 
-  */
+  if (investmentApi.error !== null) {
+    console.log(investmentApi.data?.value);
+  }
 };
 </script>
 <style>
