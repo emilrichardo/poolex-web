@@ -98,9 +98,14 @@
         </div>
       </div>
       <div class="" v-else>
-        {{ mainCookie?.cookie }}
-        <div v-if="currentData?.success">
-          {{ currentData?.data }}
+        <div
+          v-if="currentData?.success"
+          class="grid grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <div v-for="(value, key) in currentData?.data">
+            <h5 class="font-semibold">{{ convertirCadena(key) }}</h5>
+            <h4 class="text-lg">$ {{ value }}</h4>
+          </div>
         </div>
       </div>
     </div>
@@ -152,17 +157,20 @@ const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  /* console.log(getCookie("session_io")); */
+
   if (data?.success) {
-    getContent(data?.attributes?.api_endpoint, "session_io");
+    getContent(
+      data?.attributes?.backoffice_url,
+      data?.attributes?.api_endpoint,
+      "session_io"
+    );
   }
 };
 const mainCookie = ref(null);
 
 const currentData = ref(null);
 
-const getContent = async (endpoint) => {
-  console.log("test actualizacion");
+const getContent = async (domain, endpoint) => {
   if (globalData.myProducts) {
     const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
     mainCookie.value = removeString(res.cookie);
@@ -176,13 +184,9 @@ const getContent = async (endpoint) => {
     },
   };
 
-  const investmentApi = await useFetch(
-    runtimeConfig.public.apiSession + endpoint,
-    requestOptions
-  );
+  const investmentApi = await useFetch(domain + endpoint, requestOptions);
 
   if (investmentApi.error !== null) {
-    console.log(investmentApi.data?.value);
     currentData.value = investmentApi.data?.value;
   }
 };
@@ -211,6 +215,19 @@ const getCookie = (cname) => {
   }
   return "";
 };
+
+function convertirCadena(cadena) {
+  // Dividir la cadena en palabras separadas por "_"
+  var palabras = cadena.split("_");
+
+  // Capitalizar la primera letra de cada palabra
+  var resultado = palabras.map(function (palabra) {
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+  });
+
+  // Unir las palabras en una sola cadena separadas por espacio
+  return resultado.join(" ");
+}
 </script>
 <style>
 .card {
