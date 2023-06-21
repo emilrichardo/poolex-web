@@ -1,8 +1,10 @@
 <template>
   <div class="relative" v-if="type === 'stocks'">
     <div class="grid grid-cols-2 gap-4 border-b border-light-500 py-4 px-6">
-      <div class="basis-1/2">Company</div>
-      <div class="basis-1/2">Price</div>
+      <div class="basis-1/2">
+        {{ locale === "es" ? "Compañia" : "Company" }}
+      </div>
+      <div class="basis-1/2">{{ locale === "es" ? "Precio" : "Price" }}</div>
     </div>
     <ul class="max-h-[270px] overflow-y-auto py-4 px-6">
       <li class="grid grid-cols-2 gap-4" v-for="item in stocksAlpha">
@@ -29,9 +31,9 @@
       </li>
     </ul>
   </div>
-  
 </template>
 <script setup>
+const { locale } = useI18n();
 const { type } = defineProps(["type"]);
 
 const priceData = computed(() => {
@@ -40,11 +42,11 @@ const priceData = computed(() => {
   }
 });
 
-const stockData1 = ref(null)
-const stockData2 = ref(null)
-const stockData3 = ref(null)
-const stockData4 = ref(null)
-const stocksAlpha = ref(null)
+const stockData1 = ref(null);
+const stockData2 = ref(null);
+const stockData3 = ref(null);
+const stockData4 = ref(null);
+const stocksAlpha = ref(null);
 
 async function getStockData() {
   try {
@@ -67,38 +69,36 @@ async function getStockData() {
     stockData2.value = res2;
     stockData3.value = res3;
     stockData4.value = res4;
-    
+
     stocksAlpha.value = [
       {
         icon: "mdi:microsoft",
         name: stockData1.value?.data["Global Quote"]["01. symbol"],
         price: stockData1.value?.data["Global Quote"]["05. price"],
-        dif: stockData1.value?.data["Global Quote"]["09. change"]
+        dif: stockData1.value?.data["Global Quote"]["09. change"],
       },
       {
         icon: "mdi:apple",
         name: stockData2.value?.data["Global Quote"]["01. symbol"],
         price: stockData2.value?.data["Global Quote"]["05. price"],
-        dif: stockData2.value?.data["Global Quote"]["09. change"]
+        dif: stockData2.value?.data["Global Quote"]["09. change"],
       },
       {
         icon: "mdi:amazon",
         name: stockData3.value?.data["Global Quote"]["01. symbol"],
         price: stockData3.value?.data["Global Quote"]["05. price"],
-        dif: stockData3.value?.data["Global Quote"]["09. change"]
+        dif: stockData3.value?.data["Global Quote"]["09. change"],
       },
       {
         icon: "mdi:google",
         name: stockData4.value?.data["Global Quote"]["01. symbol"],
         price: stockData4.value?.data["Global Quote"]["05. price"],
-        dif: stockData4.value?.data["Global Quote"]["09. change"]
-      }
-    ]
-
+        dif: stockData4.value?.data["Global Quote"]["09. change"],
+      },
+    ];
   } catch (error) {
     console.log("Error al obtener los datos de stock:", error.message);
   }
 }
-getStockData()
-
+getStockData();
 </script>
