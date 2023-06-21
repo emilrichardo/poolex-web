@@ -161,7 +161,8 @@ const getContent = async (endpoint) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret: getCookie("session_io"),
+      Secret:
+        "diefer-7f0bfd673629e063b5391e62b7a5f015ed8015a1d74d34d1118c700ca470579e",
     },
   };
 
