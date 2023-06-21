@@ -70,7 +70,9 @@
 import { ref } from "vue";
 import draggable from "vuedraggable";
 import { useGlobalData } from "@/stores/getGlobaData";
+const { locale } = useI18n();
 
+console.log(locale);
 const globalData = useGlobalData();
 const allCards = ref([
   {
@@ -85,7 +87,7 @@ const allCards = ref([
   },
   {
     id: "2",
-    title: "Weather",
+    title: `${locale.value === "es" ? "Clima" : "Weather"}`,
     color: "#76A2F8",
     cols: "1",
     isDraggable: true,
@@ -105,7 +107,7 @@ const allCards = ref([
   },
   {
     id: "4",
-    title: "Cryptos",
+    title: `${locale.value === "es" ? "Criptomonedas" : "Cryptos"}`,
     color: "#F99999",
     cols: "1",
     isDraggable: true,
@@ -115,7 +117,7 @@ const allCards = ref([
   },
   {
     id: "5",
-    title: "Poolex News",
+    title: `${locale.value === "es" ? "Noticias Poolex" : "Poolex News"}`,
     color: "#87CB7C",
     cols: "1",
     isDraggable: true,
