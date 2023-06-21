@@ -98,6 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
+        {{ mainCookie.cookie }}
         <div v-if="currentData?.success">
           {{ currentData?.data }}
         </div>
@@ -107,6 +108,9 @@
 </template>
 <script setup>
 import { useLocaleComponent } from "@/composables/getLocale";
+import { useGlobalData } from "@/stores/getGlobaData";
+
+const globalData = useGlobalData();
 
 const { locale } = useI18n();
 const runtimeConfig = useRuntimeConfig();
@@ -153,6 +157,14 @@ const tooggleProduct = () => {
     getContent(data?.attributes?.api_endpoint, "session_io");
   }
 };
+const mainCookie = ref(null);
+
+if (globalData.myProducts) {
+  const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
+  mainCookie.value = res;
+}
+
+console.log(mainCookie.value);
 
 const currentData = ref(null);
 
