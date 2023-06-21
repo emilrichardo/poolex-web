@@ -98,7 +98,9 @@
         </div>
       </div>
       <div class="" v-else>
-        <pre>{{ currentData }}</pre>
+        <div v-if="currentData?.success">
+          {{ currentData?.data }}
+        </div>
       </div>
     </div>
   </div>
@@ -153,12 +155,13 @@ const tooggleProduct = () => {
 
 const currentData = ref(null);
 
-const getContent = async (endpoint, Secret) => {
+const getContent = async (endpoint) => {
+  console.log(Secret);
   const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret,
+      Secret: getCookie("session_io"),
     },
   };
 
@@ -172,6 +175,31 @@ const getContent = async (endpoint, Secret) => {
     currentData.value = investmentApi.data?.value;
   }
 };
+
+const removeString = (string) => {
+  var indice = string.indexOf("=");
+  if (indice !== -1) {
+    return string.substring(indice + 1);
+  } else {
+    return string;
+  }
+};
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 </script>
 <style>
 .card {
