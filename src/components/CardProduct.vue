@@ -156,6 +156,7 @@ const tooggleProduct = () => {
 const currentData = ref(null);
 
 const getContent = async (endpoint) => {
+  console.log(getCookie("session_io"));
   const requestOptions = {
     method: "GET",
     headers: {
