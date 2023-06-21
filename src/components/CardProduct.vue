@@ -98,6 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
+        <!-- <pre>{{ currentData }}</pre> -->
         <div
           v-if="currentData?.success"
           class="grid grid-cols-2 lg:grid-cols-3 gap-5"
@@ -185,7 +186,13 @@ const getContent = async (endpoint) => {
     requestOptions
   );
 
-  console.log(runtimeConfig.public.apiSession + endpoint, requestOptions);
+  const resAcademy = await useFetch(
+    "https://staging.poolex.io/api/v1/academy_whoami",
+    requestOptions
+  );
+  console.log(resAcademy);
+
+  console.log(mainCookie.value);
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
