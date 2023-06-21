@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
-        {{ mainCookie.cookie }}
+        {{ mainCookie?.cookie }}
         <div v-if="currentData?.success">
           {{ currentData?.data }}
         </div>
@@ -152,26 +152,26 @@ const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  console.log(getCookie("session_io"));
+  /* console.log(getCookie("session_io")); */
   if (data?.success) {
     getContent(data?.attributes?.api_endpoint, "session_io");
   }
 };
 const mainCookie = ref(null);
 
-if (globalData.myProducts) {
-  const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
-  mainCookie.value = res;
-}
-
 const currentData = ref(null);
 
 const getContent = async (endpoint) => {
+  if (globalData.myProducts) {
+    const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
+    mainCookie.value = removeString(res.cookie);
+  }
+
   const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret: getCookie("session_io"),
+      Secret: mainCookie.value,
     },
   };
 
@@ -184,7 +184,6 @@ const getContent = async (endpoint) => {
     console.log(investmentApi.data?.value);
     currentData.value = investmentApi.data?.value;
   }
-  console.log(mainCookie.value);
 };
 
 const removeString = (string) => {

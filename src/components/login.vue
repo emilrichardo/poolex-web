@@ -98,7 +98,7 @@ const login = async () => {
 
         const cookieString = `${
           bo.cookie
-        }; domain=.poolex.io; path=/; expires=${expirationDate.toUTCString()}`;
+        }; domain=localhost; path=/; expires=${expirationDate.toUTCString()}`;
 
         document.cookie = cookieString;
       });
