@@ -98,7 +98,6 @@
         </div>
       </div>
       <div class="" v-else>
-        <pre>{{ currentData }}</pre>
         <div
           v-if="currentData?.success"
           class="grid grid-cols-2 lg:grid-cols-3 gap-5"
