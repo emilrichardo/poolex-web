@@ -22,11 +22,11 @@
                         <CardProduct
                           v-if="globalData.myProducts"
                           v-for="product in globalData.myProducts"
-                          :title="product.attributes.name"
-                          :color="product.attributes.color"
-                          :icon="product.attributes.icon"
-                          :isRegister="product.success"
-                          :attributes="product.attributes"
+                          :title="product?.attributes?.name"
+                          :color="product?.attributes?.color"
+                          :icon="product?.attributes?.icon"
+                          :isRegister="product?.success"
+                          :attributes="product?.attributes"
                         />
                         <CardProduct
                           v-else
