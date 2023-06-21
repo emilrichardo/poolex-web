@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
-        <pre>{{ resAcademy }}</pre>
+        <pre>{{ currentData }}</pre>
         <div
           v-if="currentData?.success"
           class="grid grid-cols-2 lg:grid-cols-3 gap-5"
@@ -160,25 +160,26 @@ const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
 
   if (data?.success) {
-    getContent(data?.attributes?.api_endpoint);
+    getContent(data?.attributes?.api_endpoint, data?.cookie);
   }
 };
 const mainCookie = ref(null);
 
 const currentData = ref(null);
 
-const getContent = async (endpoint) => {
+const getContent = async (endpoint, cookie) => {
   if (globalData.myProducts) {
     const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
     mainCookie.value = removeString(res.cookie);
   }
 
+  console.log(cookie);
+
   const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret:
-        "diefer-7f0bfd673629e063b5391e62b7a5f015ed8015a1d74d34d1118c700ca470579e",
+      Secret: removeString(cookie),
     },
   };
 
@@ -186,12 +187,6 @@ const getContent = async (endpoint) => {
     runtimeConfig.public.apiSession + endpoint,
     requestOptions
   );
-
-  const resAcademy = await useFetch(
-    "https://staging.poolex.io/api/v1/academy_plans",
-    requestOptions
-  );
-  console.log(resAcademy);
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
