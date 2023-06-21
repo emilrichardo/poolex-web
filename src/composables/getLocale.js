@@ -14,3 +14,11 @@
           return filterData[0]?.attributes  || data.attributes;
         }
     };
+
+    export const useLocaleComponent = (lang, data) => {
+
+      if (data) {
+        const filterData = data?.attributes?.localizations?.data.filter(l => l.attributes?.locale === lang)/* .attributes?.localizations?.data.filter(l=> l.attributes.locale === lang) */
+         return filterData[0]?.attributes  || data.attributes;
+        }
+    };

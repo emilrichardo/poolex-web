@@ -1,4 +1,8 @@
 <template>
+  <pre class="text-sm">
+   <!--  {{ globalData.myBackoffices }} -->
+ <!-- {{ useGetLocaleSections(locale, globalData.myBackoffices) }} --></pre>
+
   <section id="widgets" class="py-14">
     <div class="container mx-auto">
       <draggable
@@ -21,21 +25,21 @@
                       <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
                         <CardProduct
                           v-if="globalData.myProducts"
-                          v-for="product in globalData.myProducts"
+                          v-for="product in globalData?.myProducts"
                           :title="product?.attributes?.name"
                           :color="product?.attributes?.color"
                           :icon="product?.attributes?.icon"
                           :isRegister="product?.success"
-                          :attributes="product?.attributes"
+                          :data="product"
                         />
                         <CardProduct
                           v-else
-                          v-for="product in globalData.myBackoffices"
-                          :title="product.attributes.name"
-                          :color="product.attributes.color"
-                          :icon="product.attributes.icon"
-                          :isRegister="product.success"
-                          :attributes="product.attributes"
+                          v-for="product in globalData?.myBackoffices"
+                          :title="product?.attributes?.name"
+                          :color="product?.attributes?.color"
+                          :icon="product?.attributes?.icon"
+                          :isRegister="product?.success"
+                          :data="product"
                         />
                       </div>
                     </template>
@@ -66,6 +70,7 @@
 import { ref } from "vue";
 import draggable from "vuedraggable";
 import { useGlobalData } from "@/stores/getGlobaData";
+
 const globalData = useGlobalData();
 const allCards = ref([
   {

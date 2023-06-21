@@ -41,7 +41,7 @@
       <img
         class="w-12 flex-none mr-2"
         v-if="icon"
-        :src="icon.data.attributes.url"
+        :src="icon.data?.attributes?.url"
       />
       <h3 class="font-semibold text-lg">{{ title }}</h3>
     </div>
@@ -51,9 +51,9 @@
     class="panel w-full h-full py-6 px-10 bg-white absolute z-20 top-0 left-0 bg-opacity-90 backdrop-blur"
   >
     <div class="panel-header flex justify-between">
-      <h3 class="text-lg font-medium">{{ title }}</h3>
+      <h3 v-if="title" class="text-lg font-medium">{{ title }}</h3>
       <div class="flex gap-4">
-        <nuxt-link :to="localePath('/product/' + attributes.slug)">
+        <nuxt-link :to="localePath('/product/' + data?.attributes?.slug)">
           <template v-if="isRegister">
             <Button type="button" variant="default" size="sm">{{
               locale === "es" ? "Ver más" : "View more"
@@ -74,22 +74,22 @@
     <div class="panel-body text-sm pt-4">
       <div v-if="!isRegister" class="grid lg:grid-cols-3 gap-5">
         <img
-          v-if="attributes?.Featured_image.data"
+          v-if="data?.attributes?.Featured_image?.data"
           class="hidden md:block rounded-lg w-full"
-          :src="attributes.Featured_image?.data?.attributes?.url"
+          :src="data?.attributes?.Featured_image?.data?.attributes?.url"
           alt="product image"
         />
         <div class="caption lg:col-span-2 text-lg">
-          <p>{{ attributes.description }}</p>
+          <p>{{ useLocaleComponent(locale, data).description }}</p>
           <div class="flex gap-4 mt-4">
             <NuxtLink
-              v-if="attributes.register_link"
-              :to="attributes.register_link"
+              v-if="data?.attributes?.register_link"
+              :to="data?.attributes?.register_link"
               ><Button type="button" size="sm" variant="primary_shadow">{{
                 locale === "es" ? "¡Consiguelo ahora!" : "Get it now!"
               }}</Button></NuxtLink
             >
-            <nuxt-link :to="localePath('/product/' + attributes.slug)">
+            <nuxt-link :to="localePath('/product/' + data?.attributes?.slug)">
               <Button type="button" variant="default" size="sm">{{
                 locale === "es" ? "Ver más" : "View more"
               }}</Button>
@@ -98,14 +98,14 @@
         </div>
       </div>
       <div class="" v-else>
-        <h4 v-if="currentData.title" class="text-xl mb-4">
-          {{ currentData.title }}
+        <h4 v-if="currentData?.title" class="text-xl mb-4">
+          {{ currentData?.title }}
         </h4>
         <div class="grid grid-cols-2 gap-5">
-          <div v-for="data in currentData.data">
-            <h5 v-if="data.title">{{ data.title }}</h5>
-            <h5 class="text-lg" v-if="data.amount">$ {{ data.amount }}</h5>
-          </div>
+          <!-- <div v-for="data in currentData?.data">
+            <h5 v-if="data?.title">{{ data?.title }}</h5>
+            <h5 class="text-lg" v-if="data?.amount">$ {{ data?.amount }}</h5>
+          </div> -->
         </div>
       </div>
     </div>
@@ -113,6 +113,9 @@
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
+import { useLocaleComponent } from "@/composables/getLocale";
+
+const { locale } = useI18n();
 const runtimeConfig = useRuntimeConfig();
 const globalOptions = useGlobalOptions();
 /* const counter = useCookie("counter", { domain: "staging.poolex.io" });
@@ -120,12 +123,12 @@ const globalOptions = useGlobalOptions();
 counter.value = "valor"; */
 
 const localePath = useLocalePath();
-const { title, color, icon, isRegister, attributes } = defineProps([
+const { title, color, icon, isRegister, data } = defineProps([
   "title",
   "color",
   "icon",
   "isRegister",
-  "attributes",
+  "data",
 ]);
 
 const staticAssets = ref([
@@ -157,18 +160,17 @@ const filterData = (slug) => {
   const res = staticAssets.value.filter((obj) => obj.product == slug)[0];
   currentData.value = res;
 };
-filterData(attributes.slug);
+filterData(data?.attributes?.slug);
 
 const openPanel = ref(false);
 const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  getContent();
 };
 
 const getContent = async () => {
-  const requestOptions = {
+  /* const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -182,22 +184,7 @@ const getContent = async () => {
     requestOptions
   );
 
-  console.log(investmentApi);
-  /*  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  };
-
-  try {
-    const response = await fetch(
-      runtimeConfig.public.apiSession,
-      requestOptions
-    );
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  } */
+  */
 };
 </script>
 <style>

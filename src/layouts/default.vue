@@ -203,6 +203,7 @@ const queryBo = qs.stringify(
     ],
 
     populate: {
+      localizations: "*",
       icon: {
         fields: ["url"],
       },
