@@ -79,7 +79,12 @@
                   <div class="divide-y divide-gray-400">
                     <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink
-                        :to="itemBo.attributes?.backoffice_url"
+                        :to="`${itemBo.attributes?.backoffice_url}${
+                          itemBo.cookie && itemBo.bo === 'academy'
+                            ? 'user_sessions/set_remote_session?key=' +
+                              removeString(itemBo.cookie)
+                            : ''
+                        }`"
                         target="_blank"
                       >
                         <button
