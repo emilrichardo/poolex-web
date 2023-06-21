@@ -191,7 +191,12 @@
                   <div class="divide-y divide-gray-400">
                     <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink
-                        :to="itemBo.attributes?.backoffice_url"
+                        :to="`${itemBo.attributes?.backoffice_url}${
+                          itemBo.cookie && itemBo.bo === 'academy'
+                            ? 'user_sessions/set_remote_session?key=' +
+                              removeString(itemBo.cookie)
+                            : ''
+                        }`"
                         target="_blank"
                       >
                         <button
@@ -350,5 +355,14 @@ const getDataBo = async (endpoint, Secret) => {
 const megaMenuOpen = ref(false);
 const toggleMegaMenu = () => {
   megaMenuOpen.value = !megaMenuOpen.value;
+};
+
+const removeString = (string) => {
+  var indice = string.indexOf("=");
+  if (indice !== -1) {
+    return string.substring(indice + 1);
+  } else {
+    return string;
+  }
 };
 </script>
