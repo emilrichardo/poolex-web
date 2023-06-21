@@ -173,8 +173,6 @@ const getContent = async (endpoint, cookie) => {
     mainCookie.value = removeString(res.cookie);
   }
 
-  console.log(cookie);
-
   const requestOptions = {
     method: "GET",
     headers: {
@@ -187,6 +185,8 @@ const getContent = async (endpoint, cookie) => {
     runtimeConfig.public.apiSession + endpoint,
     requestOptions
   );
+
+  console.log(runtimeConfig.public.apiSession + endpoint, requestOptions);
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
