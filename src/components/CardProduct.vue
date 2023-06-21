@@ -98,7 +98,10 @@
         </div>
       </div>
       <div class="" v-else>
-        <pre></pre>
+        <div v-if="currentData" v-for="(value, key) in currentData">
+          {{ value }} <br />
+          {{ key }}
+        </div>
       </div>
     </div>
   </div>
@@ -149,6 +152,8 @@ const tooggleProduct = () => {
   getContent(data?.attributes?.api_endpoint, data?.cookie);
 };
 
+const currentData = ref(null);
+
 const getContent = async (endpoint, Secret) => {
   const requestOptions = {
     method: "GET",
@@ -165,6 +170,7 @@ const getContent = async (endpoint, Secret) => {
 
   if (investmentApi.error !== null) {
     console.log(investmentApi.data?.value);
+    currentData.value = investmentApi.data?.value;
   }
 };
 </script>
