@@ -104,15 +104,10 @@
   </div>
 </template>
 <script setup>
-import { useGlobalOptions } from "@/stores/getGlobaOptions";
 import { useLocaleComponent } from "@/composables/getLocale";
 
 const { locale } = useI18n();
 const runtimeConfig = useRuntimeConfig();
-const globalOptions = useGlobalOptions();
-/* const counter = useCookie("counter", { domain: "staging.poolex.io" });
-
-counter.value = "valor"; */
 
 const localePath = useLocalePath();
 const { title, color, icon, isRegister, data } = defineProps([
@@ -151,21 +146,20 @@ const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  getContent();
+  getContent(data?.attributes?.api_endpoint, data?.cookie);
 };
 
-const getContent = async () => {
+const getContent = async (endpoint, Secret) => {
   const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret:
-        "diefer-7f0bfd673629e063b5391e62b7a5f015ed8015a1d74d34d1118c700ca470579e",
+      Secret,
     },
   };
 
   const investmentApi = await useFetch(
-    runtimeConfig.public.apiSession + "/api/v1/invest_plans",
+    runtimeConfig.public.apiSession + endpoint,
     requestOptions
   );
 
