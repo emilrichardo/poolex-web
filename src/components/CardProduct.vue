@@ -156,8 +156,6 @@ const tooggleProduct = () => {
 const currentData = ref(null);
 
 const getContent = async (endpoint) => {
-  let getCookie = getCookie("session_io");
-  console.log(getCookie);
   const requestOptions = {
     method: "GET",
     headers: {
@@ -186,7 +184,7 @@ const removeString = (string) => {
   }
 };
 
-function getCookie(cname) {
+const getCookie = (cname) => {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(";");
@@ -200,7 +198,7 @@ function getCookie(cname) {
     }
   }
   return "";
-}
+};
 </script>
 <style>
 .card {
