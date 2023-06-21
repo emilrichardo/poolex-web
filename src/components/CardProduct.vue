@@ -164,8 +164,6 @@ if (globalData.myProducts) {
   mainCookie.value = res;
 }
 
-console.log(mainCookie.value);
-
 const currentData = ref(null);
 
 const getContent = async (endpoint) => {
@@ -186,6 +184,7 @@ const getContent = async (endpoint) => {
     console.log(investmentApi.data?.value);
     currentData.value = investmentApi.data?.value;
   }
+  console.log(mainCookie.value);
 };
 
 const removeString = (string) => {
