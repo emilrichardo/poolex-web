@@ -175,6 +175,8 @@ const getContent = async (endpoint) => {
     },
   };
 
+  console.log("test actualizacion");
+
   const investmentApi = await useFetch(
     runtimeConfig.public.apiSession + endpoint,
     requestOptions
