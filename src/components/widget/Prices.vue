@@ -25,8 +25,8 @@
               : 'bg-red-300 border border-red-300 text-red-900 bg-opacity-30'
           } `"
         >
-          <h5>$ {{ item.price }}</h5>
-          <p>{{ item.dif }}</p>
+          <h5>$ {{ item?.price }}</h5>
+          <p>{{ item?.dif }}</p>
         </div>
       </li>
     </ul>
