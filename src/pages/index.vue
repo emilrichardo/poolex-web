@@ -50,6 +50,4 @@ const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
-
-console.log("test update page 22222");
 </script>
