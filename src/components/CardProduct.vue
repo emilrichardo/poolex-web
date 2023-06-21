@@ -187,6 +187,7 @@ const getContent = async (endpoint, cookie) => {
   );
 
   console.log(runtimeConfig.public.apiSession + endpoint, requestOptions);
+  console.log(resApi);
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
