@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
-        <!-- <pre>{{ currentData }}</pre> -->
+        <pre>{{ resAcademy }}</pre>
         <div
           v-if="currentData?.success"
           class="grid grid-cols-2 lg:grid-cols-3 gap-5"
@@ -177,7 +177,8 @@ const getContent = async (endpoint) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret: mainCookie.value,
+      Secret:
+        "diefer-7f0bfd673629e063b5391e62b7a5f015ed8015a1d74d34d1118c700ca470579e",
     },
   };
 
@@ -187,12 +188,10 @@ const getContent = async (endpoint) => {
   );
 
   const resAcademy = await useFetch(
-    "https://staging.poolex.io/api/v1/academy_whoami",
+    "https://staging.poolex.io/api/v1/academy_plans",
     requestOptions
   );
   console.log(resAcademy);
-
-  console.log(mainCookie.value);
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
