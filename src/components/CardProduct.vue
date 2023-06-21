@@ -159,18 +159,14 @@ const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
 
   if (data?.success) {
-    getContent(
-      data?.attributes?.backoffice_url,
-      data?.attributes?.api_endpoint,
-      "session_io"
-    );
+    getContent(data?.attributes?.api_endpoint);
   }
 };
 const mainCookie = ref(null);
 
 const currentData = ref(null);
 
-const getContent = async (domain, endpoint) => {
+const getContent = async (endpoint) => {
   if (globalData.myProducts) {
     const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
     mainCookie.value = removeString(res.cookie);
@@ -184,10 +180,15 @@ const getContent = async (domain, endpoint) => {
     },
   };
 
-  const investmentApi = await useFetch(domain + endpoint, requestOptions);
+  const resApi = await useFetch(
+    runtimeConfig.public.apiSession + endpoint,
+    requestOptions
+  );
 
-  if (investmentApi.error !== null) {
-    currentData.value = investmentApi.data?.value;
+  console.log(runtimeConfig.public.apiSession + endpoint, requestOptions);
+
+  if (resApi.error !== null) {
+    currentData.value = resApi.data?.value;
   }
 };
 
