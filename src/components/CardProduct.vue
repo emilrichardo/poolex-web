@@ -98,10 +98,7 @@
         </div>
       </div>
       <div class="" v-else>
-        <div v-if="currentData" v-for="(value, key) in currentData">
-          {{ value }} <br />
-          {{ key }}
-        </div>
+        <pre>{{ currentData }}</pre>
       </div>
     </div>
   </div>
@@ -149,7 +146,9 @@ const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
-  getContent(data?.attributes?.api_endpoint, data?.cookie);
+  if (data?.success) {
+    getContent(data?.attributes?.api_endpoint, data?.cookie);
+  }
 };
 
 const currentData = ref(null);
