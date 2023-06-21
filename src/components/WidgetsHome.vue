@@ -1,5 +1,5 @@
 <template>
-  <pre>{{ globalData.myProducts }}</pre>
+  <!-- <pre>{{ globalData.myProducts }}</pre> -->
   <section id="widgets" class="py-14">
     <div class="container mx-auto">
       <draggable
