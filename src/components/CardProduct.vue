@@ -162,6 +162,7 @@ const mainCookie = ref(null);
 const currentData = ref(null);
 
 const getContent = async (endpoint) => {
+  console.log("test actualizacion");
   if (globalData.myProducts) {
     const res = globalData.myProducts?.find((obj) => obj.bo === "investment");
     mainCookie.value = removeString(res.cookie);
@@ -174,8 +175,6 @@ const getContent = async (endpoint) => {
       Secret: mainCookie.value,
     },
   };
-
-  console.log("test actualizacion");
 
   const investmentApi = await useFetch(
     runtimeConfig.public.apiSession + endpoint,
