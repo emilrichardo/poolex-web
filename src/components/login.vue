@@ -4,7 +4,7 @@
     @click="closeModal()"
   >
     <div
-      class="bg-white rounded-lg px-12 py-8 w-screen max-w-[480px]"
+      class="bg-white rounded-lg px-12 py-8 w-full max-w-[480px]"
       @click.stop
     >
       <form @submit.prevent="login">
@@ -48,12 +48,19 @@
           <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon
         ></Button>
       </form>
+      <Alert v-if="alertOpen" type="danger" class="mt-2">{{
+        locale == "es"
+          ? "Usuario o contraseña incorrecta"
+          : "Incorrect username or password"
+      }}</Alert>
     </div>
   </div>
 </template>
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
 import { useGlobalData } from "@/stores/getGlobaData";
+
+const { locale } = useI18n();
 
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();
@@ -72,6 +79,8 @@ const validateForm = computed(() => {
   return validateEmail(email.value) && password.value.length > 3;
 });
 
+const alertOpen = ref(false);
+
 const login = async () => {
   const requestOptions = {
     method: "POST",
@@ -83,6 +92,10 @@ const login = async () => {
       runtimeConfig.public.apiSession + "/api/v1/login",
       requestOptions
     );
+    if (!response.ok) {
+      throw new Error(`Error ${response.status}: ${response.statusText}`);
+    }
+
     const data = await response.json();
 
     globalOptions.setUserData(data);
@@ -109,6 +122,8 @@ const login = async () => {
     globalOptions.setUserData(null);
     globalData.setMyProducts(null);
     console.log(error);
+    alertOpen.value = true;
+  } finally {
   }
 };
 
