@@ -1,13 +1,13 @@
 <template>
   <div
     v-if="alertToggle"
-    :class="` relative border ${alertColors} px-4 py-3 rounded relative`"
+    :class="` relative border ${alertColors} px-4 lg:px-8 py-3 rounded relative`"
     role="alert"
   >
     <slot />
     <span
       @click="alertToggle = !alertToggle"
-      class="absolute top-0 bottom-0 right-0 px-4 py-3"
+      class="absolute top-0 bottom-0 right-0 px-2 py-3"
     >
       <svg
         class="fill-current h-6 w-6"
