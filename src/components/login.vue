@@ -106,6 +106,8 @@ const login = async () => {
 
     closeModal();
   } catch (error) {
+    globalOptions.setUserData(null);
+    globalData.setMyProducts(null);
     console.log(error);
   }
 };
