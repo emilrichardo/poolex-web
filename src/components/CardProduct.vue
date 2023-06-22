@@ -98,13 +98,48 @@
         </div>
       </div>
       <div class="" v-else>
+        <!--  Data: <br />
+        {{ currentData?.data }} <br />
+        Date Array <br />
+        {{ currentData?.data_array }} -->
+        <div
+          class="dataArray col-span-3 bg-light rounded-md shadow-lg"
+          v-for="plan in currentData?.data_array"
+        >
+          <h3
+            class="flex justify-between font-semibold text-md border-b py-2 px-4 cursor-pointer"
+            @click="togglePlan(plan.name)"
+          >
+            <span>{{ plan.name }}</span>
+            <Icon
+              :name="`${
+                planIsOpen
+                  ? 'heroicons:chevron-up-20-solid'
+                  : 'heroicons:chevron-down-20-solid'
+              }`"
+            ></Icon>
+          </h3>
+          <div
+            v-if="planIsOpen === plan.name"
+            class="grid grid-cols-1 lg:grid-cols-3 gap-1 py-2 px-4"
+          >
+            <template v-for="(value, key) in plan">
+              <h5 v-if="key != 'name'" class="text-xs">
+                <strong class="font-semibold"
+                  >{{ convertirCadena(key) }}:
+                </strong>
+                {{ value }}
+              </h5>
+            </template>
+          </div>
+        </div>
         <div
           v-if="currentData?.success"
-          class="grid grid-cols-2 lg:grid-cols-3 gap-5"
+          class="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-4"
         >
           <div v-for="(value, key) in currentData?.data">
             <h5 class="font-semibold">{{ convertirCadena(key) }}</h5>
-            <h4 class="text-lg">$ {{ value }}</h4>
+            <h4 class="text-md">$ {{ value }}</h4>
           </div>
         </div>
       </div>
@@ -230,6 +265,18 @@ function convertirCadena(cadena) {
   // Unir las palabras en una sola cadena separadas por espacio
   return resultado.join(" ");
 }
+
+//toogle plan
+
+const planIsOpen = ref(false);
+
+const togglePlan = (planName) => {
+  if (planIsOpen.value && planIsOpen.value === planName) {
+    planIsOpen.value = false; // Si el plan actualmente abierto es el mismo que se hizo clic, se cierra
+  } else {
+    planIsOpen.value = planName; // Si el plan actualmente abierto es diferente, se actualiza al nuevo plan
+  }
+};
 </script>
 <style>
 .card {
