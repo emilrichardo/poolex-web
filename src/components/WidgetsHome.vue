@@ -3,6 +3,7 @@
   <section id="widgets" class="py-14">
     <div class="container mx-auto">
       <draggable
+        :disabled="screenWidth < 1200"
         v-model="allCards"
         :item-key="(item) => item.id"
         tag="div"
@@ -122,4 +123,23 @@ const allCards = ref([
     menu: "",
   },
 ]);
+
+const screenWidth = ref(0);
+
+const handleResize = () => {
+  screenWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  if (typeof window !== "undefined") {
+    screenWidth.value = window.innerWidth;
+    window.addEventListener("resize", handleResize);
+  }
+});
+
+onUnmounted(() => {
+  if (typeof window !== "undefined") {
+    window.removeEventListener("resize", handleResize);
+  }
+});
 </script>
