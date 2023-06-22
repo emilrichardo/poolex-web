@@ -97,11 +97,13 @@
           </div>
         </div>
       </div>
-      <div class="" v-else>
-        <!--  Data: <br />
-        {{ currentData?.data }} <br />
-        Date Array <br />
-        {{ currentData?.data_array }} -->
+      <div v-else>
+        <div
+          class="h-full flex items-center justify-center py-4"
+          v-if="loadingData"
+        >
+          <Icon name="svg-spinners:dot-revolve"></Icon>
+        </div>
         <div
           class="dataArray col-span-3 bg-light rounded-md shadow-lg"
           v-for="plan in currentData?.data_array"
@@ -164,31 +166,7 @@ const { title, color, icon, isRegister, data } = defineProps([
   "data",
 ]);
 
-const staticAssets = ref([
-  {
-    product: "investment",
-    title: "",
-    data: [
-      { title: "Invested Capital", amount: 78459 },
-      { title: "Month’s Profit", amount: 2358491 },
-      { title: "Accumulated Profit", amount: 689543 },
-      { title: "Accumulated Commissions", amount: 957346 },
-    ],
-  },
-  {
-    product: "academy",
-    title: "Diamond",
-    data: [
-      { title: "Month’s Commissions", amount: 12577 },
-      { title: "Accumulated Commissions", amount: 4198625 },
-      { title: "Accumulated Profit", amount: 73892 },
-      { title: "Accumulated Commissions", amount: 623871 },
-    ],
-  },
-]);
-
 const openPanel = ref(false);
-const panelData = ref(null);
 
 const tooggleProduct = () => {
   openPanel.value = !openPanel.value;
@@ -200,6 +178,8 @@ const tooggleProduct = () => {
 const mainCookie = ref(null);
 
 const currentData = ref(null);
+
+const loadingData = ref(true);
 
 const getContent = async (endpoint, cookie) => {
   if (globalData.myProducts) {
@@ -220,8 +200,10 @@ const getContent = async (endpoint, cookie) => {
     requestOptions
   );
 
-  console.log(runtimeConfig.public.apiSession + endpoint, requestOptions);
-  console.log(resApi);
+  if (!resApi.pending.value) {
+    console.log(resApi.pending.value);
+    loadingData.value = false;
+  }
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
