@@ -2,6 +2,7 @@
   <div class="relative post-container">
     <ClientOnly>
       <iframe
+        title="news"
         :src="faceSrc"
         :width="fbOptions.width"
         :height="fbOptions.height"
