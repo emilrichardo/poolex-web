@@ -4,7 +4,7 @@
       <Slide v-for="logo in content.logo" :key="logo.id">
         <div class="carousel__item">
           <div class="bg-light rounded-lg px-8 mx-4 py-8">
-            <img
+            <NuxtImg
               v-if="logo.icon.data.attributes.url"
               :src="logo.icon.data.attributes.url"
               :alt="logo.title"
@@ -15,7 +15,7 @@
     </Carousel>
     <div v-else class="flex justify-center gap-8 items-center">
       <div v-for="logo in content.logo">
-        <img
+        <NuxtImg
           v-if="logo.icon.data.attributes.url"
           :src="logo.icon.data.attributes.url"
           :alt="logo.title"

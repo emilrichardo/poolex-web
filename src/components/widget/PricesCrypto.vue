@@ -11,7 +11,11 @@
             v-if="item.image"
             class="w-12 h-12 bg-light-300 flex justify-center items-center rounded"
           >
-            <img class="w-16 px-2 flex-none" :src="item.image" />
+            <NuxtImg
+              class="w-16 px-2 flex-none"
+              alt="icon-crypto"
+              :src="item.image"
+            />
           </div>
 
           {{ item.name }}

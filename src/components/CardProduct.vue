@@ -38,10 +38,11 @@
     </svg>
 
     <div class="card-body py-3 px-6 flex items-center">
-      <img
+      <NuxtImg
         class="w-12 flex-none mr-2"
         v-if="icon"
         :src="icon.data?.attributes?.url"
+        alt="icon_product"
       />
       <h3 class="font-semibold text-lg">{{ title }}</h3>
     </div>
@@ -73,7 +74,7 @@
     </div>
     <div class="panel-body text-sm pt-4">
       <div v-if="!isRegister" class="grid lg:grid-cols-3 gap-5">
-        <img
+        <NuxtImg
           v-if="data?.attributes?.Featured_image?.data"
           class="hidden md:block rounded-lg w-full"
           :src="data?.attributes?.Featured_image?.data?.attributes?.url"

@@ -17,7 +17,7 @@
               <div
                 class="cont px-20 lg:px-14 xl:px-20 flex flex-col items-center gap-2 justify-center"
               >
-                <img
+                <NuxtImg
                   class="flex-none w-16"
                   v-if="item.icon"
                   :src="item.icon"

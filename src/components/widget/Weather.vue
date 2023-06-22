@@ -38,7 +38,7 @@
         </ul>
       </div>
       <div class="col2 text-center">
-        <img
+        <NuxtImg
           class="mx-auto w-full max-w-[69px] mb-8"
           v-if="weatherData.data?.current?.condition.icon"
           :src="weatherData.data?.current?.condition.icon"

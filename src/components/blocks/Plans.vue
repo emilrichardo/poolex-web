@@ -14,7 +14,7 @@
               {{ plan.name }}
             </div>
             <div class="px-8 py-8 flex flex-col items-center">
-              <img
+              <NuxtImg
                 v-if="plan.icon.data"
                 :src="plan.icon?.data?.attributes?.url"
                 :alt="plan.name"
@@ -51,7 +51,7 @@ const settings = {
   wrapAround: true,
   autoplay: "4000",
   itemsToShow: 1,
-  snapAlign: "center"
+  snapAlign: "center",
 };
 
 const breakpoints = {

@@ -24,7 +24,7 @@
         v-for="item in content.membership"
         class="item flex flex-col items-center"
       >
-        <img
+        <NuxtImg
           v-if="item.icon"
           :src="item.icon?.data?.attributes?.url"
           :alt="item.title"

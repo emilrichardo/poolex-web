@@ -32,7 +32,7 @@
             v-if="item.image_profile.data"
             class="image bg-product max-w-[180px] sm:max-w-[320px] flex-none relative"
           >
-            <img
+            <NuxtImg
               class="left-4 top-4"
               :src="item.image_profile.data.attributes.url"
               :alt="item.full_name"

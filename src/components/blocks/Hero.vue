@@ -1,6 +1,8 @@
 <template>
-  <section class="min-h-[100vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20">
-    <img
+  <section
+    class="min-h-[100vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20"
+  >
+    <NuxtImg
       v-if="content.image.image.data.attributes.url"
       :class="` ${
         content.image_width === 'half'
@@ -8,11 +10,9 @@
           : 'w-full'
       } h-1/2 lg:h-full  object-cover absolute z-0`"
       :src="content.image.image.data.attributes.url"
-      alt=""
+      alt="hero"
     />
-    <div v-else class="bg-gradient-to-b from-primary h-1/2 absolute w-full">
-      no image
-    </div>
+
     <div
       v-if="content.image_width !== 'half'"
       class="overlay z-0 hidden lg:block bg-gradient-to-t lg:bg-gradient-to-r from-white via-white h-full absolute w-screen lg:w-2/3"

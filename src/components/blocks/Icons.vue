@@ -26,7 +26,7 @@
             : 'w-full sm:basis-1/2 md:basis-1/3 '
         }`"
       >
-        <img
+        <NuxtImg
           v-if="icon.icon?.data?.attributes.url"
           :src="icon.icon?.data?.attributes.url"
           :alt="icon?.title"

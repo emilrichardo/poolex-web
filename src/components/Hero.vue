@@ -3,7 +3,7 @@
     class="min-h-[100vh] lg:h-[80vh] bg-white w-full relative bg-opacity-20"
   >
     {{ content }}
-    <img
+    <NuxtImg
       v-if="background"
       :class="` ${
         bgStyle === 'half'
@@ -11,7 +11,7 @@
           : 'w-full'
       } h-[46vh] lg:h-full  object-cover lg:absolute z-0`"
       :src="background"
-      alt=""
+      alt="bg"
     />
     <div
       v-if="bgStyle !== 'half'"
