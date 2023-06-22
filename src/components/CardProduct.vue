@@ -176,7 +176,7 @@ const getContent = async (endpoint, cookie) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Secret: removeString(cookie),
+      Secret: mainCookie.value,
     },
   };
 
