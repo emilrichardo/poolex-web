@@ -1,7 +1,7 @@
 <template>
   <div>
     <Hero
-      :title="locale === 'es' ? 'Contactenos' : 'Contact us'"
+      :title="locale === 'es' ? 'Contacto' : 'Contact us'"
       :background="content.image?.image?.data?.attributes?.url"
       bgStyle="half"
       ><template #cta>
