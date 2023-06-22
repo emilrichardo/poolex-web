@@ -2,10 +2,6 @@
   <div class="error" v-if="!teamFromApi.error"><h3>Team</h3></div>
   <section v-else class="team bg-light py-24">
     <div class="container">
-      <pre class="text-xs">{{
-        useGetLocaleSections(locale, teamMultilang).team
-      }}</pre>
-
       <div
         :class="`heading ${
           (teamData.content.align === 'center' && 'text-center') ||
