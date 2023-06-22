@@ -21,20 +21,24 @@
       <div
         v-for="icon in content.icons"
         :class="`item-icon flex items-center flex-col  ${
-          content.icons.length > 6 ? 'w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4' : 'w-full sm:basis-1/2 md:basis-1/3 '
+          content.icons.length > 6
+            ? 'w-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4'
+            : 'w-full sm:basis-1/2 md:basis-1/3 '
         }`"
       >
         <img
-          v-if="icon.icon.data.attributes.url"
-          :src="icon.icon.data.attributes.url"
-          :alt="icon.title"
+          v-if="icon.icon?.data?.attributes.url"
+          :src="icon.icon?.data?.attributes.url"
+          :alt="icon?.title"
         />
 
-        <h3 class="text-md lg:text-2xl mt-9 font-light text-center">{{ icon.title }}</h3>
+        <h3 class="text-md lg:text-2xl mt-9 font-light text-center">
+          {{ icon?.title }}
+        </h3>
       </div>
     </div>
     <div class="container mt-16" v-if="content.footer">
-      <p>{{ content.footer }}</p>
+      <p>{{ content?.footer }}</p>
     </div>
   </section>
 </template>
