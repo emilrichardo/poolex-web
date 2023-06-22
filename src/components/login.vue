@@ -20,7 +20,9 @@
           />
         </div>
         <div class="relative">
-          <label :class="labelClass" for="password">Contraseña:</label>
+          <label :class="labelClass" for="password">{{
+            locale === "es" ? "Contraseña:" : "Password"
+          }}</label>
           <input
             :class="inputClass"
             :type="passwordIsVisible ? 'text' : 'password'"
@@ -44,7 +46,8 @@
           variant="primary"
           class="w-full mt-4"
         >
-          Iniciar sesión
+          {{ locale === "es" ? "Iniciar sesión" : "Sign in" }}
+
           <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon
         ></Button>
       </form>
