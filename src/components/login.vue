@@ -8,7 +8,9 @@
       @click.stop
     >
       <form @submit.prevent="login">
-        <h1 class="text-xl text-center">Login to Poolex</h1>
+        <h1 class="text-xl text-center">
+          {{ locale === "es" ? "Iniciar sesión en Poolex" : "Login to Poolex" }}
+        </h1>
         <div>
           <label :class="labelClass" for="email">Email</label>
           <input
