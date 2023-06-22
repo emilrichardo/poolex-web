@@ -2,6 +2,10 @@
   <div class="error" v-if="!teamFromApi.error"><h3>Team</h3></div>
   <section v-else class="team bg-light py-24">
     <div class="container">
+      <pre class="text-xs">{{
+        useGetLocaleSections(locale, teamMultilang).team
+      }}</pre>
+
       <div
         :class="`heading ${
           (teamData.content.align === 'center' && 'text-center') ||
@@ -24,7 +28,7 @@
       </div>
       <div v-if="teamData.team" class="team-grid grid col-1 gap-8">
         <div
-          v-for="item in teamData.team"
+          v-for="item in useGetLocaleSections(locale, teamMultilang).team"
           :key="item.id"
           class="item-team bg-white rounded shadow-sm flex flex-col lg:flex-row items-center gap-8 pt-0 pb-10 lg:py-20"
         >
@@ -57,9 +61,19 @@
 </template>
 <script setup>
 import qs from "qs";
+import { useGetLocaleSections } from "@/composables/getLocale";
+const { locales, locale } = useI18n();
+
 // team
 const queryTeam = qs.stringify({
   populate: {
+    localizations: {
+      populate: {
+        team: {
+          populate: "*",
+        },
+      },
+    },
     team: {
       populate: "*",
     },
@@ -71,8 +85,9 @@ const queryTeam = qs.stringify({
 const teamFromApi = await useFetch(`/api/our-team?${queryTeam}`);
 
 const teamData = ref(null);
-
+const teamMultilang = ref(null);
 if (teamFromApi.data) {
   teamData.value = teamFromApi.data.value.data.attributes;
+  teamMultilang.value = teamFromApi.data.value.data;
 }
 </script>
