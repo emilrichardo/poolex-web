@@ -43,6 +43,7 @@
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
+import { useGlobalOptions } from "@/stores/getGlobaOptions";
 
 import { useGetLocale } from "@/composables/getLocale";
 
@@ -50,4 +51,15 @@ const { locale } = useI18n();
 const localePath = useLocalePath();
 
 const globalData = useGlobalData();
+const globalOptions = useGlobalOptions();
+
+useHead({
+  title: globalOptions.options.data?.data?.attributes?.Site_name,
+  meta: [
+    {
+      name: "description",
+      content: globalOptions.options.data?.data?.attributes?.Site_description,
+    },
+  ],
+});
 </script>
