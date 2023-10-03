@@ -99,7 +99,7 @@ const menuData = [
   {
     color: "#CC9CEA",
     label: "Eco Real State",
-    url: "/",
+    url: "/product/eco-real-estate",
     icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/ecorealstate_cdac665d4c.svg?updated_at=2023-06-02T17:15:00.173Z",
   },
 ];
