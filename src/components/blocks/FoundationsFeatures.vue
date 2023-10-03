@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-primary py-24 mt-24">
+  <div class="hidden bg-primary py-24 mt-24">
     <div class="container text-center">
       <h3 class="text-2xl text-light mb-8">
         Contáctanos en nuestra dirección de email:
