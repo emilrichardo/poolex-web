@@ -2,12 +2,12 @@
   <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
       <div class="caption flex flex-col justify-center gap-8">
-        <p class="text-xl font-light" v-if="content.headings.caption">
-          {{ content.headings.caption }}
-        </p>
         <h3 class="font-semibold text-2xl" v-if="content.headings.headline">
           {{ content.headings.headline }}
         </h3>
+        <p class="text-xl font-light" v-if="content.headings.caption">
+          {{ content.headings.caption }}
+        </p>
       </div>
       <div class="features flex flex-col gap-8">
         <div
