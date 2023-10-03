@@ -168,6 +168,9 @@ const queryProducts = qs.stringify(
           plan: {
             populate: "*",
           },
+          card: {
+            populate: "*",
+          },
           testimonial: {
             populate: "*",
           },
