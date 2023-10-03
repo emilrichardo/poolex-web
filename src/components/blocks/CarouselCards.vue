@@ -1,5 +1,30 @@
 <template>
   <section class="plans bg-light-100 py-16">
+    <div
+      :class="`block_text  ${
+        (content.headings.align === 'center' && 'text-center') ||
+        (content.headings.align === 'left' && '') ||
+        (content.headings.align === 'right' && 'text-right')
+      }   `"
+    >
+      <div class="container max-w-[930px]">
+        <h4
+          class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8"
+          v-if="content.headings"
+        >
+          {{ content.headings?.sub_headline }}
+        </h4>
+        <h2
+          class="text-2xl lg:text-4xl font-medium mb-4 lg:mb-8"
+          v-if="content.headings"
+        >
+          {{ content.headings?.headline }}
+        </h2>
+        <p class="text-lg lg:text-xl font-light" v-if="content.headings">
+          {{ content.headings?.caption }}
+        </p>
+      </div>
+    </div>
     <div ref="container" class="container relative"></div>
     <div class="carousel-container" :style="`margin-left: ${marginRight}px`">
       <Carousel v-bind="settings" :breakpoints="breakpoints">
