@@ -220,6 +220,9 @@
             <p class="text-lg lg:text-xl font-light" v-if="content?.headings">
               {{ content?.headings?.caption }}
             </p>
+            <div class="rich-text">
+              {{ content?.headings?.rich_text }}
+            </div>
           </div>
 
           <div v-if="content?.features" class="features">
