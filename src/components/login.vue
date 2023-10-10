@@ -140,8 +140,10 @@ const mergeArrays = (array1, array2) => {
   for (let i = 0; i < array1.length; i++) {
     for (let j = 0; j < array2.length; j++) {
       if (
-        array1[i].bo.trim().toLowerCase() ===
-        array2[j].attributes.slug.trim().toLowerCase()
+        containsCommonWord(
+          array1[i].bo.trim().toLowerCase(),
+          array2[j].attributes.slug.trim().toLowerCase()
+        )
       ) {
         result[i] = { ...array1[i], ...array2[j] };
         matchedIndexes.add(j);
@@ -158,6 +160,15 @@ const mergeArrays = (array1, array2) => {
 
   return result;
 };
+
+// Función para verificar si hay al menos una palabra en común entre dos cadenas
+function containsCommonWord(str1, str2) {
+  const words1 = str1.split(" ");
+  const words2 = str2.split(" ");
+
+  return words1.some((word1) => words2.some((word2) => word1 === word2));
+}
+
 //emit close tag
 
 const emit = defineEmits(["inFocus", "submit"]);
