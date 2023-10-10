@@ -80,9 +80,10 @@
                     <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink
                         :to="`${itemBo.attributes?.backoffice_url}${
-                          itemBo.cookie &&
-                          'user_sessions/set_remote_session?key=' +
-                            removeString(itemBo.cookie)
+                          itemBo.cookie && itemBo.bo !== 'investment'
+                            ? 'user_sessions/set_remote_session?key=' +
+                              removeString(itemBo.cookie)
+                            : ''
                         }`"
                         target="_blank"
                       >
