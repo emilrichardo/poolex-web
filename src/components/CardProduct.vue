@@ -108,7 +108,6 @@
         <div
           class="dataArray col-span-3 bg-light rounded-md shadow-lg"
           v-for="plan in currentData?.data_array"
-          v-if="plan.name !== 'Free Plan'"
         >
           <h3
             class="flex justify-between font-semibold text-md border-b py-2 px-4 cursor-pointer"
