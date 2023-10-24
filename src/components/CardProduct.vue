@@ -112,6 +112,7 @@
           v-for="plan in currentData?.data_array"
         >
           <h3
+            v-if="plan.name !== 'Free Plan'"
             class="flex justify-between font-semibold text-md border-b py-2 px-4 cursor-pointer"
             @click="togglePlan(plan.name)"
           >
@@ -204,13 +205,11 @@ const getContent = async (endpoint, cookie) => {
   );
 
   if (!resApi.pending.value) {
-    console.log(resApi.pending.value);
     loadingData.value = false;
   }
 
   if (resApi.error !== null) {
     currentData.value = resApi.data?.value;
-    console.log(currentData);
   }
 };
 
