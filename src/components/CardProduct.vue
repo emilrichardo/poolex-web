@@ -103,6 +103,8 @@
           class="h-full flex items-center justify-center py-4"
           v-if="loadingData"
         >
+          {{ locale === "es" ? "Cargando..." : "Loading..." }}
+
           <Icon name="svg-spinners:dot-revolve"></Icon>
         </div>
         <div
