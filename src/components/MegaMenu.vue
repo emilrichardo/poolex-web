@@ -4,49 +4,49 @@
     @click="closeMegaMenu"
   >
     <div
-      class="h-screen lg:h-[380px] bg-black absolute top-[72px] w-full left-0 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-[calc(theme(screens.lg)-theme(spacing.14))] xl:max-w-[calc(theme(screens.xl)-theme(spacing.14))]"
+      class="h-screen lg:h-[380px] bg-black absolute top-[72px] w-full left-0 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-[calc(theme(screens.lg)-theme(spacing.14))] xl:max-w-[calc(theme(screens.xl)-theme(spacing.14))] "
       @click.stop
     >
-      <div :class="`h-full grid  ${gridMenu}`">
+      <div :class="`h-full grid ${gridMenu}`">
         <template v-for="item in menuData">
           <NuxtLink :to="localePath(item.url)" @click="closeMegaMenu">
             <div
-              class="h-full flex flex-col items-center justify-center"
+              class="h-full  overflow-y-auto  flex flex-col items-center justify-center"
               :style="`background-color:${item.color}`"
             >
               <div
-                class="cont px-20 lg:px-14 xl:px-20 flex flex-col items-center gap-2 justify-center"
+                :class="`cont px-10 lg:px-14 xl:px-18 flex flex-col items-center gap-6 justify-center`"
               >
+              <div :class="` flex flex-col sm:flex-row items-center gap-2 justify-center bg-[#${item.color}] p-5 rounded-lg`"
+              :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
                 <NuxtImg
-                  class="flex-none w-16"
+                  class="flex-none w-16 max-h-[46px]"
                   v-if="item.icon"
                   :src="item.icon"
                   alt="icon"
                 />
-                <h3 v-if="item.label" class="text-center text-xl">
+                <h3 v-if="item.label" class="text-center sm:text-left text-xl text-white">
                   {{ item.label }}
                 </h3>
-                <NuxtLink
-                  v-if="item.subitems"
-                  v-for="subitem in item.subitems"
-                  :to="localePath(subitem.url)"
-                  class="w-full"
-                >
-                  <Button
-                    class="w-full flex items-center"
-                    type="button"
-                    variant="dark_outline"
-                    @click="closeMegaMenu"
-                  >
-                    <img
-                      class="flex-none w-6 mr-2"
-                      v-if="subitem.icon"
-                      :src="subitem.icon"
-                      alt="icon"
-                    />
-
-                    {{ subitem.label }}
-                  </Button>
+              </div>
+              <NuxtLink
+              v-if="item.subitems"
+              v-for="subitem in item.subitems"
+              :to="localePath(subitem.url)"
+              class="w-full"
+              >
+              <div class="bg-[#${item.color}] flex flex-row items-center rounded-lg px-4 py-2"
+              :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
+              <NuxtImg
+                  class="flex-none w-16 max-h-[32px]"
+                  v-if="subitem.icon"
+                  :src="subitem.icon"
+                  alt="icon"
+                />
+                <h4 v-if="subitem.label" class="text-left text-lg text-white">
+                  {{ subitem.label }}
+                </h4>
+                </div>
                 </NuxtLink>
               </div>
             </div>
@@ -68,20 +68,22 @@ const closeMegaMenu = () => {
 
 const menuData = [
   {
-    color: "#FCC967",
+    color: "#8549DB",
+    light: "#9954FC",
+    shadow: "#713EBA",
     url: "/product/academy",
     label: "Poolex Academy",
-    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/Capa_1_ec8166ecfa.svg?updated_at=2023-06-02T17:15:00.480Z",
+    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264536/academy_icon_white_6c519c0470.svg?updated_at=2023-10-25T20:08:58.499Z",
     subitems: [
       {
-        label: "Poolex Trade",
+        label: "Poolex Trade IA",
         url: "/product/trade",
-        icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/trade_5ab6e8ff0d.svg?updated_at=2023-06-02T17:15:00.314Z",
+        icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264535/trade_icon_white_6b6680e882.svg?updated_at=2023-10-25T20:08:57.002Z",
       },
       {
         label: "Poolex Space",
         url: "/product/space",
-        icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/space_7c6832b698.svg?updated_at=2023-06-02T17:15:00.270Z",
+        icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264536/space_icon_white_08c225cad2.svg?updated_at=2023-10-25T20:08:58.217Z",
       },
       /* {
         label: "Poolex Signals",
@@ -91,16 +93,20 @@ const menuData = [
     ],
   },
   {
-    color: "#F37171",
+    color: "#6757D2",
+    light: "#7664F2",
+    shadow: "#584AB3",
     label: "Poolex Investment",
     url: "/product/investment",
-    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/incestment_a394a66076.svg?updated_at=2023-06-02T17:15:00.098Z",
+    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264536/investment_icon_white_ef219a7c2b.svg?updated_at=2023-10-25T20:08:57.764Z",
   },
   {
-    color: "#CC9CEA",
+    color: "#2DACE6",
+    light: "#34C6FF",
+    shadow: "#2692C4",
     label: "Eco Real State",
     url: "/product/eco-real-estate",
-    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1685726098/ecorealstate_cdac665d4c.svg?updated_at=2023-06-02T17:15:00.173Z",
+    icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264535/rea_state_icon_white_9cee34d135.svg?updated_at=2023-10-25T20:08:57.132Z",
   },
 ];
 
