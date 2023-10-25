@@ -1,23 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');@tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-body{
-    @apply bg-white font-body dark:bg-dark text-dark dark:text-light
+body {
+  @apply bg-white font-body dark:bg-dark text-dark dark:text-light;
 }
 
-:root{
-    --font-base: 'Montserrat', sans-serif;
+:root {
+  --font-base: "Montserrat", sans-serif;
 }
 
 /* slider */
-.carousel__pagination{
-   @apply !justify-start !gap-6
+.carousel__pagination {
+  @apply !justify-start !gap-6;
 }
-.carousel__pagination-button{
-    @apply !w-3 !h-3 !bg-primary !bg-opacity-25 !rounded-full after:!hidden
+.carousel__pagination-button {
+  @apply !w-3 !h-3 !bg-primary !bg-opacity-25 !rounded-full after:!hidden;
 }
-.carousel__pagination-button--active{
-    @apply !bg-primary
+.carousel__pagination-button--active {
+  @apply !bg-primary;
+}
+
+/* neomorphism */
+.neomorphism {
+  box-shadow: 7px 7px 14px #cccfd3, -7px -7px 14px #fff;
 }
