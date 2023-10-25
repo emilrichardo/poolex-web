@@ -1,7 +1,7 @@
 <template>
   <div
     @click="tooggleProduct()"
-    class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg shadow-[#C6DDFF] flex items-center transition-all cursor-pointer hover:scale-105"
+    class="card relative bg-white rounded-lg overflow-hidden h-24 shadow-lg neomorphism flex items-center transition-all cursor-pointer hover:scale-105"
   >
     <span
       class="w-4 h-4 bg-primary text-light flex items-center justify-center border-2 border-light border-opacity-20 rounded-full absolute right-3 top-3"
@@ -9,42 +9,15 @@
     >
       <Icon name="mdi:check" />
     </span>
-    <svg
-      class="absolute left-0 top-0 w-full"
-      viewBox="0 0 266 96"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g style="mix-blend-mode: overlay" opacity="0.38">
-        <path
-          d="M0 0H266V17.5C266 17.5 192.725 13.5 131.494 42C70.2642 70.5 55.7094 96 55.7094 96H0V0Z"
-          fill="url(#paint0_linear_11_4758)"
-        />
-      </g>
-      <defs>
-        <linearGradient
-          id="paint0_linear_11_4758"
-          x1="133"
-          y1="0"
-          x2="133"
-          y2="96"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="white" />
-          <stop offset="0.9999" stop-color="white" stop-opacity="0" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
-
+   
     <div class="card-body py-3 px-6 flex items-center">
       <NuxtImg
-        class="w-12 flex-none mr-2"
+        class="w-8 flex-none mr-2"
         v-if="icon"
         :src="icon.data?.attributes?.url"
         alt="icon_product"
       />
-      <h3 class="font-semibold text-lg">{{ title }}</h3>
+      <h3 class="font-semibold text-lg text-primary-700">{{ title }}</h3>
     </div>
   </div>
   <div

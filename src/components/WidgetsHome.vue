@@ -1,6 +1,6 @@
 <template>
   <!--  <pre>{{ globalData.myProducts }}</pre> -->
-  <section id="widgets" class="py-14">
+  <section id="widgets" class="py-14 bg-[#F0F4F8]">
     <div class="container mx-auto">
       <draggable
         :disabled="screenWidth < 1200"
@@ -10,7 +10,7 @@
         class="card-group grid grid-cols-1 lg:grid-cols-3 gap-8"
       >
         <template #item="{ element: card }">
-          <div :class="card.cols == 2 && '   lg:col-span-2'">
+          <div :class="card.cols == 2 && 'neomorphism lg:col-span-2'">
             <ClientOnly>
               <Card
                 :title="card.title"
@@ -18,9 +18,9 @@
                 :isDraggable="card.isDraggable"
               >
                 <template #card-body>
-                  <div class="relative h-full">
+                  <div class="relative h-full bg-[#edeefd] ">
                     <template v-if="card.type == 'backoffices'">
-                      <div class="grid lg:grid-cols-3 gap-4 py-4 px-6">
+                      <div class="grid lg:grid-cols-3 gap-6 py-5 px-6">
                         <CardProduct
                           v-if="globalData.myProducts"
                           v-for="product in globalData?.myProducts"
