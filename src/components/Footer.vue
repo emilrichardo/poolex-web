@@ -1,12 +1,12 @@
 <template>
-  <footer class="">
+  <footer class="bg-[#F0F4F8]">
     <!--  {{ useData.products }} -->
 
     <div class="container mx-auto">
       <div class="social-links flex gap-4 justify-center py-24">
         <a
           v-for="link in socialLinks"
-          class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl"
+          class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl bg-[#F0F4F8] rounded-full py-1 px-2 neomorphism"
           :href="link.url"
           taget="_blank"
         >
@@ -54,7 +54,6 @@
           <ul class="flex flex-col gap-3 items-center md:items-start">
             <li><a href="https://www.atfx.com/es">ATFX</a></li>
             <li><a href="https://www.phillipcapital.com">Philip Capital</a></li>
-            <li><a href="https://roboforex.com">Roboforex</a></li>
           </ul>
         </div>
         <div class="footer_about">
@@ -65,7 +64,7 @@
             type="button"
             size="md"
             variant="default_outline"
-            class="flex gap-4 items-center mx-auto md:mx-0"
+            class="flex gap-4 items-center bg-white mx-auto md:mx-0"
           >
             {{ locale === "en" ? "Presentation" : "Presentación" }}
             <Icon name="heroicons:arrow-down-tray-20-solid"></Icon>
