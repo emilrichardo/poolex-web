@@ -15,7 +15,7 @@
               type="button"
               variant="primary_shadow"
               class="w-full lg:w-auto"
-              >{{ locale === "es" ? "Registrate" : "Register" }}</Button
+              >{{ locale === "es" ? "Registrate ahora" : "Register now" }}</Button
             ></NuxtLink
           >
         </template>

@@ -13,7 +13,7 @@
                 v-if="product.attributes.register_link"
                 :to="product.attributes.register_link"
                 ><Button type="button" variant="primary_shadow">{{
-                  locale === "es" ? "Registrate" : "Register"
+                  locale === "es" ? "Registrate ahora" : "Register now"
                 }}</Button></NuxtLink
               >
               <nuxt-link
