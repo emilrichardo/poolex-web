@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute z-50 top-0 left-0 h-screen w-full"
+    class="absolute z-50 top-0 left-0 h-screen w-full overflow-y-auto"
     @click="closeMegaMenu"
   >
     <div
@@ -11,13 +11,13 @@
         <template v-for="item in menuData">
           <NuxtLink :to="localePath(item.url)" @click="closeMegaMenu">
             <div
-              class="h-full  overflow-y-auto  flex flex-col items-center justify-center"
+              class="h-full flex flex-col items-center justify-center"
               :style="`background-color:${item.color}`"
             >
               <div
                 :class="`cont px-10 lg:px-14 xl:px-18 flex flex-col items-center gap-6 justify-center`"
               >
-              <div :class="` flex flex-col sm:flex-row items-center gap-2 justify-center bg-[#${item.color}] p-5 rounded-lg`"
+              <div :class="`flex flex-col sm:flex-row items-center gap-2 justify-center bg-[#${item.color}] p-5 md:p-12 rounded-lg`"
               :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
                 <NuxtImg
                   class="flex-none w-16 max-h-[46px]"
@@ -35,7 +35,7 @@
               :to="localePath(subitem.url)"
               class="w-full"
               >
-              <div class="bg-[#${item.color}] flex flex-row items-center rounded-lg px-4 py-2"
+              <div class="bg-[#${item.color}] flex flex-row items-center rounded-lg px-4 py-3"
               :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
               <NuxtImg
                   class="flex-none w-16 max-h-[32px]"

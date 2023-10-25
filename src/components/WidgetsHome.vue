@@ -18,7 +18,7 @@
                 :isDraggable="card.isDraggable"
               >
                 <template #card-body>
-                  <div class="relative h-full bg-[#edeefd] ">
+                  <div class="relative h-full ">
                     <template v-if="card.type == 'backoffices'">
                       <div class="grid lg:grid-cols-3 gap-6 py-5 px-6">
                         <CardProduct
