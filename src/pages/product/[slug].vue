@@ -1,35 +1,20 @@
 <template>
-  <Hero
-    :title="useGetLocale(locale, product).name"
-    :caption="useGetLocale(locale, product).description"
-    :background="product.attributes?.Featured_image.data?.attributes.url"
-    bgStyle="half"
-  >
+  <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description"
+    :background="product.attributes?.Featured_image.data?.attributes.url" bgStyle="half">
     <template #cta>
       <div class="gap-4 px-4 lg:px-0">
         <template v-if="!globalOptions.userData?.success">
-          <NuxtLink
-            v-if="product.attributes?.register_link"
-            :to="product.attributes?.register_link"
-            ><Button
-              type="button"
-              variant="primary_shadow"
-              class="w-full lg:w-auto"
-              >{{ locale === "es" ? "Registrate ahora" : "Register now" }}</Button
-            ></NuxtLink
-          >
+          <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link"><Button type="button"
+              variant="primary_shadow" class="w-full lg:w-auto mt-4">
+              {{ locale === "es" ? "Registrate ahora" : "Register now" }}</Button></NuxtLink>
         </template>
         <template v-else>
-          <a
-            v-if="product.attributes?.backoffice_url"
-            :href="product.attributes?.backoffice_url"
-            target="_blank"
-            ><Button type="button" variant="primary_shadow">{{
-              locale === "es"
+          <a v-if="product.attributes?.backoffice_url" :href="product.attributes?.backoffice_url" target="_blank"><Button
+              type="button" variant="primary_shadow">{{
+                locale === "es"
                 ? "Ingresar al Backoffice"
                 : "Enter the back office"
-            }}</Button></a
-          >
+              }}</Button></a>
         </template>
       </div>
     </template>
@@ -37,12 +22,8 @@
 
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
 
-  <component
-    v-for="section in useGetLocaleSections(locale, product).sections"
-    :key="section.id"
-    :is="formatName(section.__component)"
-    :content="section"
-  ></component>
+  <component v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
+    :is="formatName(section.__component)" :content="section"></component>
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";

@@ -1,8 +1,5 @@
 <template>
-  <button
-    title="button-link"
-    :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`"
-  >
+  <button title="button-link" :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`">
     <slot />
   </button>
 </template>
@@ -49,9 +46,8 @@ const buttonFormat = computed(() => {
   if (type === "link") {
     return `${types.link} `;
   } else if (type === "button" || type === "submit") {
-    return `${types.button} ${variants[variant] || variants.default} ${
-      sizes[size] || sizes.md
-    }  `;
+    return `${types.button} ${variants[variant] || variants.default} ${sizes[size] || sizes.md
+      }  `;
   }
 });
 </script>
