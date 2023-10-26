@@ -1,20 +1,26 @@
 <template>
   <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description"
-    :background="product.attributes?.Featured_image.data?.attributes.url" bgStyle="half">
+    :background="imageLink || product.attributes?.Featured_image.data?.attributes.url" bgStyle="half">
     <template #cta>
       <div class="gap-4 px-4 lg:px-0">
         <template v-if="!globalOptions.userData?.success">
-          <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link"><Button type="button"
-              variant="primary_shadow" class="w-full lg:w-auto mt-4">
-              {{ locale === "es" ? "Registrate ahora" : "Register now" }}</Button></NuxtLink>
+          <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link">
+            <button
+              class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-lg py-2 px-6 rounded-xl">{{
+                locale === "es"
+                ? "Registrate ahora"
+                : "Register now"
+              }}</button>
+          </NuxtLink>
         </template>
         <template v-else>
-          <a v-if="product.attributes?.backoffice_url" :href="product.attributes?.backoffice_url" target="_blank"><Button
-              type="button" variant="primary_shadow">{{
-                locale === "es"
-                ? "Ingresar al Backoffice"
-                : "Enter the back office"
-              }}</Button></a>
+          <a v-if="product.attributes?.backoffice_url" :href="product.attributes?.backoffice_url" target="_blank">
+            <Button type="button" variant="primary_shadow">{{
+              locale === "es"
+              ? "Ingresar al Backoffice"
+              : "Enter the back office"
+            }}</Button>
+          </a>
         </template>
       </div>
     </template>
@@ -22,8 +28,12 @@
 
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
 
-  <component v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
-    :is="formatName(section.__component)" :content="section"></component>
+  <component nt v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
+    :is="formatName(section.__component)" :content="section">
+    <CarouselVideos v-if="product.value.attributes?.slug === 'academy'" :key="section.id"
+      :is="formatName(section.__component)" :content="section">
+    </CarouselVideos>
+  </component>
 </template>
 <script setup>
 import { useGlobalData } from "@/stores/getGlobaData";
@@ -84,4 +94,37 @@ useHead({
   },
   style: [{ children: productColor.value }],
 });
+
+
+let imageLink;
+switch (product.value.attributes?.slug) {
+  case "academy":
+    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338432/academy_2_29504487ad.png?updated_at=2023-10-26T16:40:37.431Z"
+    break;
+
+  case "investment":
+    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338820/investment_1_b845e0b3df.png?updated_at=2023-10-26T16:47:02.155Z"
+    break;
+
+  case "space":
+    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338958/space_2_b639e469f0.png?updated_at=2023-10-26T16:49:22.854Z"
+    break;
+
+  case "trading":
+    imageLink = ""
+    break;
+
+  case "eco-real-state":
+    imageLink = ""
+    break;
+  default:
+    break;
+}
+
 </script>
+
+<style>
+/* .text_academy_color{
+background-color: ;
+} */
+</style>
