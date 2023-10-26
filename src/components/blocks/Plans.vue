@@ -1,8 +1,8 @@
 <template>
   <section class="plans bg-[#444444] py-14 sm:pt-19 sm:pb-12 ">
     <div ref="container" class="container relative"></div>
-    <div class="carousel-container" :style="`margin-left: ${marginRight}px`">
-      <Carousel v-bind="settings" :breakpoints="breakpoints">
+    <div class="carousel-container ml-[4%] sm:ml-[7%]">
+      <Carousel v-bind="settings" :breakpoints="breakpoints" class="carousel_gold">
         <Slide v-for="plan in content.plan" :key="plan.id" class="plan sm:min-w-[280px]">
           <div class="rounded overflow-hidden bg-[#2A2A2B] mx-4 xl:mx-6 flex flex-col h-full">
             <div v-if="plan.name" class="py-3 px-8 bg-[#9F6734] text-white font-bold text-center w-full">
@@ -76,11 +76,11 @@ onMounted(() => {
   padding-top: 24px;
 }
 
-.carousel__pagination-button {
+.carousel_gold .carousel__pagination-button {
   background-color: #71553c !important;
 }
 
-.carousel__pagination-button--active {
+.carousel_gold .carousel__pagination-button--active {
   background-color: #9F8134 !important;
 }
 </style>

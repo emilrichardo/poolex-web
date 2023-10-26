@@ -1,7 +1,7 @@
 <template>
-  <section :id="content?.id" :class="`${padding[content?.internal_margin]}`" :style="`${content?.background?.Background_color &&
-    'background-color:' + content.background?.Background_color
-    } `">
+  <section :id="content?.id" :class="`${!card_web3 ? padding[content?.internal_margin] : ''}`"
+    :style="`${!content?.background?.Gradient && content?.background?.Background_color ?
+      'background-color:' + content.background?.Background_color : 'background:linear-gradient(to ' + content.background?.bg_direction + ',' + content.background?.Background_color + ',' + content?.background?.Background_color_secondary + ')'} `">
     <div :class="`relative ${(content?.style === 'box-right-caption' ||
       content?.style === 'box-left-caption') &&
       'pt-10 lg:pt-0 lg:mt-14 xl:mt-32'
@@ -15,7 +15,7 @@
         content?.style === 'box-right-caption' ||
         content?.style === 'box-left-floating' ||
         content?.style === 'box-right-floating'
-        " :class="` bg-gradient-to-r from-primary to-secondary w-full absolute bottom-0 z-0 h-full ${content?.style === 'box-right' ||
+        " :class="` absolute bottom-0 z-0 h-full ${content?.style === 'box-right' ||
     content?.style === 'box-right-caption' ||
     content?.style === 'box-right-floating'
     ? 'right-0'
@@ -24,7 +24,7 @@
     'hidden lg:block'
     }`"></div>
 
-      <div :class="`container flex flex-col lg:flex-row items-center ${content?.style === 'box-right-caption' ||
+      <div :class="`container flex flex-col lg:flex-row ${content?.style === 'box-right-caption' ||
         content?.style === 'box-left-caption'
         ? 'relative justify-start'
         : 'justify-center'
@@ -34,8 +34,15 @@
         'gap-y-8'
         } ${content?.image && 'wimagew'} ${content?.style === 'border-bottom' &&
         ' border-b-[14px] border-light-500 border-opacity-30'
-        }`">
-        <div :class="`block-image rounded-lg ${videoOpen && 'bg-black'}  ${content?.style === 'box-right-caption' ||
+        }`" :style="`${card_with_color ? 'align-items: normal;' : 'align-items:center'}`">
+
+        <!-- <div
+          :class="`w-full md:w-1/2 rounded-lg order-1 md:order-2 z-10 relative border-4 border-red-400  ml-0 lg:-ml-[5%]  ${card_web3 ? 'flex' : 'hidden'}`">
+          <NuxtImg :class="`md:min-w-[600px]`" v-if="content?.image?.image?.data?.attributes?.url"
+            :src="content?.image?.image?.data?.attributes?.url" :alt="content?.image?.image_title" />
+        </div> -->
+
+        <div :class="`block-image w-full md:w-auto rounded-lg ${videoOpen && 'bg-black'}  ${content?.style === 'box-right-caption' ||
           content?.style === 'box-left-caption'
           ? 'lg:absolute lg:bottom-0 lg:h-[calc(100%_+_theme(spacing.14))] xl:h-[calc(100%_+_theme(spacing.32))]'
           : 'relative'
@@ -65,7 +72,7 @@
               content?.style === 'box-left-floating')) &&
           'lg:pr-10 xl:pr-16'
           }`">
-          <div v-if="content?.features?.length > 4" class="caption-container mb-8">
+          <div v-if="content?.features?.length > 4" class="caption-container bg-product mb-8">
             <h4 class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8" v-if="content.headings">
               {{ content.headings?.sub_headline }}
             </h4>
@@ -77,13 +84,13 @@
             </p>
           </div>
 
-          <NuxtImg :class="`w-full ${videoOpen && 'opacity-0'} ${content?.image?.image_caption &&
-            'rounded-b-none rounded-t-lg lg:rounded-b-lg'
+          <NuxtImg :class="`w-full  mt-auto ${card_web3 && '.'} ${videoOpen && 'opacity-0'} ${content?.image?.image_caption &&
+            'rounded-b-none rounded-t-lg lg:rounded-b-lg '
             } ${content?.style === 'box-right-caption' ||
               content?.style === 'box-left-caption' ||
               content?.style === 'box-right-floating' ||
               content?.style === 'box-left-floating'
-              ? 'h-[280px] sm:h-[360px] md:h-[400px] lg:h-full'
+              ? 'h-full -mt-24'
               : 'lg:min-h-[458px]'
             } ${content?.style === 'box-right-caption' ||
               content?.style === 'box-left-caption'
@@ -93,7 +100,8 @@
               ? 'aspect-[11/7] lg:aspect-auto rounded-t-lg lg:rounded-t-none'
               : 'rounded-lg'
             }`" v-if="content?.image?.image?.data?.attributes?.url" :src="content?.image?.image?.data?.attributes?.url"
-            :alt="content?.image?.image_title" />
+            :alt="content?.image?.image_title" :style="`${card_with_color && 'max-heigth:500px'}
+          `" />
 
           <div v-if="content?.video"
             class="video-overlay rounded-lg absolute top-0 left-0 h-full w-full grid justify-center items-center">
@@ -104,14 +112,17 @@
             <div class="video-vimeo absolute left-0 top-0" ref="vimeoPlayer"></div>
           </div>
 
-          <div v-if="content?.image?.image_caption" :class="`image-caption lg:w-5/6 xl:w-3/4 lg:absolute -bottom-12 bg-product px-5 py-6 md:px-12 md:py-10 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
+          <div v-if="content?.image?.image_caption" :class="`text-white image-caption lg:w-5/6 xl:w-3/4 lg:absolute -bottom-12 bg-product px-5 py-6 md:px-12 md:py-10 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
             }`">
             {{ content?.image?.image_caption }}
           </div>
         </div>
 
-        <div :class="`caption relative ${(content?.style === 'box-right-caption' ||
-          content?.style === 'box-left-caption') &&
+
+
+        <div :class="`caption items-center relative background_text
+         ${(content?.style === 'box-right-caption' ||
+            content?.style === 'box-left-caption') &&
           'bg-white px-5 py-6 md:pt-10 md:px-16 lg:px-10 xl:px-16 xl:pt-16 lg:mt-16 xl:mt-20'
           } ${content?.image && 'lg:w-1/2'} ${(content?.style === 'box-right-floating' ||
             content?.style === 'box-left-floating') &&
@@ -128,14 +139,16 @@
           'px-5 py-6 md:px-16 md:py-10 lg:px-14 xl:px-24 bg-product lg:bg-transparent rounded-b-lg lg:rounded-b-none'
           } ${content?.style === 'box-right' &&
           content?.image_side === 'left' &&
-          'lg:pr-0 xl:pr-24'
+          'lg:pr-6 xl:pr-24'
           } ${content?.style === 'box-left' &&
           content?.image_side === 'right' &&
           'lg:pl-0 xl:pl-24'
           } ${content?.headings?.align === 'center' && 'text-center'} ${content?.headings?.text_color === 'light'
             ? 'text-light'
             : 'text-dark'
-          }`">
+          } 
+          `" :style="`${card_with_color && 'background-color: var(--product) !important; display:flex; align-items:center'}
+          `">
           <div v-if="content.features?.length < 4" class="caption-container">
             <h4 class="text-xl lg:text-2xl font-semibold mb-3 lg:mb-4" v-if="content?.headings">
               {{ content?.headings?.sub_headline }}
@@ -151,16 +164,16 @@
             </div>
           </div>
 
-          <div v-if="content?.features" class="features">
+          <div v-if="content?.features" :class="`features`">
             <ul v-if="content?.features">
               <li v-for="feature in content?.features"
-                class="flex flex-col lg:flex-row gap-y-4 lg:items-center py-6 border-b border-light-500 last:border-0">
+                class="flex flex-col md:flex-row gap-y-4 lg:items-center py-6 border-b border-light-500 last:border-0">
                 <div v-if="feature?.icon?.data?.attributes?.url"
                   class="mr-4 rounded-full bg-product w-20 h-20 flex-none inline-flex justify-center items-center">
                   <NuxtImg class="" type="image" :src="feature?.icon?.data?.attributes?.url" :alt="feature?.title" />
                 </div>
 
-                <div class="caption flex flex-col gap-y-4">
+                <div :class="`caption flex flex-col gap-y-4`">
                   <h3 v-if="feature.title" :class="` font-medium ${content?.features?.length < 3 ? ' text-2xl ' : 'text-md'
                     }`">
                     {{ feature.title }}
@@ -176,11 +189,13 @@
       </div>
     </div>
   </section>
+  {{ console.log(card_web3) }}
 </template>
 <script setup>
 import Vimeo from "@vimeo/player";
 import YouTube from "vue3-youtube";
 const { content } = defineProps(["content"]);
+console.log(content)
 
 const vimeoPlayer = ref(null);
 const videoOpen = ref(false);
@@ -231,6 +246,10 @@ const padding = {
   lg: "py-24",
   xl: "py-36",
 };
+
+let card_with_color = content?.headings?.headline === 'Inteligencia Artificial, para transacciones Smart'
+let card_web3 = content?.headings?.headline === 'Sumérgete en la Web3'
+let card_investment = content?.headings?.headline === 'Toma Acción Inteligente'
 </script>
 <style>
 .video-vimeo iframe {
