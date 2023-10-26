@@ -12,7 +12,7 @@
                       locale === "es" ? "Registrate ahora" : "Register now"
                     }}</Button></NuxtLink>
                 <nuxt-link :to="localePath('/product/' + product.attributes.slug)">
-                  <Button type="button" variant="default">{{
+                  <Button type="button" variant="secondary_outline">{{
                     locale === "es" ? "Ver más" : "View more"
                   }}</Button>
                 </nuxt-link>

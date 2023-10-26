@@ -1,32 +1,20 @@
 <template>
-  <section class="plans bg-light-100 py-16">
+  <section class="plans bg-[#444444] py-14 sm:pt-19 sm:pb-12 ">
     <div ref="container" class="container relative"></div>
     <div class="carousel-container" :style="`margin-left: ${marginRight}px`">
       <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="plan in content.plan" :key="plan.id" class="plan">
-          <div
-            class="rounded overflow-hidden bg-white mx-4 xl:mx-6 flex flex-col h-full"
-          >
-            <div
-              v-if="plan.name"
-              class="py-3 px-8 bg-product text-white font-bold text-center w-full"
-            >
+        <Slide v-for="plan in content.plan" :key="plan.id" class="plan sm:min-w-[280px]">
+          <div class="rounded overflow-hidden bg-[#2A2A2B] mx-4 xl:mx-6 flex flex-col h-full">
+            <div v-if="plan.name" class="py-3 px-8 bg-[#9F6734] text-white font-bold text-center w-full">
               {{ plan.name }}
             </div>
-            <div class="px-8 py-8 flex flex-col items-center">
-              <NuxtImg
-                v-if="plan.icon.data"
-                :src="plan.icon?.data?.attributes?.url"
-                :alt="plan.name"
-                class="h-28 mb-14 flex-none"
-              />
-              <ul class="flex flex-col text-xl font-light">
+            <div class="px-8 py-8 flex flex-col items-center text-white">
+              <NuxtImg v-if="plan.icon.data" :src="plan.icon?.data?.attributes?.url" :alt="plan.name"
+                class="h-28 mb-14 flex-none" />
+              <ul class="flex flex-col text-md font-light">
                 <li v-if="plan.duration">{{ plan.duration }}</li>
-                <li
-                  class="py-3 my-3 border border-light-400 border-r-0 border-l-0"
-                  v-if="plan.roi"
-                >
-                  ROI: <strong class="font-medium">{{ plan.roi }}</strong>
+                <li class="py-3 my-3 border border-light-400 border-r-0 border-l-0" v-if="plan.roi">
+                  ROI: <strong class="text-md font-light">{{ plan.roi }}</strong>
                 </li>
                 <li v-if="plan.description">{{ plan.description }}</li>
               </ul>
@@ -86,5 +74,13 @@ onMounted(() => {
 .carousel__pagination {
   justify-content: center !important;
   padding-top: 24px;
+}
+
+.carousel__pagination-button {
+  background-color: #71553c !important;
+}
+
+.carousel__pagination-button--active {
+  background-color: #9F8134 !important;
 }
 </style>
