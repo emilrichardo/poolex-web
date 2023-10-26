@@ -1,71 +1,53 @@
 <template>
-  <footer class="bg-[#F0F4F8]">
+  <footer class="bg-[#f0f4f8]">
     <!--  {{ useData.products }} -->
 
     <div class="container mx-auto">
-      <div class="social-links flex gap-4 justify-center py-24">
-        <a
-          v-for="link in socialLinks"
-          class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl bg-[#F0F4F8] rounded-full py-1 px-2 neomorphism"
-          :href="link.url"
-          taget="_blank"
-        >
-          <Icon :name="`${link.icon_tag}`" />
+      <div class="social-links flex gap-4 justify-center pb-24 pt-12">
+        <a v-for="link in socialLinks"
+          class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl rounded-full px-2 py-2 neomorphism"
+          :href="link.url" taget="_blank">
+          <Icon color="9747ff" :name="`${link.icon_tag}`" size="28px" />
           <span class="hidden">{{ link.name }}</span>
         </a>
       </div>
       <hr class="border-t border-light-500" />
-      <div
-        class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16"
-      >
+      <div class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16">
         <div class="footermenu">
           <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
-          <ul
-            v-if="useData.products"
-            class="flex flex-col gap-3 items-center md:items-start"
-          >
-            <li
-              class="text-dark-100 hover:underline"
-              v-for="product in useData.products"
-              :key="product.id"
-            >
-              <nuxt-link
-                :to="localePath('/product/' + product.attributes.slug)"
-              >
+          <ul v-if="useData.products" class="flex flex-col gap-3 items-center md:items-start">
+            <li class="text-dark-100 hover:underline" v-for="product in useData.products" :key="product.id">
+              <nuxt-link :to="localePath('/product/' + product.attributes.slug)">
                 {{ useGetLocale(locale, product).name }}
               </nuxt-link>
             </li>
           </ul>
         </div>
         <div class="footermenu">
-          <h4
-            class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left"
-          >
+          <h4 class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left">
             {{
               locale === "en"
-                ? "Allied Brokers Regulations"
-                : "Reglamento de Brokers aliados"
+              ? "Allied Brokers"
+              : "Brokéres aliados"
             }}
           </h4>
 
           <ul class="flex flex-col gap-3 items-center md:items-start">
             <li><a href="https://www.atfx.com/es">ATFX</a></li>
             <li><a href="https://www.phillipcapital.com">Philip Capital</a></li>
+            <!-- TODO Cambiar url -->
+            <li><a href="https://www.infinox.com/es">Infinox</a></li>
           </ul>
         </div>
         <div class="footer_about">
           <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "About us" : "Sobre nosotros" }}
           </h4>
-          <Button
-            type="button"
-            size="md"
-            variant="default_outline"
-            class="flex gap-4 items-center bg-white mx-auto md:mx-0"
-          >
+          <Button type="button" size="md" variant="default_outline"
+            class="flex gap-4 items-center bg-white mx-auto md:mx-0">
             {{ locale === "en" ? "Presentation" : "Presentación" }}
             <Icon name="heroicons:arrow-down-tray-20-solid"></Icon>
           </Button>
@@ -84,7 +66,7 @@
       </div>
     </div>
   </footer>
-  <div class="copy bg-light-100 py-24 text-dark-100">
+  <div class="copy bg-white py-24 text-dark-100">
     <div class="container">
       <h4 class="font-bold text-xl mb-4">Legal</h4>
       <p class="text-sm">
