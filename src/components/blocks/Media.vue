@@ -1,5 +1,5 @@
 <template>
-  <section :id="content?.id" :class="`${!card_web3 ? padding[content?.internal_margin] : ''}`"
+  <section :id="content?.id" :class="`${!card_web3 && !card_investment ? padding[content?.internal_margin] : ''}`"
     :style="`${!content?.background?.Gradient && content?.background?.Background_color ?
       'background-color:' + content.background?.Background_color : 'background:linear-gradient(to ' + content.background?.bg_direction + ',' + content.background?.Background_color + ',' + content?.background?.Background_color_secondary + ')'} `">
     <div :class="`relative ${(content?.style === 'box-right-caption' ||
@@ -36,18 +36,12 @@
         ' border-b-[14px] border-light-500 border-opacity-30'
         }`" :style="`${card_with_color ? 'align-items: normal;' : 'align-items:center'}`">
 
-        <!-- <div
-          :class="`w-full md:w-1/2 rounded-lg order-1 md:order-2 z-10 relative border-4 border-red-400  ml-0 lg:-ml-[5%]  ${card_web3 ? 'flex' : 'hidden'}`">
-          <NuxtImg :class="`md:min-w-[600px]`" v-if="content?.image?.image?.data?.attributes?.url"
-            :src="content?.image?.image?.data?.attributes?.url" :alt="content?.image?.image_title" />
-        </div> -->
-
-        <div :class="`block-image w-full md:w-auto rounded-lg ${videoOpen && 'bg-black'}  ${content?.style === 'box-right-caption' ||
+        <div :class="`block-image rounded-lg ${videoOpen && 'bg-black'}  ${content?.style === 'box-right-caption' ||
           content?.style === 'box-left-caption'
           ? 'lg:absolute lg:bottom-0 lg:h-[calc(100%_+_theme(spacing.14))] xl:h-[calc(100%_+_theme(spacing.32))]'
           : 'relative'
-          }  ${content?.image &&
-          'lg:w-1/2 flex flex-col items-center justify-center'
+          }  ${card_investment && 'md:w-1/2 '} ${content?.image &&
+          'flex flex-col items-center justify-center'
           } ${content?.image_side === 'right' && 'lg:order-1'} ${((content?.image_side === 'right' &&
             content?.style === 'box-right-caption') ||
             (content?.image_side === 'right' &&
@@ -84,7 +78,12 @@
             </p>
           </div>
 
-          <NuxtImg :class="`w-full  mt-auto ${card_web3 && '.'} ${videoOpen && 'opacity-0'} ${content?.image?.image_caption &&
+          <NuxtImg
+            :class="`w-[calc(150%_+_300px)] aspect-square h-auto bottom-0 z-10 hidden ${card_web3 ? 'lg:h-[38rem]  absolute right-[10%] lg:flex ' : 'hidden'} ${card_investment ? 'lg:h-[40rem] absolute left-[2%] lg:flex ' : 'hidden'}`"
+            v-if="content?.image?.image?.data?.attributes?.url" :src="content?.image?.image?.data?.attributes?.url"
+            :alt="content?.image?.image_title" />
+
+          <NuxtImg :class="`w-full  mt-auto ${card_web3 || card_investment ? 'lg:hidden' : 'flex'} ${videoOpen && 'opacity-0'} ${content?.image?.image_caption &&
             'rounded-b-none rounded-t-lg lg:rounded-b-lg '
             } ${content?.style === 'box-right-caption' ||
               content?.style === 'box-left-caption' ||
@@ -100,9 +99,8 @@
               ? 'aspect-[11/7] lg:aspect-auto rounded-t-lg lg:rounded-t-none'
               : 'rounded-lg'
             }`" v-if="content?.image?.image?.data?.attributes?.url" :src="content?.image?.image?.data?.attributes?.url"
-            :alt="content?.image?.image_title" :style="`${card_with_color && 'max-heigth:500px'}
+            :alt="content?.image?.image_title" :style="`${card_with_color ? 'max-heigth:500px;' : ''}
           `" />
-
           <div v-if="content?.video"
             class="video-overlay rounded-lg absolute top-0 left-0 h-full w-full grid justify-center items-center">
             <button v-if="!videoOpen" @click="openVideo(content?.video)"
@@ -147,7 +145,7 @@
             ? 'text-light'
             : 'text-dark'
           } 
-          `" :style="`${card_with_color && 'background-color: var(--product) !important; display:flex; align-items:center'}
+          `" :style="`${card_with_color && 'background-color: var(--product) !important; display:flex; align-items:center'};${card_investment && 'padding:0px !important; padding-top:24px !important '}
           `">
           <div v-if="content.features?.length < 4" class="caption-container">
             <h4 class="text-xl lg:text-2xl font-semibold mb-3 lg:mb-4" v-if="content?.headings">
@@ -189,13 +187,11 @@
       </div>
     </div>
   </section>
-  {{ console.log(card_web3) }}
 </template>
 <script setup>
 import Vimeo from "@vimeo/player";
 import YouTube from "vue3-youtube";
 const { content } = defineProps(["content"]);
-console.log(content)
 
 const vimeoPlayer = ref(null);
 const videoOpen = ref(false);
