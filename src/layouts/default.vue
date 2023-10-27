@@ -111,6 +111,9 @@ const queryProducts = qs.stringify(
               item: {
                 populate: "*",
               },
+              Link: {
+                populate: "*",
+              },
             },
           },
         },
@@ -121,6 +124,10 @@ const queryProducts = qs.stringify(
       icon: {
         populate: "*",
       },
+      link: {
+        populate: "*",
+      },
+
       sections: {
         populate: {
           headings: {
@@ -175,6 +182,9 @@ const queryProducts = qs.stringify(
             populate: "*",
           },
           item: {
+            populate: "*",
+          },
+          Link: {
             populate: "*",
           },
         },
