@@ -263,7 +263,6 @@ import { useGlobalData } from "@/stores/getGlobaData";
 import { useGetLocale } from "@/composables/getLocale";
 
 const globalData = useGlobalData();
-console.log(globalData.myProducts);
 
 const runtimeConfig = useRuntimeConfig();
 
