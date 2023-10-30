@@ -5,14 +5,15 @@
         class="neomorphism_card p-2 w-full bg-[#EDF5FD] hover:bg-[#deefff] rounded-md relative">
         <a class="flex flex-row" :href="item.attributes.url" target="_blank">
 
-          <NuxtImg class="z-20 min-h-[40px] max-h-[70px] rounded-md bg-cover bg-gray-500" alt="image_news_events"
-            :src="imageTest" />
+          <NuxtImg class="z-20 min-h-[40px] min-w-[105px] max-h-[70px] rounded-md object-cover bg-center bg-gray-500"
+            alt="image_news_events" :src="item.attributes.image.data.attributes.url" />
           <div class="flex flex-col w-full pl-2">
 
             <div class="flex flex-row justify-between">
-              <h4 class="flex text-slate-800 text-xs capitalize">{{ item.attributes.modo }}</h4>
+              <h4 class="flex text-slate-800 text-xs capitalize">{{
+                item.attributes.modo !== "no aplica" ? item.attributes.modo : ""
+              }}</h4>
               <h5 class="flex text-slate-600 text-xs">{{ item.attributes.date }}</h5>
-
             </div>
 
             <p class="h-full  overflow-hidden break-words text-sm text-[#033F5B] text-ellipsis flex-nowrap line-clamp-3">
@@ -27,52 +28,15 @@
           </div>
         </a>
       </div>
-      {{ console.log("EVENTOS----") }}
-      {{ console.log(eventosData) }}
     </ClientOnly>
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue";
-import qs from "qs";
-
-const imageTest = "https://img.freepik.com/foto-gratis/cerrar-al-entrevistado-microfono-tomando-declaraciones_23-2149037853.jpg?w=2000&t=st=1698425408~exp=1698426008~hmac=8a93227ac9bcb184cd3acb3e225bbefc7f180c09622781781ddd3e43fac441a8";
-
-// eventos
-const queryEventos = qs.stringify({
-  populate: {
-    localizations: {
-      populate: {
-        eventos: {
-          populate: "*",
-        },
-      },
-    },
-    eventos: {
-      populate: "*",
-      populate: {
-        image: {
-          populate: "*",
-        },
-      },
-    },
-    content: {
-      populate: "*",
-    },
-  }
-});
-
-const eventosFromApi = await useFetch(`/api/eventos?${queryEventos}`);
-const eventMultilang = ref(null);
+const eventosFromApi = await useFetch(`/api/eventos?sort[1]=date&populate=*`);
 const eventosData = ref(null);
-
-onMounted(() => {
-  console.log("si se ejecuta")
-  if (eventosFromApi?.data?.value?.data) {
-    eventosData.value = eventosFromApi.data.value.data;
-    eventMultilang.value = eventosFromApi.data.value.data;
-  }
-});
+if (eventosFromApi?.data?.value?.data) {
+  eventosData.value = eventosFromApi.data.value.data;
+}
 </script>
 
 <style scoped>

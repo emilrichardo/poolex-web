@@ -4,9 +4,10 @@
     <hr class="h-[4px] bg-primary mx-auto w-[18%] mt-2 mb-6" />
     <div class="carousel-container">
       <Carousel v-bind="settings" :breakpoints="breakpoints">
-        <Slide v-for="video in videoData.videos" :key="video" class="py-10">
+        <Slide v-for="video in content.Link" :key="video" class="py-10">
           <div class="neomorphism_video rounded-lg w-full md:min-w-[300px] bg-[#F1F1F7] p-4 mx-2 my-6">
-            <iframe class="w-full aspect-video" :src="video" title="YouTube video player" frameborder="0"></iframe>
+            <p v-if="video.label" class="capitalize mb-[8px]">{{ video.label }}</p>
+            <iframe class="w-full aspect-video" :src="video.url" title="YouTube video player" frameborder="0"></iframe>
           </div>
         </Slide>
         <template #addons>
@@ -16,8 +17,6 @@
       </Carousel>
     </div>
   </section>
-  {{ console.log("LINKS----") }}
-  {{ console.log(content) }}
 </template>
 <script setup>
 const { content } = defineProps(["content"]);
@@ -42,11 +41,6 @@ const breakpoints = {
     itemsToShow: "3.5",
     snapAlign: "start",
   },
-};
-
-const videoData = {
-  title: "Testimonios",
-  videos: ["https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3", "https://www.youtube.com/embed/jfKfPfyJRdk?si=TUGIQrMB6TOU9vY3"]
 };
 
 </script>
