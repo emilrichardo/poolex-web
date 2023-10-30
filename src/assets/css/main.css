@@ -26,3 +26,37 @@ body {
 .neomorphism {
   box-shadow: 7px 7px 14px #cccfd3, -7px -7px 14px #f9f8fd;
 }
+
+/* scroll personalizado */
+.scrollContained::-webkit-scrollbar {
+  width: 6px; /* Tamaño del scroll en vertical */
+  height: 6px; /* Tamaño del scroll en horizontal */
+}
+
+.scrollContained::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.scrollContained::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.scrollContained::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.scrollContained::-webkit-scrollbar-track {
+  background: #e7e7e7;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+.scrollContained::-webkit-scrollbar-track:hover,
+.scrollContained::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
