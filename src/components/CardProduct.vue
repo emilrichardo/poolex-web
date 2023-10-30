@@ -56,6 +56,7 @@
         <div class="dataArray col-span-3 bg-light rounded-md shadow-lg" v-for="plan in currentData?.data_array">
           <h3 class="flex justify-between font-semibold text-md border-b py-2 px-4 cursor-pointer"
             @click="togglePlan(plan.name)">
+
             <span>{{ plan.name }}</span>
             <Icon :name="`${planIsOpen
               ? 'heroicons:chevron-up-20-solid'
@@ -135,7 +136,6 @@ const getContent = async (endpoint, cookie) => {
   );
 
   if (!resApi.pending.value) {
-    console.log(resApi.pending.value);
     loadingData.value = false;
   }
 
