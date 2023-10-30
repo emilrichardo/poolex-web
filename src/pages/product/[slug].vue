@@ -27,12 +27,8 @@
   </Hero>
 
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
-
   <component nt v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
     :is="formatName(section.__component)" :content="section">
-    <CarouselVideos v-if="product.value.attributes?.slug === 'academy'" :key="section.id"
-      :is="formatName(section.__component)" :content="section">
-    </CarouselVideos>
   </component>
 </template>
 <script setup>
@@ -114,8 +110,8 @@ switch (product.value.attributes?.slug) {
     imageLink = ""
     break;
 
-  case "eco-real-state":
-    imageLink = ""
+  case "eco-real-estate":
+    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698443777/eco_1_67fa5334a6.png?updated_at=2023-10-27T21:56:19.157Z"
     break;
   default:
     break;

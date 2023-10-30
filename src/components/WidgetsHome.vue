@@ -9,7 +9,7 @@
             <ClientOnly>
               <Card :title="card.title" :color="card.color" :isDraggable="card.isDraggable">
                 <template #card-body>
-                  <div class="relative h-full bg-[#EDEEFD]">
+                  <div :class="`relative h-full ${card?.background ? 'bg-[' + card.background + ']' : ''} `">
                     <template v-if="card.type == 'backoffices'">
                       <div class="grid lg:grid-cols-3 gap-6 py-5 px-6">
                         <CardProduct v-if="globalData.myProducts" v-for="product in globalData?.myProducts"
@@ -20,8 +20,8 @@
                           :icon="product?.attributes?.icon" :isRegister="product?.success" :data="product" />
                       </div>
                     </template>
-                    <template v-if="card.type == 'weather'">
-                      <WidgetWeather></WidgetWeather>
+                    <template v-if="card.type == 'events'">
+                      <WidgetEvents />
                     </template>
                     <template v-if="card.type == 'stocks'">
                       <WidgetPrices :type="card.type"></WidgetPrices>
@@ -60,16 +60,18 @@ const allCards = ref([
     type: "backoffices",
     content: "",
     menu: "",
+    background: "#EDEEFD"
   },
   {
     id: "2",
-    title: `${locale.value === "es" ? "Clima" : "Weather"}`,
-    color: "#76A2F8",
+    title: `${locale.value === "es" ? "Proximos eventos" : "Upcoming events"}`,
+    color: "#0AAFFB",
     cols: "1",
     isDraggable: true,
-    type: "weather",
+    type: "events",
     content: "",
     menu: "",
+    background: "#EDF5FD"
   },
   {
     id: "3",
@@ -80,6 +82,7 @@ const allCards = ref([
     type: "stocks",
     content: "",
     menu: "",
+    background: "#fff"
   },
   {
     id: "4",
@@ -90,6 +93,7 @@ const allCards = ref([
     type: "cryptos",
     content: "",
     menu: "",
+    background: "#fff"
   },
   {
     id: "5",
@@ -100,6 +104,7 @@ const allCards = ref([
     type: "news",
     content: "",
     menu: "",
+    background: "#fff"
   },
 ]);
 
