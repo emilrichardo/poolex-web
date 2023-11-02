@@ -66,7 +66,7 @@
               content?.style === 'box-left-floating')) &&
           'lg:pr-10 xl:pr-16'
           }`">
-          <div v-if="content?.features?.length > 4" class="caption-container bg-product mb-8">
+          <div v-if="content?.features?.length > 4" class="caption-container  mb-8">
             <h4 class="text-xl lg:text-2xl font-semibold mb-4 lg:mb-8" v-if="content.headings">
               {{ content.headings?.sub_headline }}
             </h4>
@@ -243,9 +243,9 @@ const padding = {
   xl: "py-36",
 };
 
-let card_with_color = content?.headings?.headline === 'Inteligencia Artificial, para transacciones Smart'
-let card_web3 = content?.headings?.headline === 'Sumérgete en la Web3'
-let card_investment = content?.headings?.headline === 'Toma Acción Inteligente'
+let card_with_color = content?.headings?.headline === 'Inteligencia Artificial, para transacciones Smart' || content?.headings?.headline === 'Artificial Intelligence, for Smart transactions.'
+let card_web3 = content?.headings?.headline === 'Sumérgete en la Web3' || content?.headings?.headline === 'Dive into the Web3'
+let card_investment = content?.headings?.headline === 'Toma Acción Inteligente' || content?.headings?.headline === 'Take Smart Action'
 </script>
 <style>
 .video-vimeo iframe {
