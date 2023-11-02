@@ -197,8 +197,11 @@ const queryProducts = qs.stringify(
 );
 
 const productsFromApi = await useFetch(`/api/products?${queryProducts}`);
-
 useData.setProducts(productsFromApi.data?.value?.data);
+
+const eventsFromApi = await useFetch(`/api/eventos?sort[0]=date&populate=*`);
+useData.setEvents(eventsFromApi.data?.value?.data);
+
 
 // my backoffice
 

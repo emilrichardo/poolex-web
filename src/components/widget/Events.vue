@@ -1,7 +1,7 @@
 <template>
   <div class="m-2 mr-1 pr-2 pt-3 pb-3 scrollContained overflow-x-hidden max-h-[300px] gap-3 grid">
     <ClientOnly>
-      <div v-for="item in eventosData"
+      <div v-for="item in globalData.events"
         class="neomorphism_card p-2 w-full bg-[#EDF5FD] hover:bg-[#deefff] rounded-md relative">
         <a class="flex flex-row" :href="item.attributes.url" target="_blank">
 
@@ -31,12 +31,10 @@
     </ClientOnly>
   </div>
 </template>
-<script setup>
-const eventosFromApi = await useFetch(`/api/eventos?sort[0]=date&populate=*`);
-const eventosData = ref(null);
-if (eventosFromApi?.data?.value?.data) {
-  eventosData.value = eventosFromApi.data.value.data;
-}
+
+<script setup async>
+import { useGlobalData } from "@/stores/getGlobaData";
+const globalData = useGlobalData();
 </script>
 
 <style scoped>
