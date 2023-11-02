@@ -32,7 +32,7 @@
   </div>
 </template>
 <script setup>
-const eventosFromApi = await useFetch(`/api/eventos?sort[1]=date&populate=*`);
+const eventosFromApi = await useFetch(`/api/eventos?sort[0]=date&populate=*`);
 const eventosData = ref(null);
 if (eventosFromApi?.data?.value?.data) {
   eventosData.value = eventosFromApi.data.value.data;

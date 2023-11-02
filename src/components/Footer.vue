@@ -38,7 +38,6 @@
           <ul class="flex flex-col gap-3 items-center md:items-start">
             <li><a href="https://www.atfx.com/es">ATFX</a></li>
             <li><a href="https://www.phillipcapital.com">Philip Capital</a></li>
-            <!-- TODO Cambiar url -->
             <li><a href="https://www.infinox.com/es">Infinox</a></li>
           </ul>
         </div>
