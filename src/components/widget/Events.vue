@@ -1,5 +1,5 @@
 <template>
-  <div class="m-2 mr-1 pr-2 pt-3 pb-3 scrollContained overflow-x-hidden max-h-[300px] gap-3 grid">
+  <div class="m-2 mr-1 pr-2 pt-3 pb-3 scrollContained overflow-x-hidden max-h-[500px] md:max-h-[300px] gap-3 grid">
     <ClientOnly>
       <div v-for="item in globalData.events"
         class="neomorphism_card p-2 w-full bg-[#EDF5FD] hover:bg-[#deefff] rounded-md relative">
