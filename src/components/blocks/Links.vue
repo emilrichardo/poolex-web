@@ -2,7 +2,7 @@
   <section
     :class="`plans  ${globalData?.currentProduct === 'trade' ? 'text-white bg-transparent my-12 md:mt-16 md:mb-28' : 'bg-[#f6f6fb] pt-24 pb-14 px-6 md:px-12'}`">
     <div
-      :class="`${globalData?.currentProduct === 'trade' && 'bg-gradient-to-r from-[#9747FF] via-[#A8B2FF] to-[#1AAFFD] min-h-[100px] md:h-[175px] grid place-content-center'}`">
+      :class="`${globalData?.currentProduct === 'trade' ? 'bg-gradient-to-r from-[#9747FF] via-[#A8B2FF] to-[#1AAFFD] min-h-[100px] md:h-[175px] grid place-content-center' : 'hidden'}`">
       <h3 :class="`font-medium text-2xl text-center w-full`">{{
         content.title }}</h3>
     </div>
