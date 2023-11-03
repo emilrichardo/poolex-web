@@ -111,7 +111,7 @@
           </div>
 
           <div v-if="content?.image?.image_caption"
-            :class="`text-white image-caption lg:w-5/6 xl:w-3/4 lg:absolute -bottom-12 bg-product px-5 py-6 md:px-12 md:py-10 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
+            :class="`text-white image-caption w-full md:w-1/2 lg:absolute -bottom-12 bg-product px-5 py-6 md:px-12 md:py-10 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
               } ${globalData?.currentProduct === 'trade' && 'bg-gradient-to-r from-[#9747FF] via-[#A8B2FF] via-40% to-[#1AAFFD]'} `">
             {{ content?.image?.image_caption }}
           </div>
