@@ -64,7 +64,7 @@ const filterProduct = computed(() => {
 
 // Actualizar el valor de product cuando cambia la búsqueda
 product.value = filterProduct.value;
-
+globalData.setCurrentProduct(product?.value?.attributes?.slug)
 const formatName = (name) => {
   const newName = name
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {

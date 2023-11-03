@@ -7,6 +7,7 @@ export const useGlobalData = defineStore("data", {
     myProducts: null,
     whoami: null,
     events: null,
+    currentProduct: null,
   }),
   actions: {
     async setProducts(data) {
@@ -46,6 +47,15 @@ export const useGlobalData = defineStore("data", {
       try {
         const user = await data;
         this.myProducts = user;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async setCurrentProduct(data) {
+      try {
+        const p = await data;
+        this.currentProduct = p;
       } catch (error) {
         console.log(error);
       }
