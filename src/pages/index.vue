@@ -9,7 +9,7 @@
               <div class="flex gap-4 justify-center lg:justify-start">
                 <NuxtLink v-if="product.attributes.register_link" :to="product.attributes.register_link"><Button
                     type="button" variant="primary_shadow">{{
-                      locale === "es" ? "Registrate ahora" : "Register now"
+                      locale === "es" ? "Regístrate ahora" : "Register now"
                     }}</Button></NuxtLink>
                 <nuxt-link :to="localePath('/product/' + product.attributes.slug)">
                   <Button type="button" variant="secondary_outline">{{

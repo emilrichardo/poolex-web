@@ -8,7 +8,7 @@
             <button
               class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-lg py-2 px-6 rounded-xl">{{
                 locale === "es"
-                ? "Registrate ahora"
+                ? "Regístrate ahora"
                 : "Register now"
               }}</button>
           </NuxtLink>
