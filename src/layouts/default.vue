@@ -202,7 +202,6 @@ useData.setProducts(productsFromApi.data?.value?.data);
 const eventsFromApi = await useFetch(`/api/eventos?sort[0]=date&populate=*`);
 useData.setEvents(eventsFromApi.data?.value?.data);
 
-
 // my backoffice
 
 const queryBo = qs.stringify(
@@ -216,6 +215,7 @@ const queryBo = qs.stringify(
       "api_endpoint",
       "active",
       "backoffice_url",
+      "broker_url",
     ],
 
     populate: {

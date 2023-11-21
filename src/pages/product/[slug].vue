@@ -1,34 +1,61 @@
 <template>
-  <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description"
-    :background="imageLink || product.attributes?.Featured_image.data?.attributes.url" bgStyle="half">
+  <Hero
+    :title="useGetLocale(locale, product).name"
+    :caption="useGetLocale(locale, product).description"
+    :background="
+      imageLink || product.attributes?.Featured_image.data?.attributes.url
+    "
+    bgStyle="half"
+  >
     <template #cta>
       <div class="gap-4 px-4 lg:px-0">
         <template v-if="!globalOptions.userData?.success">
-          <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link">
+          <NuxtLink
+            v-if="product.attributes?.register_link"
+            :to="product.attributes?.register_link"
+          >
             <button
-              class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-lg py-2 px-6 rounded-xl">{{
-                locale === "es"
-                ? "Regístrate ahora"
-                : "Register now"
-              }}</button>
+              class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-lg py-2 px-6 rounded-xl"
+            >
+              {{ locale === "es" ? "Regístrate ahora" : "Register now" }}
+            </button>
           </NuxtLink>
         </template>
         <template v-else>
-          <a v-if="product.attributes?.backoffice_url" :href="product.attributes?.backoffice_url" target="_blank">
+          <a
+            v-if="product.attributes?.backoffice_url"
+            :href="product.attributes?.backoffice_url"
+            target="_blank"
+          >
             <Button type="button" variant="primary_shadow">{{
               locale === "es"
-              ? "Ingresar al Backoffice"
-              : "Enter the back office"
+                ? "Ingresar al Backoffice"
+                : "Enter the back office"
             }}</Button>
           </a>
         </template>
+        <a
+          v-if="product.attributes?.broker_url"
+          :href="product.attributes?.broker_url"
+          target="_blank"
+        >
+          <Button type="button" variant="secondary"
+            ><Icon name="ri:line-chart-line"></Icon>
+            {{ locale === "es" ? "Ir a Broker" : "Go to Broker" }}</Button
+          >
+        </a>
       </div>
     </template>
   </Hero>
 
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
-  <component nt v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
-    :is="formatName(section.__component)" :content="section">
+  <component
+    nt
+    v-for="section in useGetLocaleSections(locale, product).sections"
+    :key="section.id"
+    :is="formatName(section.__component)"
+    :content="section"
+  >
   </component>
 </template>
 <script setup>
@@ -64,7 +91,7 @@ const filterProduct = computed(() => {
 
 // Actualizar el valor de product cuando cambia la búsqueda
 product.value = filterProduct.value;
-globalData.setCurrentProduct(product?.value?.attributes?.slug)
+globalData.setCurrentProduct(product?.value?.attributes?.slug);
 const formatName = (name) => {
   const newName = name
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
@@ -91,32 +118,34 @@ useHead({
   style: [{ children: productColor.value }],
 });
 
-
 let imageLink;
 switch (product.value.attributes?.slug) {
   case "academy":
-    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338432/academy_2_29504487ad.png?updated_at=2023-10-26T16:40:37.431Z"
+    imageLink =
+      "https://res.cloudinary.com/di4frs2px/image/upload/v1698338432/academy_2_29504487ad.png?updated_at=2023-10-26T16:40:37.431Z";
     break;
 
   case "investment":
-    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338820/investment_1_b845e0b3df.png?updated_at=2023-10-26T16:47:02.155Z"
+    imageLink =
+      "https://res.cloudinary.com/di4frs2px/image/upload/v1698338820/investment_1_b845e0b3df.png?updated_at=2023-10-26T16:47:02.155Z";
     break;
 
   case "space":
-    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698338958/space_2_b639e469f0.png?updated_at=2023-10-26T16:49:22.854Z"
+    imageLink =
+      "https://res.cloudinary.com/di4frs2px/image/upload/v1698338958/space_2_b639e469f0.png?updated_at=2023-10-26T16:49:22.854Z";
     break;
 
   case "trading":
-    imageLink = ""
+    imageLink = "";
     break;
 
   case "eco-real-estate":
-    imageLink = "https://res.cloudinary.com/di4frs2px/image/upload/v1698443777/eco_1_67fa5334a6.png?updated_at=2023-10-27T21:56:19.157Z"
+    imageLink =
+      "https://res.cloudinary.com/di4frs2px/image/upload/v1698443777/eco_1_67fa5334a6.png?updated_at=2023-10-27T21:56:19.157Z";
     break;
   default:
     break;
 }
-
 </script>
 
 <style>
