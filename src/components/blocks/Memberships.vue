@@ -21,26 +21,79 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-9 mx-auto mt-24 max-w-[870px]"
     >
       <div
-        v-for="item in content.membership"
-        class="item flex flex-col items-center"
+        v-for="item in memberships"
+        @click="openModal"
+        class="item flex flex-col items-center bg-white shadow hover:bg-purple-200 hover:cursor-pointer hover:scale-105 p-4 rounded"
       >
         <NuxtImg
-          v-if="item.icon"
-          :src="item.icon?.data?.attributes?.url"
-          :alt="item.title"
+          v-if="item.attributes?.icon"
+          :src="item.attributes?.icon?.data?.attributes?.url"
+          :alt="item.attributes?.name"
           class="w-28 mb-4"
         />
         <h3
           class="text-md lg:text-xl font-semibold text-dark-100"
-          v-if="item.title"
+          v-if="item.attributes?.name"
         >
-          {{ item.title }}
+          {{ item.attributes?.name }}
         </h3>
+        <p class="text-xs" v-if="item.attributes?.description">
+          {{ item.attributes?.description }}
+        </p>
+
+        <Modal
+          v-if="showModal"
+          :title="`${
+            locale === 'es' ? 'Beneficios Licencia' : 'License Benefits'
+          } ${item.attributes?.name}`"
+          @closeModal="closeModal"
+          :color="item.attributes?.color"
+        >
+          <ul v-if="item.attributes?.features" class="text-left">
+            <li
+              v-for="feat in item.attributes?.features"
+              :key="item.id"
+              class="py-2"
+            >
+              <span> {{ feat.label }}: </span>
+              <span>{{ feat.value }}</span>
+            </li>
+          </ul>
+        </Modal>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import qs from "qs";
+
+const { locale } = useI18n();
+
+const memberships = ref([]);
+
+const query = qs.stringify(
+  {
+    populate: "*",
+  },
+  {
+    encodeValuesOnly: true, // prettify URL
+  }
+);
+
+const membershipsFromApi = await useFetch(`/api/memberships?${query}`);
+
+memberships.value = membershipsFromApi.data?.value?.data;
+
 const { content } = defineProps(["content"]);
+
+const showModal = ref(false);
+
+const openModal = () => {
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  showModal.value = false;
+};
 </script>
