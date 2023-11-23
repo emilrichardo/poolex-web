@@ -22,7 +22,7 @@
     >
       <div
         v-for="item in memberships"
-        @click="openModal"
+        @click="openModal(item.id)"
         class="item flex flex-col items-center bg-white shadow hover:bg-purple-200 hover:cursor-pointer hover:scale-105 p-4 rounded"
       >
         <NuxtImg
@@ -42,7 +42,8 @@
         </p>
 
         <Modal
-          v-if="showModal"
+          :id="`modal-${item.id}`"
+          v-if="showModal === item.id"
           :title="`${
             locale === 'es' ? 'Beneficios Licencia' : 'License Benefits'
           } ${item.attributes?.name}`"
@@ -89,8 +90,10 @@ const { content } = defineProps(["content"]);
 
 const showModal = ref(false);
 
-const openModal = () => {
-  showModal.value = true;
+const openModal = (id) => {
+  showModal.value = id;
+
+  console.log(id);
 };
 
 const closeModal = () => {
