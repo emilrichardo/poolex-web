@@ -35,10 +35,10 @@
           class="text-md lg:text-xl font-semibold text-dark-100"
           v-if="item.attributes?.name"
         >
-          {{ item.attributes?.name }}
+          {{ localeMemberships(locale, item).attributes?.name }}
         </h3>
         <p class="text-xs" v-if="item.attributes?.description">
-          {{ item.attributes?.description }}
+          {{ localeMemberships(locale, item).attributes?.description }}
         </p>
 
         <Modal
@@ -52,7 +52,8 @@
         >
           <ul v-if="item.attributes?.features" class="text-left">
             <li
-              v-for="feat in item.attributes?.features"
+              v-for="feat in localeMemberships(locale, item).attributes
+                ?.features"
               :key="item.id"
               class="py-2"
             >
@@ -75,7 +76,17 @@ const memberships = ref([]);
 
 const query = qs.stringify(
   {
-    populate: "*",
+    populate: {
+      icon: {
+        populate: "*",
+      },
+      features: {
+        populate: "*",
+      },
+      localizations: {
+        populate: "*",
+      },
+    },
   },
   {
     encodeValuesOnly: true, // prettify URL
@@ -92,11 +103,17 @@ const showModal = ref(false);
 
 const openModal = (id) => {
   showModal.value = id;
-
-  console.log(id);
 };
 
 const closeModal = () => {
   showModal.value = false;
+};
+
+const localeMemberships = (locale, text) => {
+  if (locale === "es" && text.attributes.localizations.data.length > 0) {
+    return text.attributes?.localizations?.data[0];
+  } else {
+    return text;
+  }
 };
 </script>
