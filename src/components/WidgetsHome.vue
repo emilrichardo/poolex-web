@@ -76,7 +76,7 @@ const allCards = ref([
   {
     id: "3",
     title: "Stocks",
-    color: "#94AED7",
+    color: "#766bf8",
     cols: "1",
     isDraggable: true,
     type: "stocks",
@@ -87,7 +87,7 @@ const allCards = ref([
   {
     id: "4",
     title: `${locale.value === "es" ? "Criptomonedas" : "Cryptos"}`,
-    color: "#F99999",
+    color: "#ffb54b",
     cols: "1",
     isDraggable: true,
     type: "cryptos",
@@ -112,6 +112,16 @@ const screenWidth = ref(0);
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth;
+};
+
+const showModal = ref(false);
+
+const openModal = (id) => {
+  showModal.value = id;
+};
+
+const closeModal = () => {
+  showModal.value = false;
 };
 
 onMounted(() => {
