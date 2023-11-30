@@ -244,7 +244,7 @@ useData.setMyBO(boFromApi.data.value.data);
 
 const { themeColors, themeStylesTag } = useGetColors();
 
-themeColors(optionsFromApi.data.value.data.attributes.colors);
+themeColors(optionsFromApi.data?.value?.data?.attributes?.colors);
 // meta datos
 useHead({
   style: [{ children: themeStylesTag }],

@@ -110,7 +110,7 @@ const closeModal = () => {
 };
 
 const localeMemberships = (locale, text) => {
-  if (locale === "es" && text.attributes.localizations.data.length > 0) {
+  if (locale === "es" && text.attributes?.localizations.data.length > 0) {
     return text.attributes?.localizations?.data[0];
   } else {
     return text;

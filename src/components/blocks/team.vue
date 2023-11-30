@@ -43,7 +43,7 @@
           >
             <NuxtImg
               class="left-4 top-4 rounded-bl-[95px] rounded-tr-[95px] -mt-4 md:mt-0"
-              :src="item.image_profile.data.attributes.url"
+              :src="item.image_profile.data?.attributes?.url"
               :alt="item.full_name"
             />
           </div>
