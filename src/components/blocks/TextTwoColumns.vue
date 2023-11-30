@@ -1,9 +1,9 @@
 <template>
   <section
     :class="`block_text  ${
-      (content.headings.align === 'center' && 'text-center') ||
-      (content.headings.align === 'left' && '') ||
-      (content.headings.align === 'right' && 'text-right')
+      (content.headings?.align === 'center' && 'text-center') ||
+      (content.headings?.align === 'left' && '') ||
+      (content.headings?.align === 'right' && 'text-right')
     } ${backgrounds[content.background?.colors]} ${
       padding[content.internal_margin]
     }`"
