@@ -4,6 +4,7 @@
   <main class="in-h-full">
     <slot />
   </main>
+  <WhatsAppButton />
   <Footer />
 </template>
 <script setup>
