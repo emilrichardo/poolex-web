@@ -40,6 +40,8 @@
         </template>
       </draggable>
     </div>
+
+
   </section>
 </template>
 
@@ -87,7 +89,7 @@ const allCards = ref([
   {
     id: "4",
     title: `${locale.value === "es" ? "Criptomonedas" : "Cryptos"}`,
-    color: "#ffb54b",
+    color: "#d747ff",
     cols: "1",
     isDraggable: true,
     type: "cryptos",
@@ -108,21 +110,16 @@ const allCards = ref([
   },
 ]);
 
+
 const screenWidth = ref(0);
 
 const handleResize = () => {
   screenWidth.value = window.innerWidth;
 };
 
-const showModal = ref(false);
 
-const openModal = (id) => {
-  showModal.value = id;
-};
 
-const closeModal = () => {
-  showModal.value = false;
-};
+
 
 onMounted(() => {
   if (typeof window !== "undefined") {
