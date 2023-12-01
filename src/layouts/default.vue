@@ -109,10 +109,19 @@ const queryProducts = qs.stringify(
               testimonial: {
                 populate: "*",
               },
+              card: {
+                populate: "*",
+              },
               item: {
                 populate: "*",
               },
               Link: {
+                populate: "*",
+              },
+              trader: {
+                populate: "*",
+              },
+              traders: {
                 populate: "*",
               },
             },
@@ -186,6 +195,12 @@ const queryProducts = qs.stringify(
             populate: "*",
           },
           Link: {
+            populate: "*",
+          },
+          trader: {
+            populate: "*",
+          },
+          traders: {
             populate: "*",
           },
         },
