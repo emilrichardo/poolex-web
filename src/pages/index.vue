@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#f0f4f8]">
-    <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="4000">
+    <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="6000">
       <template v-for="product in globalData.products" :key="product">
         <Slide v-if="product?.attributes?.active">
           <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description"
@@ -43,10 +43,19 @@
 
       </NuxtLink>
     </div>
+
+    <Modal :id="`modal-id`" v-if="showModal" :title="dataModal.title" @closeModal="closeModal" :color="dataModal.color">
+      <iframe height="360" src="https://www.youtube.com/embed/jfKfPfyJRdk?si=Dlyy7SdUqW4RBaAS"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen class="w-full min-w-[600px]"></iframe>
+      <!-- <p>Datos</p> -->
+    </Modal>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import { useGlobalData } from "@/stores/getGlobaData";
@@ -60,6 +69,29 @@ const localePath = useLocalePath();
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();
 
+const dataModal = ref({ title: "Conoce más de nosotros", color: "#766bf8" })
+const nameModal = "principalModal - Poolex"
+
+const showModal = ref(false);
+const closeModal = () => {
+  showModal.value = false;
+  const expirationTime = new Date().getTime() + 1 * 24 * 60 * 60 * 1000;
+  localStorage.setItem("principalModal - Poolex", expirationTime.toString());
+};
+
+// Función para verificar si el modal debe abrirse
+const shouldOpenModal = () => {
+  const storedValue = localStorage.getItem(nameModal);
+  if (storedValue) {
+    const expirationTime = parseInt(storedValue, 10);
+    const currentTime = new Date().getTime();
+    const isValid = currentTime > expirationTime;
+    showModal.value = isValid
+  } else {
+    showModal.value = true
+  }
+}
+
 useHead({
   title: globalOptions.options.data?.data?.attributes?.Site_name,
   meta: [
@@ -68,5 +100,11 @@ useHead({
       content: globalOptions.options.data?.data?.attributes?.Site_description,
     },
   ],
+});
+
+onMounted(() => {
+  if (typeof window !== "undefined") {
+    shouldOpenModal()
+  }
 });
 </script>
