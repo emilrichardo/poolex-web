@@ -1,26 +1,24 @@
 <template>
-  <section class="carousel-brands py-24">
+  <section class="carousel-brands py-12">
     <Carousel v-if="content.carousel_active" :breakpoints="breakpoints">
       <Slide v-for="logo in content.logo" :key="logo.id">
         <div class="carousel__item">
           <div class="bg-light rounded-lg px-8 mx-4 py-8">
-            <NuxtImg
-              v-if="logo.icon?.data?.attributes?.url"
-              :src="logo.icon?.data?.attributes?.url"
-              :alt="logo.title"
-            />
+            <a :href="`${logo?.caption}`">
+              <NuxtImg v-if="logo.icon?.data?.attributes?.url" :src="logo.icon?.data?.attributes?.url" :alt="logo.title"
+                :class="`w-52`" />
+            </a>
           </div>
         </div>
       </Slide>
     </Carousel>
     <div v-else class="flex justify-center gap-8 items-center">
       <div v-for="logo in content.logo">
-        <NuxtImg
-          v-if="logo.icon?.data?.attributes?.url"
-          :src="logo.icon?.data?.attributes?.url"
-          :alt="logo.title"
-          :class="`${imageSize[content.size]}`"
-        />
+        <a href="
+        ">
+          <NuxtImg v-if="logo.icon?.data?.attributes?.url" :src="logo.icon?.data?.attributes?.url" :alt="logo.title"
+            :class="`${imageSize[content.size]} min-w-[180px]`" />
+        </a>
       </div>
     </div>
   </section>
@@ -46,11 +44,11 @@ const breakpoints = {
   },
   // 1024 and up
   1024: {
-    itemsToShow: showSlides.value * 0.7, // Mostrar todos los elementos por defecto
+    itemsToShow: Math.min(showSlides.value, 3), // Mostrar hasta 3 elementos en pantallas más grandes
     snapAlign: "center",
   },
   1400: {
-    itemsToShow: showSlides.value, // Mostrar todos los elementos por defecto
+    itemsToShow: Math.min(showSlides.value, 5), // Mostrar hasta 4 elementos en pantallas aún más grandes
     snapAlign: "center",
   },
 };
