@@ -1,9 +1,9 @@
 <template>
   <section
     :class="`block_text py-24 ${
-      (content.headings.align === 'center' && 'text-center') ||
-      (content.headings.align === 'left' && '') ||
-      (content.headings.align === 'right' && 'text-right')
+      (content.headings?.align === 'center' && 'text-center') ||
+      (content.headings?.align === 'left' && '') ||
+      (content.headings?.align === 'right' && 'text-right')
     }`"
   >
     <div class="container max-w-[870px]">
@@ -110,7 +110,7 @@ const closeModal = () => {
 };
 
 const localeMemberships = (locale, text) => {
-  if (locale === "es" && text.attributes.localizations.data.length > 0) {
+  if (locale === "es" && text.attributes?.localizations.data.length > 0) {
     return text.attributes?.localizations?.data[0];
   } else {
     return text;

@@ -152,7 +152,7 @@ if (productsFromApi.error !== null) {
   const res = computed(() => {
     if (productsFromApi.data) {
       const pageFilter = productsFromApi.data.value.data.filter(
-        (page) => page.attributes.slug === route.params.pages
+        (page) => page.attributes?.slug === route.params.pages
       )[0];
       if (pageFilter) {
         return pageFilter;

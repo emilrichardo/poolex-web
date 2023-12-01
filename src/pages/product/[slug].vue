@@ -3,7 +3,7 @@
     :title="useGetLocale(locale, product).name"
     :caption="useGetLocale(locale, product).description"
     :background="
-      imageLink || product.attributes?.Featured_image.data?.attributes.url
+      imageLink || product.attributes?.Featured_image?.data?.attributes?.url
     "
     bgStyle="half"
   >

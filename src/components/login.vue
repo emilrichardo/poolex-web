@@ -142,7 +142,7 @@ const mergeArrays = (array1, array2) => {
       if (
         containsCommonWord(
           array1[i].bo.trim().toLowerCase(),
-          array2[j].attributes.slug.trim().toLowerCase()
+          array2[j].attributes?.slug.trim().toLowerCase()
         )
       ) {
         result[i] = { ...array1[i], ...array2[j] };
@@ -154,7 +154,7 @@ const mergeArrays = (array1, array2) => {
 
   for (let k = 0; k < array2.length; k++) {
     if (!matchedIndexes.has(k)) {
-      result.push({ bo: array2[k].attributes.slug, ...array2[k] });
+      result.push({ bo: array2[k].attributes?.slug, ...array2[k] });
     }
   }
 
