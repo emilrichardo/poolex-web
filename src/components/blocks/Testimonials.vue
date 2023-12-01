@@ -4,10 +4,8 @@
       <h2 class="text-center text-white text-4xl mb-8">
         {{ locale === "es" ? "Testimonios" : "Testimonials" }}
       </h2>
-      <div
-        class="bg-white relative px-5 py-6 md:px-16 md:pt-12 md:pb-8 lg:px-24 lg:pt-20 lg:pb-10"
-      >
-        <Carousel :wrap-around="true" :autoplay="4000">
+      <div class="bg-white relative px-5 py-6 md:px-16 md:pt-12 md:pb-8 lg:px-24 lg:pt-20 lg:pb-10">
+        <Carousel :wrap-around="true" :autoplay="6000">
           <template v-for="testimonial in content.testimonial" :key="product">
             <Slide>
               <div class="">
@@ -20,7 +18,9 @@
           </template>
           <template #addons>
             <div class="w-full justify-center">
-              <div class="container mx-auto"><Pagination /></div>
+              <div class="container mx-auto">
+                <Pagination />
+              </div>
             </div>
           </template>
         </Carousel>

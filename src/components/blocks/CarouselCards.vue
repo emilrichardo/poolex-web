@@ -49,7 +49,7 @@ const { content } = defineProps(["content"]);
 
 const settings = {
   wrapAround: true,
-  autoplay: "4000",
+  autoplay: "6000",
   itemsToShow: 1,
   snapAlign: "center",
 };
