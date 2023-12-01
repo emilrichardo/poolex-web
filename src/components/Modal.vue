@@ -2,9 +2,7 @@
   <!-- Modal -->
   <Teleport to="body">
     <div class="fixed z-50 inset-0 overflow-y-auto" :id="`${id}`">
-      <div
-        class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-      >
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <!-- Overlay -->
         <div class="fixed inset-0 transition-opacity" @click="closeModal">
           <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -12,8 +10,7 @@
 
         <div class="flex items-center justify-center h-screen">
           <div
-            :class="`inline-block align-bottom  bg-light rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full`"
-          >
+            :class="`inline-block align-bottom  bg-light rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg md:max-w-3xl lg:max-w-5xl sm:w-min`">
             <!-- Aquí puedes agregar el contenido del modal -->
             <div class="bg-light border-t-4 b-color p-4">
               <h2 class="text-xl font-semibold mb-4">{{ title }}</h2>
@@ -23,12 +20,7 @@
 
             <!-- Botón para cerrar el modal -->
             <div class="bg-gray-100 px-4 py-2 text-right">
-              <Button
-                @click="closeModal"
-                variant="primary"
-                type="button"
-                size="sm"
-              >
+              <Button @click="closeModal" variant="primary" type="button" size="sm">
                 Cerrar
               </Button>
             </div>
