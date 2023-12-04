@@ -1,5 +1,5 @@
 <template>
-  <section id="testimonials" class="bg-product pt-24 px-3">
+  <section id="testimonials" class="pt-24 px-3" :style="`background:linear-gradient(to right,#9747FF,#0aaffb)`">
     <div class="container lg:max-w-screen-md xl:max-w-screen-lg">
       <h2 class="text-center text-white text-4xl mb-8">
         {{ locale === "es" ? "Testimonios" : "Testimonials" }}
