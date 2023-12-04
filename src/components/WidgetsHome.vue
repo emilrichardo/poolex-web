@@ -12,7 +12,7 @@
                   <div :class="`relative h-full ${card?.background ? 'bg-[' + card.background + ']' : ''} `">
                     <template v-if="card.type == 'backoffices'">
                       <div class="grid lg:grid-cols-3 gap-6 py-5 px-6">
-                        <CardProduct v-if="globalData.myProducts" v-for="product in globalData?.myProducts"
+                        <CardProduct v-if="productsSort" v-for="product in productsSort"
                           :title="product?.attributes?.name" :color="product?.attributes?.color"
                           :icon="product?.attributes?.icon" :isRegister="product?.success" :data="product" />
                         <CardProduct v-else v-for="product in globalData?.myBackoffices"
@@ -52,6 +52,16 @@ import { useGlobalData } from "@/stores/getGlobaData";
 const { locale } = useI18n();
 
 const globalData = useGlobalData();
+const productsSort = globalData?.products;
+
+if (productsSort) {
+  productsSort?.sort((a, b) => {
+    const order = [2, 5, 3, 1, 9];
+
+    return order?.indexOf(a?.id) - order?.indexOf(b?.id);
+  });
+}
+
 const allCards = ref([
   {
     id: "1",
@@ -116,10 +126,6 @@ const screenWidth = ref(0);
 const handleResize = () => {
   screenWidth.value = window.innerWidth;
 };
-
-
-
-
 
 onMounted(() => {
   if (typeof window !== "undefined") {
