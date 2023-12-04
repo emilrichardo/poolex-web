@@ -1,14 +1,14 @@
 <template>
   <section class="carousel-brands py-12">
-    <Carousel v-if="content.carousel_active" :breakpoints="breakpoints">
+    <Carousel v-if="content.carousel_active" :breakpoints="breakpoints" :autoplay="2000" :wrap-around="true">
       <Slide v-for="logo in content.logo" :key="logo.id">
         <div class="carousel__item">
-          <div class="bg-light rounded-lg px-8 mx-4 py-8">
-            <a :href="`${logo?.caption}`">
+          <a :href="`${logo?.caption}`" target="_blank" rel="noopener noreferrer">
+            <div class="bg-light rounded-lg px-8 mx-4 py-8">
               <NuxtImg v-if="logo.icon?.data?.attributes?.url" :src="logo.icon?.data?.attributes?.url" :alt="logo.title"
-                :class="`w-52`" />
-            </a>
-          </div>
+                :class="`${imageSize[content.size]} `" />
+            </div>
+          </a>
         </div>
       </Slide>
     </Carousel>
@@ -44,19 +44,19 @@ const breakpoints = {
   },
   // 1024 and up
   1024: {
-    itemsToShow: Math.min(showSlides.value, 3), // Mostrar hasta 3 elementos en pantallas más grandes
+    itemsToShow: Math.min(showSlides.value, 4),
     snapAlign: "center",
   },
   1400: {
-    itemsToShow: Math.min(showSlides.value, 5), // Mostrar hasta 4 elementos en pantallas aún más grandes
+    itemsToShow: Math.min(showSlides.value, 6),
     snapAlign: "center",
   },
 };
 
 const imageSize = {
   sm: "w-[200px]",
-  md: "w-[240px]",
-  lg: "w-[345px]",
-  xl: "w-[400px]",
+  md: "w-[260px]",
+  lg: "w-[365px]",
+  xl: "w-[420px]",
 };
 </script>
