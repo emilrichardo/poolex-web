@@ -15,7 +15,8 @@
         <Slide v-for="video in content.Link" :key="video" class="py-10">
           <div class="neomorphism_video rounded-lg w-full md:min-w-[300px] bg-[#F1F1F7] p-4 mx-2 my-6">
             <p v-if="video.label" class="capitalize mb-[8px]">{{ video.label }}</p>
-            <iframe class="w-full aspect-video" :src="video.url" title="YouTube video player" frameborder="0"></iframe>
+            <iframe class="w-full aspect-video" :src="getFullYoutubeLink(video.url)"
+              title="YouTube video player"></iframe>
           </div>
         </Slide>
         <template #addons>
@@ -35,7 +36,6 @@ import "vue3-carousel/dist/carousel.css";
 
 const settings = {
   wrapAround: true,
-  autoplay: false,
   itemsToShow: 1,
   snapAlign: "center",
 };
@@ -51,6 +51,17 @@ const breakpoints = {
     itemsToShow: "3.5",
     snapAlign: "start",
   },
+};
+
+const getFullYoutubeLink = (shortLink) => {
+  const videoCode = getVideoCodeFromLink(shortLink);
+  return `https://www.youtube.com/embed/${videoCode}`;
+};
+
+const getVideoCodeFromLink = (link) => {
+  // Extraer el código del video desde el enlace corto o completo
+  const videoCode = link.split('/').pop().split('?')[0];
+  return videoCode;
 };
 
 </script>
