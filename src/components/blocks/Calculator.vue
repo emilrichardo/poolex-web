@@ -10,7 +10,7 @@
           <div class="input-group flex flex-col gap-1">
             <label class="text-sm" for="select_plan">Plan</label>
             <select class="py-2 px-2 focus:outline-primary" id="select_plan" v-model="selectedPlanId">
-              <option v-for="plan in plans" :key="plan.id" :value="plan.id">
+              <option v-for="plan in locale == 'es' ? plansSpanish : plansEnglish" :key="plan.id" :value="plan.id">
                 {{ plan.name }}
               </option>
             </select>
@@ -84,7 +84,16 @@
 </template>
 <script setup>
 const { locale } = useI18n();
-const plans = ref([
+
+const plansSpanish = ref([
+  { id: 1, name: "Básico", roi: 4, months: 12, withdraw: 1 },
+  { id: 2, name: "Empresa", roi: 4.5, months: 24, withdraw: 13 },
+  { id: 3, name: "Profesional", roi: 5, months: 48, withdraw: 25 },
+  { id: 4, name: "Sueños", roi: 5.5, months: 84, withdraw: 61 },
+  { id: 5, name: "Retiro", roi: 6, months: 120, withdraw: 120 },
+]);
+
+const plansEnglish = ref([
   { id: 1, name: "Bassic", roi: 4, months: 12, withdraw: 1 },
   { id: 2, name: "Business", roi: 4.5, months: 24, withdraw: 13 },
   { id: 3, name: "Professional", roi: 5, months: 48, withdraw: 25 },
@@ -94,7 +103,8 @@ const plans = ref([
 
 const selectedPlanId = ref(1);
 const selectedPlan = computed(() => {
-  return plans.value.find((plan) => plan.id === selectedPlanId.value);
+  const plansToSearch = locale?._value == 'es' ? plansSpanish.value : plansEnglish.value;
+  return plansToSearch.find((plan) => plan.id === selectedPlanId.value);
 });
 
 const amount = ref(0);
