@@ -1,11 +1,6 @@
 <template>
-  <component
-    class="page-components"
-    v-for="section in useGetLocaleSections(locale, page).sections"
-    :key="section.id"
-    :is="formatName(section.__component)"
-    :content="section"
-  ></component>
+  <component class="page-components" v-for="section in useGetLocaleSections(locale, page).sections" :key="section.id"
+    :is="formatName(section.__component)" :content="section"></component>
 </template>
 
 <script setup>
@@ -193,6 +188,7 @@ const formatName = (name) => {
 .page-components {
   --product: #9747ff;
 }
+
 .image-caption {
   color: #fff;
 }

@@ -3,25 +3,16 @@
     <Carousel v-if="globalData.products" :wrap-around="true" :autoplay="6000">
       <template v-for="product in globalData.products" :key="product">
         <Slide v-if="product?.attributes?.active">
-          <Hero
-            :title="useGetLocale(locale, product).name"
-            :caption="useGetLocale(locale, product).description"
-            :background="
-              product.attributes?.Featured_image?.data?.attributes?.url
-            "
-          >
+          <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description"
+            :background="product.attributes?.Featured_image?.data?.attributes?.url
+              ">
             <template #cta>
               <div class="flex gap-4 justify-center lg:justify-start">
-                <NuxtLink
-                  v-if="product.attributes?.register_link"
-                  :to="product.attributes?.register_link"
-                  ><Button type="button" variant="primary_shadow">{{
-                    locale === "es" ? "Regístrate ahora" : "Register now"
-                  }}</Button></NuxtLink
-                >
-                <nuxt-link
-                  :to="localePath('/product/' + product.attributes?.slug)"
-                >
+                <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link"><Button
+                    type="button" variant="primary_shadow">{{
+                      locale === "es" ? "Regístrate ahora" : "Register now"
+                    }}</Button></NuxtLink>
+                <nuxt-link :to="localePath('/product/' + product.attributes?.slug)">
                   <Button type="button" variant="secondary_outline">{{
                     locale === "es" ? "Ver más" : "View more"
                   }}</Button>
@@ -47,8 +38,7 @@
       <!-- TODO Agregar link de conocenos -->
       <NuxtLink to="conocenos_link">
         <button
-          class="border-2 border-primary text-primary dark:text-white dark:border-white hover:bg-primary hover:text-accesible-primary rounded-full text-lg font-semibold py-2 px-8"
-        >
+          class="border-2 border-primary text-primary dark:text-white dark:border-white hover:bg-primary hover:text-accesible-primary rounded-full text-lg font-semibold py-2 px-8">
           {{ locale === "es" ? "¡Conócenos!" : "Know us!" }}
         </button>
       </NuxtLink>
@@ -59,8 +49,8 @@
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen class="w-full min-w-[600px]"></iframe>
-      <!-- <p>Datos</p> -->
     </Modal>
+
   </div>
 </template>
 
@@ -78,6 +68,8 @@ const localePath = useLocalePath();
 
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();
+console.log(globalOptions.options.data.data.attributes)
+const knowUs = globalOptions.options.data.data.attributes.link_knowus;
 
 const dataModal = ref({ title: "Conoce más de nosotros", color: "#766bf8" })
 const nameModal = "principalModal - Poolex"
