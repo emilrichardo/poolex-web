@@ -124,6 +124,9 @@ const queryProducts = qs.stringify(
               traders: {
                 populate: "*",
               },
+              accordion_item: {
+                populate: "*",
+              },
             },
           },
         },
@@ -201,6 +204,9 @@ const queryProducts = qs.stringify(
             populate: "*",
           },
           traders: {
+            populate: "*",
+          },
+          accordion_item: {
             populate: "*",
           },
         },
