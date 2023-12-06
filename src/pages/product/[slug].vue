@@ -40,8 +40,6 @@
     </template>
   </Hero>
 
-  <Dropdown :content="questions" />
-
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
   <component nt v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
     :is="formatName(section.__component)" :content="section">
@@ -55,19 +53,6 @@ const { locales, locale } = useI18n();
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();
 const route = useRoute();
-
-const questions = {
-  title: "Preguntas frecuentes", items: [
-    { title: "Pregunta 1", answer: "Respuesta 1" },
-    { title: "Pregunta 2", answer: "Respuesta 2" },
-    { title: "Pregunta 3", answer: "Respuesta 3" },
-    { title: "Pregunta 4", answer: "Respuesta 4" },
-    { title: "Pregunta 5", answer: "Respuesta 5" },
-    { title: "Pregunta 6", answer: "Respuesta 6" },
-    { title: "Pregunta 7", answer: "Respuesta 7" },
-  ]
-}
-
 const product = ref(null);
 
 const productColor = computed(() => {

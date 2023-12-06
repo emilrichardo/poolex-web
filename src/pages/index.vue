@@ -45,8 +45,7 @@
     </div>
 
     <Modal :id="`modal-id`" v-if="showModal" :title="dataModal.title" @closeModal="closeModal" :color="dataModal.color">
-      <iframe height="360" src="https://www.youtube.com/embed/jfKfPfyJRdk?si=Dlyy7SdUqW4RBaAS"
-        title="YouTube video player" frameborder="0"
+      <iframe height="360" :src="getFullYoutubeLink(knowUsLink)" title=" YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen class="w-full min-w-[600px]"></iframe>
     </Modal>
@@ -68,8 +67,7 @@ const localePath = useLocalePath();
 
 const globalData = useGlobalData();
 const globalOptions = useGlobalOptions();
-console.log(globalOptions.options.data.data.attributes)
-const knowUs = globalOptions.options.data.data.attributes.link_knowus;
+const knowUsLink = globalOptions.options.data.data.attributes.link_knowus;
 
 const dataModal = ref({ title: "Conoce más de nosotros", color: "#766bf8" })
 const nameModal = "principalModal - Poolex"
@@ -93,6 +91,17 @@ const shouldOpenModal = () => {
     showModal.value = true
   }
 }
+
+const getFullYoutubeLink = (shortLink) => {
+  const videoCode = getVideoCodeFromLink(shortLink);
+  return `https://www.youtube.com/embed/${videoCode}`;
+};
+
+const getVideoCodeFromLink = (link) => {
+  // Extraer el código del video desde el enlace corto o completo
+  const videoCode = link.split('/').pop().split('?')[0];
+  return videoCode;
+};
 
 useHead({
   title: globalOptions.options.data?.data?.attributes?.Site_name,
