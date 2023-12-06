@@ -7,7 +7,7 @@
     <div class="flex flex-col gap-2 md:gap-3">
       <div v-for="item in content?.item" :key="item?.title">
         <div
-          :class="`w-full  bg-slate-300 px-4 py-4 cursor-pointer flex flex-row justify-between ${listOpen === item?.title ? 'rounded-t-[6px]' : 'rounded-[6px] shadow-md'} transition-all`"
+          :class="`w-full  bg-[#9c66ff] px-4 py-4 cursor-pointer flex flex-row justify-between ${listOpen === item?.title ? 'rounded-t-[6px]' : 'rounded-[6px] shadow-md'} transition-all`"
           @click="handleList(item?.title)">
           <h5>{{ item?.title }}</h5>
           <Icon v-if="listOpen === item?.title" name="ep:arrow-up-bold" size="24px"></Icon>
