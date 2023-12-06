@@ -43,9 +43,11 @@
   </section>
 
   <Modal :id="`modal-id`" v-if="showModal && videoLink" @closeModal="closeModal" color="#766bf8">
-    <iframe height="360" :src="getFullYoutubeLink(videoLink)" title=" YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen class="w-full min-w-[600px]"></iframe>
+    <div class="max-w-[94vw]">
+      <iframe :src="getFullYoutubeLink(videoLink)" title=" YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen class="w-full min-w-[90vw] md:min-w-[600px]  max-w-[100vw] aspect-video"></iframe>
+    </div>
   </Modal>
 </template>
 <script setup>
