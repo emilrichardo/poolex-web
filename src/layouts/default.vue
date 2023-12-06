@@ -127,6 +127,9 @@ const queryProducts = qs.stringify(
               accordion_item: {
                 populate: "*",
               },
+              button: {
+                populate: "*",
+              },
             },
           },
         },
@@ -207,6 +210,9 @@ const queryProducts = qs.stringify(
             populate: "*",
           },
           accordion_item: {
+            populate: "*",
+          },
+          button: {
             populate: "*",
           },
         },
