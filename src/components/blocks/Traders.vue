@@ -29,7 +29,7 @@
               {{ trader.description }}
             </p>
 
-            <Button v-if="trader?.link" type="button" variant="default" size="sm" class="mt-2"
+            <Button v-if="trader?.link" type="button" variant="default" size="sm" class="mt-2 text-white"
               @click="shouldOpenModal(trader?.link)">
               {{
                 locale === "es" ? "Ver más" : "View more"
@@ -42,11 +42,11 @@
     </div>
   </section>
 
-  <!-- <Modal :id="`modal-id`" v-if="showModal && videoLink" @closeModal="closeModal" color="#766bf8">
+  <Modal :id="`modal-id`" v-if="showModal && videoLink" @closeModal="closeModal" color="#766bf8">
     <iframe height="360" :src="getFullYoutubeLink(videoLink)" title=" YouTube video player" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen class="w-full min-w-[600px]"></iframe>
-  </Modal> -->
+  </Modal>
 </template>
 <script setup>
 const { content } = defineProps(["content"]);
