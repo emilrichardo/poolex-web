@@ -244,6 +244,7 @@ const queryBo = qs.stringify(
       "active",
       "backoffice_url",
       "broker_url",
+      "broker_url_2",
     ],
 
     populate: {

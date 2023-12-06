@@ -1,5 +1,8 @@
 <template>
-  <button title="button-link" :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`">
+  <button
+    title="button-link"
+    :class="`${buttonFormat} disabled:bg-opacity-50 transition-all duration-300 ease-out`"
+  >
     <slot />
   </button>
 </template>
@@ -29,7 +32,7 @@ const variants = {
     "border border-primary text-primary dark:text-white dark:border-white hover:bg-primary hover:text-accesible-primary",
   primary_shadow:
     "bg-primary shadow shadow-lg shadow-primary-100 shadow border-primary hover:bg-primary-200 text-accesible-primary",
-  secondary: "bg-secondary text-accesible-secondary",
+  secondary: "bg-secondary hover:bg-secondary-200 text-accesible-secondary",
   secondary_outline:
     "border border-secondary text-secondary dark:text-white dark:border-white hover:bg-secondary hover:text-white",
   dark_outline:
@@ -46,8 +49,9 @@ const buttonFormat = computed(() => {
   if (type === "link") {
     return `${types.link} `;
   } else if (type === "button" || type === "submit") {
-    return `${types.button} ${variants[variant] || variants.default} ${sizes[size] || sizes.md
-      }  `;
+    return `${types.button} ${variants[variant] || variants.default} ${
+      sizes[size] || sizes.md
+    }  `;
   }
 });
 </script>
