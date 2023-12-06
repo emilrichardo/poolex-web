@@ -10,7 +10,7 @@
 <script setup>
 import { useGlobalOptions } from "@/stores/getGlobaOptions";
 
-const message = "%C2%A1Hola!%2C%20quisiera%20conocer%20m%C3%A1s%20sobre%20Poolex"
+const message = "%C2%A1Hola%2C%20Deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20poolex!"
 
 const useOptions = useGlobalOptions();
 const whastappNumber = useOptions.options?.data?.data?.attributes?.whatsapp_number ? useOptions.options.data.data.attributes.whatsapp_number : "0";
