@@ -29,7 +29,7 @@
 
         <Modal :id="`modal-${item.id}`" v-if="showModal === item.id" :title="`${locale === 'es' ? 'Beneficios Licencia' : 'License Benefits'
           } ${item.attributes?.name}`" @closeModal="closeModal" :color="item.attributes?.color">
-          <ul v-if="item.attributes?.features" class="text-left">
+          <ul v-if="item.attributes?.features" class="text-left min-w-[300px] md:min-w-[460px]">
             <li v-for="feat in localeMemberships(locale, item).attributes
               ?.features" :key="item.id" class="py-2">
               <span> {{ feat.label }}: </span>
