@@ -99,7 +99,7 @@ const allCards = ref([
   {
     id: "4",
     title: `${locale.value === "es" ? "Criptomonedas" : "Cryptos"}`,
-    color: "#d747ff",
+    color: "#766bf8",
     cols: "1",
     isDraggable: true,
     type: "cryptos",
