@@ -12,12 +12,12 @@
                   <div :class="`relative h-full ${card?.background ? 'bg-[' + card.background + ']' : ''} `">
                     <template v-if="card.type == 'backoffices'">
                       <div class="grid lg:grid-cols-3 gap-6 py-5 px-6">
-                        <CardProduct v-if="productsSort" v-for="product in productsSort"
+                        <CardProduct v-if="globalData.myProducts" v-for="product in productsSort"
                           :title="product?.attributes?.name" :color="product?.attributes?.color"
                           :icon="product?.attributes?.icon" :isRegister="product?.success" :data="product" />
-                        <CardProduct v-else v-for="product in globalData?.myBackoffices"
-                          :title="product?.attributes?.name" :color="product?.attributes?.color"
-                          :icon="product?.attributes?.icon" :isRegister="product?.success" :data="product" />
+                        <CardProduct v-else v-for="product in productsSort" :title="product?.attributes?.name"
+                          :color="product?.attributes?.color" :icon="product?.attributes?.icon"
+                          :isRegister="product?.success" :data="product" />
                       </div>
                     </template>
                     <template v-if="card.type == 'events'">
@@ -52,13 +52,14 @@ import { useGlobalData } from "@/stores/getGlobaData";
 const { locale } = useI18n();
 
 const globalData = useGlobalData();
-const productsSort = globalData?.products;
+const productsSort = globalData?.myProducts || globalData?.myBackoffices;
 
+// Ordenar cards de widget poolex
 if (productsSort) {
   productsSort?.sort((a, b) => {
-    const order = [2, 5, 3, 1, 9];
+    const order = ["academy", "trade", "space", "investment", "eco-real-estate"];
 
-    return order?.indexOf(a?.id) - order?.indexOf(b?.id);
+    return order?.indexOf(a?.attributes?.slug) - order?.indexOf(b?.attributes?.slug);
   });
 }
 
