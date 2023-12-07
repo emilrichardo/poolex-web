@@ -1,69 +1,42 @@
 <template>
-  <Hero
-    :title="useGetLocale(locale, product).name"
-    :caption="useGetLocale(locale, product).description"
-    :background="
-      imageLink || product.attributes?.Featured_image?.data?.attributes?.url
-    "
-    bgStyle="half"
-  >
+  <Hero :title="useGetLocale(locale, product).name" :caption="useGetLocale(locale, product).description" :background="imageLink || product.attributes?.Featured_image?.data?.attributes?.url
+    " bgStyle="half">
     <template #cta>
       <div class="gap-4 px-4 lg:px-0">
-        <div
-          v-if="
-            product.attributes?.broker_url ||
-            product.attributes?.second_broker_url
-          "
-          :class="`${
-            product.attributes?.second_broker_url
-              ? 'flex flex-col items-center'
-              : 'flex flex-row justify-center lg:justify-normal'
-          } gap-2 w-full`"
-        >
+        <div v-if="product.attributes?.broker_url ||
+          product.attributes?.broker_url_2
+          " :class="` ${product.attributes?.broker_url_2
+    ? 'flex flex-col items-center md:items-start'
+    : 'flex flex-row justify-center lg:justify-normal'
+    } gap-2 w-full`">
           <template v-if="!globalOptions.userData?.success">
-            <NuxtLink
-              v-if="product.attributes?.register_link"
-              :to="product.attributes?.register_link"
-            >
+            <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link">
               <button
-                class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-sm py-2 px-4 rounded-xl"
-              >
+                class="bg-product shadow-lg border-primary shadow-product hover:bg-primary-200 text-accesible-primary text-sm py-2 px-4 rounded-xl min-h-[40px] min-w-[180px]">
                 {{ locale === "es" ? "Regístrate ahora" : "Register now" }}
               </button>
             </NuxtLink>
           </template>
           <template v-else>
-            <a
-              v-if="product.attributes?.backoffice_url"
-              :href="product.attributes?.backoffice_url"
-              target="_blank"
-            >
+            <a v-if="product.attributes?.backoffice_url" :href="product.attributes?.backoffice_url" target="_blank">
               <Button type="button" variant="primary_shadow" size="sm">{{
                 locale === "es"
-                  ? "Ingresar al Backoffice"
-                  : "Enter the back office"
+                ? "Ingresar al Backoffice"
+                : "Enter the back office"
               }}</Button>
             </a>
           </template>
 
-          <a
-            v-if="product.attributes?.broker_url"
-            :href="product.attributes?.broker_url"
-            target="_blank"
-          >
-            <Button type="button" variant="secondary" size="sm">
+          <a v-if="product.attributes?.broker_url" :href="product.attributes?.broker_url" target="_blank">
+            <Button type="button" variant="secondary" size="sm" class="min-h-[40px] min-w-[180px]">
               <Icon name="ri:line-chart-line"></Icon>
               {{ locale === "es" ? "Ir a Broker" : "Go to Broker" }}
             </Button>
           </a>
-          <a
-            v-if="product.attributes?.broker_url_2"
-            :href="product.attributes?.broker_url_2"
-            target="_blank"
-          >
-            <Button type="button" variant="secondary" size="sm">
+          <a v-if="product.attributes?.broker_url_2" :href="product.attributes?.broker_url_2" target="_blank">
+            <Button type="button" variant="secondary" size="sm" class="min-h-[40px] min-w-[180px]">
               <Icon name="ri:line-chart-line"></Icon>
-              {{ locale === "es" ? "Segundo Broker" : "Go to Broker" }}
+              {{ locale === "es" ? "Segundo Broker" : "Second Broker" }}
             </Button>
           </a>
         </div>
@@ -72,13 +45,8 @@
   </Hero>
 
   <!-- <pre class="text-primary">{{ useGetLocaleSections(locale, product) }}</pre> -->
-  <component
-    nt
-    v-for="section in useGetLocaleSections(locale, product).sections"
-    :key="section.id"
-    :is="formatName(section.__component)"
-    :content="section"
-  >
+  <component nt v-for="section in useGetLocaleSections(locale, product).sections" :key="section.id"
+    :is="formatName(section.__component)" :content="section">
   </component>
 </template>
 <script setup>

@@ -4,46 +4,30 @@
 
     <div class="container mx-auto">
       <div class="social-links flex gap-4 justify-center pb-24 pt-12">
-        <a
-          v-for="link in socialLinks"
+        <a v-for="link in socialLinks"
           class="cursor-pointer text-dark-100 hover:text-primary transition-all hover:scale-110 text-2xl rounded-full px-2 py-2 neomorphism"
-          :href="link.url"
-          taget="_blank"
-        >
+          :href="link.url" taget="_blank">
           <Icon color="9747ff" :name="`${link.icon_tag}`" size="28px" />
           <span class="hidden">{{ link.name }}</span>
         </a>
       </div>
       <hr class="border-t border-light-500" />
-      <div
-        class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16"
-      >
+      <div class="menu-footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-16">
         <div class="footermenu">
           <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "Products" : "Productos" }}
           </h4>
 
-          <ul
-            v-if="useData.products"
-            class="flex flex-col gap-3 items-center md:items-start"
-          >
-            <li
-              class="text-dark-100 hover:underline"
-              v-for="product in useData.products"
-              :key="product.id"
-            >
-              <nuxt-link
-                :to="localePath('/product/' + product.attributes?.slug)"
-              >
+          <ul v-if="useData.products" class="flex flex-col gap-3 items-center md:items-start">
+            <li class="text-dark-100 hover:underline" v-for="product in productsSort" :key="product.id">
+              <nuxt-link :to="localePath('/product/' + product.attributes?.slug)">
                 {{ useGetLocale(locale, product).name }}
               </nuxt-link>
             </li>
           </ul>
         </div>
         <div class="footermenu">
-          <h4
-            class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left"
-          >
+          <h4 class="text-2xl font-medium mb-6 md:max-w-[200px] text-center md:text-left">
             {{ locale === "en" ? "Allied Brokers" : "Brokéres aliados" }}
           </h4>
 
@@ -57,12 +41,8 @@
           <h4 class="text-2xl font-medium mb-6 text-center md:text-left">
             {{ locale === "en" ? "About us" : "Sobre nosotros" }}
           </h4>
-          <Button
-            type="button"
-            size="md"
-            variant="default_outline"
-            class="flex gap-4 items-center bg-white mx-auto md:mx-0"
-          >
+          <Button type="button" size="md" variant="default_outline"
+            class="flex gap-4 items-center bg-white mx-auto md:mx-0">
             {{ locale === "en" ? "Presentation" : "Presentación" }}
             <Icon name="heroicons:arrow-down-tray-20-solid"></Icon>
           </Button>
@@ -113,6 +93,16 @@ const { locales, locale } = useI18n();
 
 const useOptions = useGlobalOptions();
 const useData = useGlobalData();
+const productsSort = useData?.products;
+
+// Ordenar cards de widget poolex
+if (productsSort) {
+  productsSort?.sort((a, b) => {
+    const order = ["academy", "trade", "space", "investment", "eco-real-estate"];
+
+    return order?.indexOf(a?.attributes?.slug) - order?.indexOf(b?.attributes?.slug);
+  });
+}
 
 const socialLinks = useOptions.options?.data?.data?.attributes?.Social_networks;
 </script>

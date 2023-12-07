@@ -27,9 +27,8 @@
           </div>
         </div>
 
-
         <form action="https://formsubmit.co/comercial@poolex.io" method="POST"
-          class="col-span-1 md-col-span-2 grid grid-cols-6 gap-2 w-full mb-4 md:mb-2 bg-[#f0f4f8] px-6 py-12 my-auto rounded-md">
+          class="col-span-1 md-col-span-2 grid grid-cols-6 gap-2 w-full mb-4 md:mb-2 bg-[#f0f4f8] px-6 py-12 my-auto rounded-md max-h-[320px] overflow-y-auto">
           <h2 class="col-span-6 heading text-2xl font-medium mb-8 text-center">
             {{ locale === "es" ? "Envíanos tus dudas" : "Send us your questions" }}
           </h2>

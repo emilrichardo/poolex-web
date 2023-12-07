@@ -2,7 +2,7 @@
   <div class="fixed bottom-10 right-10 z-10 move-short">
     <a :href="`https://api.whatsapp.com/send?phone=${whastappNumber}&text=${message}`" target="_blank"
       rel="noopener noreferrer"
-      class="bg-[#4dc247] shadow-2xl rounded-full aspect-square flex items-center justify-center w-14 h-w-14 hover:bg-green-600 border-white border-2">
+      class="bg-[#4dc247] shadow-xl shadow-[#c2c2c2] rounded-full aspect-square flex items-center justify-center w-14 h-w-14 hover:bg-green-600 border-white border-2">
       <Icon size="36px" name="ic:outline-whatsapp" color="white"></Icon>
     </a>
   </div>
