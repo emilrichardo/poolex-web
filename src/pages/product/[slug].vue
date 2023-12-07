@@ -5,10 +5,7 @@
       <div class="gap-4 px-4 lg:px-0">
         <div v-if="product.attributes?.broker_url ||
           product.attributes?.broker_url_2
-          " :class="` ${product.attributes?.broker_url_2
-    ? 'flex flex-col items-center md:items-start'
-    : 'flex flex-row justify-center lg:justify-normal'
-    } gap-2 w-full`">
+          " :class="` flex flex-col  md:flex-row justify-center lg:justify-normal gap-2 w-full`">
           <template v-if="!globalOptions.userData?.success">
             <NuxtLink v-if="product.attributes?.register_link" :to="product.attributes?.register_link">
               <button
@@ -27,18 +24,31 @@
             </a>
           </template>
 
-          <a v-if="product.attributes?.broker_url" :href="product.attributes?.broker_url" target="_blank">
+          <a v-if="product.attributes?.broker_url && !product.attributes?.broker_url_2"
+            :href="product.attributes?.broker_url" target="_blank">
             <Button type="button" variant="secondary" size="sm" class="min-h-[40px] min-w-[180px]">
               <Icon name="ri:line-chart-line"></Icon>
               {{ locale === "es" ? "Ir a Broker" : "Go to Broker" }}
             </Button>
           </a>
-          <a v-if="product.attributes?.broker_url_2" :href="product.attributes?.broker_url_2" target="_blank">
-            <Button type="button" variant="secondary" size="sm" class="min-h-[40px] min-w-[180px]">
-              <Icon name="ri:line-chart-line"></Icon>
-              {{ locale === "es" ? "Segundo Broker" : "Second Broker" }}
-            </Button>
-          </a>
+
+          <div v-if="product.attributes?.broker_url_2 && product.attributes?.broker_url"
+            class="w-full flex flex-col gap-2 md:gap-0 md:flex-row">
+            <a v-if="product.attributes?.broker_url" :href="product.attributes?.broker_url" target="_blank">
+              <button
+                :class="`text-secondary min-h-[40px] min-w-[180px] border-secondary hover:border-secondary-600 hover:text-secondary-600 hover:bg-secondary-100/40 ${product.attributes?.broker_url_2 ? 'rounded-xl border-2 md:border-r-0 md:rounded-l-xl md:rounded-r-none md:border-l-2 md:border-t-2 md:border-b-2' : 'rounded-xl '}`">
+                <Icon name="ri:line-chart-line"></Icon>
+                {{ locale === "es" ? "Ir a Broker" : "Go to Broker" }}
+              </button>
+            </a>
+            <a v-if="product.attributes?.broker_url_2" :href="product.attributes?.broker_url_2" target="_blank">
+              <button
+                class="text-secondary min-h-[40px] min-w-[180px] rounded-xl md:rounded-r-xl md:rounded-l-none border-secondary border-2 hover:border-secondary-600 hover:text-secondary-600 hover:bg-secondary-100/40">
+                <Icon name="ri:line-chart-line"></Icon>
+                {{ locale === "es" ? "Segundo Broker" : "Second Broker" }}
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </template>
