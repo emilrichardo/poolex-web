@@ -32,7 +32,7 @@
             <Button v-if="trader?.link" type="button" variant="default" size="sm" class="mt-2 text-white"
               @click="shouldOpenModal(trader?.link)">
               {{
-                locale === "es" ? "Ver más" : "View more"
+                locale === "es" ? "Ver video" : "Watch video"
               }}
             </Button>
           </div>
