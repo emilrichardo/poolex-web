@@ -60,3 +60,17 @@ body {
 .scrollContained::-webkit-scrollbar-track:active {
   background: #d4d4d4;
 }
+
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(12px);
+  }
+}
+
+.move-short {
+  animation: move 3s infinite;
+}
