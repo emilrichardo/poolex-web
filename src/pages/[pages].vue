@@ -69,6 +69,21 @@ const query = qs.stringify(
               item: {
                 populate: "*",
               },
+              Link: {
+                populate: "*",
+              },
+              trader: {
+                populate: "*",
+              },
+              traders: {
+                populate: "*",
+              },
+              accordion_item: {
+                populate: "*",
+              },
+              button: {
+                populate: "*",
+              },
             },
           },
         },
@@ -130,6 +145,20 @@ const query = qs.stringify(
             populate: "*",
           },
           item: {
+            populate: "*",
+          }, Link: {
+            populate: "*",
+          },
+          trader: {
+            populate: "*",
+          },
+          traders: {
+            populate: "*",
+          },
+          accordion_item: {
+            populate: "*",
+          },
+          button: {
             populate: "*",
           },
         },
