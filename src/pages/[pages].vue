@@ -1,6 +1,7 @@
 <template>
   <component class="page-components" v-for="section in useGetLocaleSections(locale, page).sections" :key="section.id"
     :is="formatName(section.__component)" :content="section"></component>
+  <DonationButton v-if="isFoundation" />
 </template>
 
 <script setup>
@@ -10,7 +11,7 @@ const { locales, locale } = useI18n();
 const route = useRoute();
 
 const page = ref(null);
-
+const isFoundation = ref(null);
 const query = qs.stringify(
   {
     populate: {
@@ -188,6 +189,7 @@ if (productsFromApi.error !== null) {
   });
 
   page.value = res.value;
+  isFoundation.value = res.value?.attributes?.slug === "foundations";
 }
 
 useHead({
