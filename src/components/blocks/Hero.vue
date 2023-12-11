@@ -3,7 +3,7 @@
     ? 'grid grid-cols-12'
     : 'flex flex-col md:flex-row'
     }`">
-    <div :class="`px-4 md:px-6 h-full max-w-[500px] mx-auto md:mx-0 flex items-center justify-center order-2 mdorder-1 ${content.image_width === 'half'
+    <div :class="`px-4 md:px-6 h-full max-w-[580px] mx-auto md:mx-0 flex items-center justify-center order-2 mdorder-1 ${content.image_width === 'half'
       ? 'md:col-span-6 col-span-12'
       : 'w-full'
       }`">
