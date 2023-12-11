@@ -122,7 +122,7 @@
             <div class="video-vimeo absolute left-0 top-0" ref="vimeoPlayer"></div>
           </div>
 
-          <div v-if="content?.image?.image_caption" :class="`text-white image-caption w-full md:w-1/2 lg:absolute -bottom-12 bg-product px-5 py-6 md:px-12 md:py-10 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
+          <div v-if="content?.image?.image_caption" :class="`text-white image-caption w-full md:w-1/2 lg:absolute -bottom-12 bg-product text-sm px-5 py-6 md:px-8 md:py-6 rounded-b-lg lg:rounded-b-none ${content?.image_side === 'left' ? 'right-0' : 'left-0'
             } ${globalData?.currentProduct === 'trade' &&
             'bg-gradient-to-r from-[#9747FF] via-[#A8B2FF] via-40% to-[#1AAFFD]'
             } `">
