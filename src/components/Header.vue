@@ -44,9 +44,9 @@
                   <div class="divide-y divide-gray-400">
                     <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink :to="`${itemBo.attributes?.backoffice_url}${itemBo.cookie && itemBo.bo !== 'investment'
-                          ? 'user_sessions/set_remote_session?key=' +
-                          removeString(itemBo.cookie)
-                          : ''
+                        ? 'user_sessions/set_remote_session?key=' +
+                        removeString(itemBo.cookie)
+                        : ''
                         }`" target="_blank">
                         <button v-if="itemBo.success"
                           class="bg-white w-full rounded hover:bg-primary hover:text-light py-2">
@@ -72,8 +72,8 @@
           </ul>
         </div>
         <div :class="`menu_mobile lg:hidden ${menuIsOpen
-            ? 'block absolute bg-light top-0 pt-24 w-full h-screen overflow-y-auto left-0 -z-20 px-10 pb-10'
-            : 'hidden'
+          ? 'block absolute bg-light top-0 pt-24 w-full h-screen overflow-y-auto left-0 -z-20 px-10 pb-10'
+          : 'hidden'
           }`">
           <ul class="flex flex-col items-center mb-3">
             <li v-for="item in useGetLocale(
@@ -108,9 +108,9 @@
                   <div class="divide-y divide-gray-400">
                     <template v-for="itemBo in globalData.myProducts">
                       <NuxtLink :to="`${itemBo.attributes?.backoffice_url}${itemBo.cookie && itemBo.bo === 'academy'
-                          ? 'user_sessions/set_remote_session?key=' +
-                          removeString(itemBo.cookie)
-                          : ''
+                        ? 'user_sessions/set_remote_session?key=' +
+                        removeString(itemBo.cookie)
+                        : ''
                         }`" target="_blank">
                         <button v-if="itemBo.success"
                           class="bg-white w-full rounded hover:bg-primary hover:text-light py-2">
@@ -211,6 +211,8 @@ const getLogOut = async () => {
     globalData.setMyProducts(null);
 
     menuIsOpen.value = false;
+    // Se recarga la pagina para ordenamiento de widget poolex
+    window.location.reload();
   } catch (error) {
     console.log(error);
   }

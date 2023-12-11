@@ -52,16 +52,14 @@ import { useGlobalData } from "@/stores/getGlobaData";
 const { locale } = useI18n();
 
 const globalData = useGlobalData();
-const productsSort = globalData?.myProducts || globalData?.myBackoffices;
+const productsSort = globalData.myProducts || globalData.myBackoffices;
 
-// Ordenar cards de widget poolex
-if (productsSort) {
-  productsSort?.sort((a, b) => {
-    const order = ["academy", "trade", "space", "investment", "eco-real-estate"];
+// Ordenar cards de widget poolsex
+productsSort?.sort((a, b) => {
+  const order = ["academy", "trade", "space", "investment", "eco-real-estate"];
 
-    return order?.indexOf(a?.attributes?.slug) - order?.indexOf(b?.attributes?.slug);
-  });
-}
+  return order?.indexOf(a?.attributes?.slug) - order?.indexOf(b?.attributes?.slug);
+});
 
 const allCards = ref([
   {
@@ -120,7 +118,6 @@ const allCards = ref([
     background: "#fff"
   },
 ]);
-
 
 const screenWidth = ref(0);
 

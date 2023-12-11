@@ -1,62 +1,37 @@
 <template>
   <div
     class="bg-[#3e3747] bg-opacity-70 w-screen h-screen fixed z-50 left-0 top-0 grid gap-4 p-4 place-content-center overflow-hidden"
-    @click="closeModal()"
-  >
-    <div
-      class="bg-white rounded-lg px-12 py-8 w-full max-w-[480px]"
-      @click.stop
-    >
+    @click="closeModal()">
+    <div class="bg-white rounded-lg px-12 py-8 w-full max-w-[480px]" @click.stop>
       <form @submit.prevent="login">
         <h1 class="text-xl text-center">
           {{ locale === "es" ? "Iniciar sesión en Poolex" : "Login to Poolex" }}
         </h1>
         <div>
           <label :class="labelClass" for="email">Email</label>
-          <input
-            :class="inputClass"
-            type="text"
-            id="email"
-            v-model="email"
-            required
-          />
+          <input :class="inputClass" type="text" id="email" v-model="email" required />
         </div>
         <div class="relative">
           <label :class="labelClass" for="password">{{
             locale === "es" ? "Contraseña:" : "Password"
           }}</label>
-          <input
-            :class="inputClass"
-            :type="passwordIsVisible ? 'text' : 'password'"
-            id="password"
-            v-model="password"
-            required
-          />
-          <Icon
-            class="absolute bottom-4 cursor-pointer right-4"
-            :name="
-              !passwordIsVisible
-                ? 'heroicons:eye-solid'
-                : 'heroicons:eye-slash-solid'
-            "
-            @click="showPasswors()"
-          ></Icon>
+          <input :class="inputClass" :type="passwordIsVisible ? 'text' : 'password'" id="password" v-model="password"
+            required />
+          <Icon class="absolute bottom-4 cursor-pointer right-4" :name="!passwordIsVisible
+            ? 'heroicons:eye-solid'
+            : 'heroicons:eye-slash-solid'
+            " @click="showPasswors()"></Icon>
         </div>
-        <Button
-          :disabled="!validateForm"
-          type="submit"
-          variant="primary"
-          class="w-full mt-4"
-        >
+        <Button :disabled="!validateForm" type="submit" variant="primary" class="w-full mt-4">
           {{ locale === "es" ? "Iniciar sesión" : "Sign in" }}
 
-          <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon
-        ></Button>
+          <Icon class="ml-4 -mr-4" name="heroicons:arrow-right-solid"></Icon>
+        </Button>
       </form>
       <Alert v-if="alertOpen" type="danger" class="mt-2">{{
         locale == "es"
-          ? "Usuario o contraseña incorrecta"
-          : "Incorrect username or password"
+        ? "Usuario o contraseña incorrecta"
+        : "Incorrect username or password"
       }}</Alert>
     </div>
   </div>
@@ -114,14 +89,15 @@ const login = async () => {
         const expirationDate = new Date(); // Obtén la fecha actual
         expirationDate.setDate(expirationDate.getDate() + 1); // Añade 7 días a la fecha actual
 
-        const cookieString = `${
-          bo.cookie
-        }; domain=.poolex.io; path=/; expires=${expirationDate.toUTCString()}`;
+        const cookieString = `${bo.cookie
+          }; domain=.poolex.io; path=/; expires=${expirationDate.toUTCString()}`;
 
         document.cookie = cookieString;
       });
     }
 
+    // Se recarga la pagina para ordenamiento de widget poolex
+    window.location.reload();
     closeModal();
   } catch (error) {
     globalOptions.setUserData(null);
