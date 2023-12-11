@@ -44,7 +44,8 @@
       </NuxtLink>
     </div>
 
-    <Modal :id="`modal-id`" v-if="showModal && knowUsLink" :title="dataModal.title" @closeModal="closeModal"
+    <Modal :id="`modal-id`" v-if="showModal && knowUsLink"
+      :title="locale === 'es' ? 'Conoce más de nosotros' : 'Learn more about us'" @closeModal="closeModal"
       :color="dataModal.color">
       <div class="max-w-[94vw]">
         <iframe :src="getFullYoutubeLink(knowUsLink)" title=" YouTube video player" frameborder="0"
