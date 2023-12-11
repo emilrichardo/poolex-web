@@ -4,9 +4,6 @@
       bgStyle="half"><template #cta>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left lg:text-xl max-w-screen-md lg:max-w-none mx-auto">
           <div class="corporate">
-            <h3 class="font-semibold">
-              {{ locale === "es" ? "Corporativo" : "Corporate" }}
-            </h3>
             <ul class="divide-y divide-slate-200">
               <li class="font-light py-4" v-for="contact in filteredContacts('corporate')">
                 <h5 class="lg:text-base xl:text-lg">{{ contact.email }}</h5>
@@ -15,9 +12,6 @@
             </ul>
           </div>
           <div class="commercial">
-            <h3 class="font-semibold">
-              {{ locale === "es" ? "Comercial" : "Commercial" }}
-            </h3>
             <ul class="divide-y divide-slate-200">
               <li class="font-light py-4" v-for="contact in filteredContacts('commercial')">
                 <h5 class="lg:text-base xl:text-lg">{{ contact.email }}</h5>
@@ -28,7 +22,7 @@
         </div>
 
         <form action="https://formsubmit.co/comercial@poolex.io" method="POST"
-          class="col-span-1 md-col-span-2 grid grid-cols-6 gap-2 w-full mb-4 md:mb-2 bg-[#f0f4f8] px-6 py-12 my-auto rounded-md max-h-[320px] overflow-y-auto">
+          class="col-span-1 md-col-span-2 grid grid-cols-6 gap-2 w-full mb-4 md:mb-2 bg-[#f0f4f8] px-6 py-12 my-auto rounded-md max-h-[380px] overflow-y-auto">
           <h2 class="col-span-6 heading text-2xl font-medium mb-8 text-center">
             {{ locale === "es" ? "Envíanos tus dudas" : "Send us your questions" }}
           </h2>
@@ -84,7 +78,7 @@ const contactData = [
     group: "corporate",
   },
   { email: "academia@poolex.io", phone: "+57 312 8231885", group: "corporate" },
-  { email: "ecorealstate@poolex.io", phone: "+57 316 1187717", group: "corporate" },
+  { email: "ecorealstate@poolex.io", phone: "+57 316 1187717", group: "commercial" },
   {
     email: "crowdfunding@poolex.io",
     phone: "+57 318 2102219",
