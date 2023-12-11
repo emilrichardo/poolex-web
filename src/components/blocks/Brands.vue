@@ -2,11 +2,11 @@
   <section class="carousel-brands py-12">
     <Carousel v-if="content.carousel_active" :breakpoints="breakpoints" :autoplay="false" :wrap-around="true">
       <Slide v-for="logo in content.logo" :key="logo.id">
-        <div class="carousel__item">
+        <div class="carousel__item ">
           <a :href="`${logo?.caption}`" target="_blank" rel="noopener noreferrer">
-            <div class="bg-light rounded-lg mx-4 p-6 flex justify-center items-center sm:min-h-[120px]">
+            <div class="bg-light rounded-lg px-8 mx-4 py-8 max-h-24">
               <NuxtImg v-if="logo.icon?.data?.attributes?.url" :src="logo.icon?.data?.attributes?.url" :alt="logo.title"
-                class="h-full max-h-[100px] min-h-[90px] min-w-[90px] sm:min-h-0 " />
+                height="100%" />
             </div>
           </a>
         </div>
@@ -17,7 +17,7 @@
         <a href="
         ">
           <NuxtImg v-if="logo.icon?.data?.attributes?.url" :src="logo.icon?.data?.attributes?.url" :alt="logo.title"
-            :class="`${imageSize[content.size]} min-w-[180px]`" />
+            :class="`min-h-[90px] h-full`" />
         </a>
       </div>
     </div>
