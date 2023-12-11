@@ -83,17 +83,8 @@ const contactData = [
     phone: "+57 312 7441958",
     group: "corporate",
   },
-  {
-    email: "vicepresidencia@poolex.io",
-    phone: "+57 316 8892869",
-    group: "corporate",
-  },
   { email: "academia@poolex.io", phone: "+57 312 8231885", group: "corporate" },
-  {
-    email: "comercial@poolex.io",
-    phone: "+57 316 8892869",
-    group: "commercial",
-  },
+  { email: "ecorealstate@poolex.io", phone: "+57 316 1187717", group: "corporate" },
   {
     email: "crowdfunding@poolex.io",
     phone: "+57 318 2102219",
