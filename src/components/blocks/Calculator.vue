@@ -87,10 +87,10 @@ const { locale } = useI18n();
 
 const plansSpanish = ref([
   { id: 1, name: "Básico", roi: 4, months: 12, withdraw: 1 },
-  { id: 2, name: "Empresa", roi: 4.5, months: 24, withdraw: 13 },
+  { id: 2, name: "Negocio", roi: 4.5, months: 24, withdraw: 13 },
   { id: 3, name: "Profesional", roi: 5, months: 48, withdraw: 25 },
   { id: 4, name: "Sueños", roi: 5.5, months: 84, withdraw: 61 },
-  { id: 5, name: "Retiro", roi: 6, months: 120, withdraw: 120 },
+  { id: 5, name: "Jubilación", roi: 6, months: 120, withdraw: 120 },
 ]);
 
 const plansEnglish = ref([
