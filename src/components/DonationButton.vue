@@ -8,5 +8,5 @@
 </template>
 <script setup>
 const { locale } = useI18n();
-const linkForm = "https://docs.google.com/forms/u/0/"
+const linkForm = "https://bit.ly/Donation_Foundation"
 </script>
