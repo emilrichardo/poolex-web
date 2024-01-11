@@ -1,26 +1,60 @@
 <template>
-  <div class="absolute z-50 top-0 left-0 h-screen w-full overflow-y-auto" @click="closeMegaMenu">
+  <div
+    class="absolute z-50 top-0 left-0 h-screen w-full overflow-y-auto"
+    @click="closeMegaMenu"
+  >
     <div
-      class="h-screen lg:h-[380px] bg-black absolute top-[72px] w-full left-0 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-[calc(theme(screens.lg)-theme(spacing.14))] xl:max-w-[calc(theme(screens.xl)-theme(spacing.14))] "
-      @click.stop>
+      class="h-screen lg:h-[380px] bg-black absolute top-[72px] w-full left-0 lg:left-1/2 lg:-translate-x-1/2 lg:max-w-[calc(theme(screens.lg)-theme(spacing.14))] xl:max-w-[calc(theme(screens.xl)-theme(spacing.14))]"
+      @click.stop
+    >
       <div :class="`h-full grid ${gridMenu}`">
         <template v-for="item in menuData">
           <NuxtLink :to="localePath(item.url)" @click="closeMegaMenu">
-            <div class="h-full flex flex-col items-center justify-center" :style="`background-color:${item.color}`">
-              <div :class="`cont px-10 lg:px-14 xl:px-18 flex flex-col items-center gap-6 justify-center`">
-                <div :class="`flex flex-col sm:flex-row items-center gap-2 justify-center bg-[#${item.color}] p-5 md:p-12 rounded-lg transition-all 
-hover:scale-105`" :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
-                  <NuxtImg class="flex-none w-16 max-h-[46px]" v-if="item.icon" :src="item.icon" alt="icon" />
-                  <h3 v-if="item.label" class="text-center sm:text-left text-xl text-white">
+            <div
+              class="h-full flex flex-col items-center justify-center"
+              :style="`background-color:${item.color}`"
+            >
+              <div
+                :class="`cont px-10 lg:px-14 xl:px-18 flex flex-col items-center gap-6 justify-center`"
+              >
+                <div
+                  :class="`flex flex-col sm:flex-row items-center gap-2 justify-center bg-[#${item.color}] p-5 md:p-12 rounded-lg transition-all
+hover:scale-105`"
+                  :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`"
+                >
+                  <NuxtImg
+                    class="flex-none w-16 max-h-[46px]"
+                    v-if="item.icon"
+                    :src="item.icon"
+                    alt="icon"
+                  />
+                  <h3
+                    v-if="item.label"
+                    class="text-center sm:text-left text-xl text-white"
+                  >
                     {{ item.label }}
                   </h3>
                 </div>
-                <NuxtLink v-if="item.subitems" v-for="subitem in item.subitems" :to="localePath(subitem.url)"
-                  class="w-full">
-                  <div class="bg-[#${item.color}] flex flex-row items-center rounded-lg px-4 py-3 transition-all 
-hover:scale-105" :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`">
-                    <NuxtImg class="flex-none w-16 max-h-[32px]" v-if="subitem.icon" :src="subitem.icon" alt="icon" />
-                    <h4 v-if="subitem.label" class="text-left text-lg text-white">
+                <NuxtLink
+                  v-if="item.subitems"
+                  v-for="subitem in item.subitems"
+                  :to="localePath(subitem.url)"
+                  class="w-full"
+                >
+                  <div
+                    class="bg-[#${item.color}] flex flex-row items-center rounded-lg px-4 py-3 transition-all hover:scale-105"
+                    :style="`box-shadow: 7px 7px 14px ${item.shadow}, -7px -7px 14px ${item.light};`"
+                  >
+                    <NuxtImg
+                      class="flex-none w-16 max-h-[32px]"
+                      v-if="subitem.icon"
+                      :src="subitem.icon"
+                      alt="icon"
+                    />
+                    <h4
+                      v-if="subitem.label"
+                      class="text-left text-lg text-white"
+                    >
                       {{ subitem.label }}
                     </h4>
                   </div>
@@ -52,11 +86,11 @@ const menuData = [
     label: "Poolex Academy",
     icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264536/academy_icon_white_6c519c0470.svg?updated_at=2023-10-25T20:08:58.499Z",
     subitems: [
-      {
+      /* {
         label: "Poolex Trade IA",
         url: "/product/trade",
         icon: "https://res.cloudinary.com/di4frs2px/image/upload/v1698264535/trade_icon_white_6b6680e882.svg?updated_at=2023-10-25T20:08:57.002Z",
-      },
+      }, */
       {
         label: "Poolex Space",
         url: "/product/space",
